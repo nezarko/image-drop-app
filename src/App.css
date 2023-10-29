@@ -21,6 +21,7 @@
     display: flex;
     flex-direction: column; /* Change flex-direction to column */
     align-items: center;
+    z-index: 1;
 }
 .dash{
     margin-right: 15px;
@@ -33,9 +34,11 @@
     width: 98%;
     flex-direction: column;
     align-items: center;
-
-    overflow: hidden;
+    display: flex;
+    /* overflow: hidden; */
     position: relative;
+    padding-right: 18px;
+    padding-bottom: 50px;
     height: auto; /* Allow the section to adjust its height based on image positions */
 }
 
@@ -81,6 +84,12 @@
     display: block;
     position: absolute;
 }
+.zigzag-border {
+  background: linear-gradient(135deg, transparent 2px, rgb(184, 4, 4) 5px, rgb(202, 3, 3) 10px, transparent 15px);
+  height: 100%;
+  background-size: 10px 1px; /* Adjust the size of the zigzag pattern */
+}
+
 
 .title {
     font-weight: 10;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo } from "react";
-import "./App.css";
+import "../App.css";
 
 const getImageUrl = () => {
   const imageIndex = Math.floor(Math.random() * 3) + 2;
@@ -14,7 +14,7 @@ const Image = memo(({ sectionHeight }) => {
     position: "absolute",
   };
 
-  const tooltipText = "Name: Ahmad , Age : 3 Years, Gender: Male "; // Replace with your tooltip data
+  const tooltipText = "Name: Ahmad , Age : 3 Years, Gender: Male "; // Replace with your tooltip data or html
 
   return (
     <img

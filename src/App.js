@@ -2,22 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 import './App.css';
-import Section from './Section';
+import Section from './Components/Section';
+import DropedSection from './Components/dropedSection';
 
-function App() {
-  // const numSections = 20; // Generate between 10 to 15 sections
-
-  const sections =  (
-    <Section  />)
-
-  // Add a new section at the bottom with a fixed height of 300px and name it "dropedSection"
-  const dropedSection = (
-    <div
-      className="section"
-      id="receiver-section"
-      style={{ height: '800px',width:"95%", marginBottom:"10px", borderTop: '1px red solid' }}
-    ></div>
-  );
+function App() { 
   // Add a new section at the bottom with a fixed height of 300px and name it "droppedSection"
   const sectionsContainerRef = useRef(null);
 
@@ -82,8 +70,8 @@ function App() {
   return (
     <div className="App">
       <div className="sections" ref={sectionsContainerRef}>
-        {sections}
-        {dropedSection}
+        <Section />
+        <DropedSection />
       </div>
     </div>
   );
