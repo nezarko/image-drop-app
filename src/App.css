@@ -37,7 +37,7 @@
     display: flex;
     /* overflow: hidden; */
     position: relative;
-    padding-right: 18px;
+    padding-right: 20px;
     padding-bottom: 50px;
     height: auto; /* Allow the section to adjust its height based on image positions */
 }
@@ -185,3 +185,5 @@
     background: linear-gradient(135deg,#FE6D00,#1384C5) border-box;
     color: #fff;
   }
+
+  

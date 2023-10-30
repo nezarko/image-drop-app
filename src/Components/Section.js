@@ -1,9 +1,10 @@
 import React, { useState, useEffect, memo } from "react";
 import "../App.css";
+import { images } from "../assets/images";
 
 const getImageUrl = () => {
-  const imageIndex = Math.floor(Math.random() * 3) + 2;
-  return `/imgs/Boys-0${imageIndex}.png`;
+  const imageIndex = Math.floor(Math.random() * 7) + 1;
+  return images[imageIndex].imageUrl;
 };
 
 const Image = memo(({ sectionHeight }) => {
@@ -14,9 +15,9 @@ const Image = memo(({ sectionHeight }) => {
     position: "absolute",
     backgroundImage: `url(${getImageUrl()})`,
     backgroundRepeat: `no-repeat`,
-    backgroundSize: `40px 100px`,
-    width: `50px`,
-    height: `100%`
+    backgroundSize: `80px 150px`,
+    width: `80px`,
+    height: `100%`,
 
   };
 
@@ -28,8 +29,8 @@ const Image = memo(({ sectionHeight }) => {
      // alt="Random Image"
       className="section-img"
       style={imageStyle}
-      //loading="lazy"
-     // title={tooltipText} // Add the title attribute for the tooltip
+      loading="lazy"
+     title={tooltipText} // Add the title attribute for the tooltip
     />
   );
 });
