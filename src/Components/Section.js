@@ -12,18 +12,24 @@ const Image = memo(({ sectionHeight }) => {
     top: `${Math.random() * (sectionHeight - 100)}px`,
     left: `${Math.random() * 95}%`,
     position: "absolute",
+    backgroundImage: `url(${getImageUrl()})`,
+    backgroundRepeat: `no-repeat`,
+    backgroundSize: `40px 100px`,
+    width: `50px`,
+    height: `100%`
+
   };
 
   const tooltipText = "Name: Ahmad , Age : 3 Years, Gender: Male "; // Replace with your tooltip data or html
 
   return (
-    <img
-      src={imageUrl}
-      alt="Random Image"
+    <div
+    //  src={imageUrl}
+     // alt="Random Image"
       className="section-img"
       style={imageStyle}
-      loading="lazy"
-      title={tooltipText} // Add the title attribute for the tooltip
+      //loading="lazy"
+     // title={tooltipText} // Add the title attribute for the tooltip
     />
   );
 });

@@ -16,7 +16,7 @@ function App() {
           sectionsContainerRef.current.querySelectorAll('.section');
 
         sectionElements.forEach((section, index) => {
-          const images = section.querySelectorAll('img');
+          const images = section.querySelectorAll('.section-img');
           const rect = section.getBoundingClientRect();
 
           if (
@@ -36,7 +36,7 @@ function App() {
   }, []);
 
   function fallFlowers(section) {
-    const flowers = section.querySelectorAll('img');
+    const flowers = section.querySelectorAll('.section-img');
     const receiverSection = document.getElementById('receiver-section');
   
     const tl = gsap.timeline(1);
