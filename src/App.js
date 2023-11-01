@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef,useLayoutEffect } from "react";
 import gsap from "gsap";
 import { fallFlowers } from "./Common/functions";
 import "./App.css";
@@ -8,7 +8,7 @@ import DropedSection from "./Components/dropedSection";
 function App() {
   const sectionsContainerRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fallImagesInSections = () => {
       if (sectionsContainerRef.current) {
         const sectionElements = sectionsContainerRef.current.querySelectorAll(".section");
@@ -30,6 +30,8 @@ function App() {
     };
 
     window.addEventListener("scroll", fallImagesInSections);
+
+    return () => window.removeEventListener('scroll' , fallImagesInSections)
   }, []);
 
   return (
@@ -43,3 +45,8 @@ function App() {
 }
 
 export default App;
+
+
+// Nizar phone : 0597265683
+
+// Nizar email :  n.ediesat@storyme.info

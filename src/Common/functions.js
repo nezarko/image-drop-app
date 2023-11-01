@@ -41,7 +41,7 @@ export function fallFlowers(section) {
       // x: () => getRandomInt(0, 100),
       // rotation: startRotation, // Initial rotation
       opacity: 10,
-      duration: 0.35,
+      duration: .35,
       ease: "linear",
     });
 
