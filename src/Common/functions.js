@@ -1,6 +1,4 @@
-
 import gsap from "gsap";
-
 
 // fall images in section fun code
 export const fallImagesInSections = (sectionsContainerRef) => {
@@ -27,31 +25,65 @@ export const fallImagesInSections = (sectionsContainerRef) => {
 };
 
 // falling the image fun  code ..
-export function fallFlowers(section) {
+export function fallFlowers(section, index) {
   const flowers = section.querySelectorAll(".section-img");
   const receiverSection = document.getElementById("receiver-section");
-
   const tl = gsap.timeline(1);
-
   flowers.forEach((flower, index) => {
-    const startRotation = getRandomRotation(90);
-
+    const startRotation = getRandomRotation();
+    flower.setAttribute('data-flowe' , index)
+    console.log(index, "index");
     tl.to(flower, {
-      y: () => getRandomInt(0, 700),
-      // x: () => getRandomInt(0, 100),
-      // rotation: startRotation, // Initial rotation
-      opacity: 10,
-      duration: .35,
-      ease: "linear",
+      // y: () => getRandomInt(0, 850),
+      opacity: 1,
+      duration: 0.35,
+      ease: "easeInSine",
     });
-
-    // Add a callback to update the rotation at the bottom
+    // Add a callback to update the position and rotation at the bottom
     tl.add(() => {
-      gsap.to(flower, {
-        rotation: startRotation, // Add 360 degrees to the initial rotation
-        duration: 1,
-        ease: "linear",
-      });
+      if (index > 140) {
+        gsap.to(flower, {
+          y: () => getRandomInt(50, 100),
+          // y: () => getRandomInt(20, 50),
+          left: () => getRandomInt(600, window.innerWidth - 800),
+          backgroundColor:'green',
+          rotation: startRotation,
+          duration: 1,
+          ease: "linear",
+        });
+      } else if (index >= 98 && index <= 140) {
+        gsap.to(flower, {
+          left: () => getRandomInt(400, window.innerWidth - 600),
+          y: () => getRandomInt(100, 200),
+          rotation: startRotation,
+          duration: 1,
+          ease: "linear",
+        });
+      } else if (index >= 61 && index <= 97) {
+        gsap.to(flower, {
+          left: () => getRandomInt(300, window.innerWidth - 400),
+          y: () => getRandomInt(200, 400),
+          rotation: startRotation,
+          duration: 1,
+          ease: "linear",
+        });
+      } else if (index >= 31 && index <= 60) {
+        gsap.to(flower, {
+          left: () => getRandomInt(200, window.innerWidth - 200),
+          y: () => getRandomInt(400, 600),
+          rotation: startRotation,
+          duration: 1,
+          ease: "linear",
+        });
+      } else if (index < 30) {
+        gsap.to(flower, {
+          left: () => getRandomInt(0, window.innerWidth - 100),
+          y: () => getRandomInt(600, 800),
+          rotation: startRotation,
+          duration: 1,
+          ease: "linear",
+        });
+      }
       receiverSection.appendChild(flower);
     }, `-=${0.1}`);
   });
