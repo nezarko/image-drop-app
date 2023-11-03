@@ -1,48 +1,19 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, useLayoutEffect, useRef, useMemo } from "react";
 import "../App.css";
-import { images } from "../assets/images";
-
-const getImageUrl = () => {
-  const imageIndex = Math.floor(Math.random() * 7) + 1;
-  return images[imageIndex].imageUrl;
-};
-
-const Image = memo(({ sectionHeight }) => {
-  const imageUrl = getImageUrl();
-  const imageStyle = {
-    top: `${Math.random() * (sectionHeight - 100)}px`,
-    left: `${Math.random() * 95}%`,
-    position: "absolute",
-    backgroundImage: `url(${getImageUrl()})`,
-    backgroundRepeat: `no-repeat`,
-    backgroundSize: `80px 150px`,
-    width: `80px`,
-    height: `100%`,
-
-  };
-
-  const tooltipText = "Name: Ahmad , Age : 3 Years, Gender: Male "; // Replace with your tooltip data or html
-
-  return (
-    <div
-    //  src={imageUrl}
-     // alt="Random Image"
-      className="section-img"
-      style={imageStyle}
-      loading="lazy"
-     title={tooltipText} // Add the title attribute for the tooltip
-    />
-  );
-});
+import Store from "../Common/Store";
+import Image from "./Image";
 
 const Section = memo(({ sectionNumber }) => {
   const [numImages, setNumImages] = useState(
-    Math.floor(Math.random() * 51) + 70
+    // Math.floor(Math.random() * 51) + 70
+     150
   );
   const [sectionHeight, setSectionHeight] = useState(0);
   const startDate = new Date(new Date().getFullYear(), 9, 7);
   const currentDate = new Date();
   const [dates, setDates] = useState([]);
+
+  const container = useRef(null);
 
   useEffect(() => {
     const dateArray = [];
@@ -61,7 +32,7 @@ const Section = memo(({ sectionNumber }) => {
     const calculatedHeight = 100 + numImages * 2;
     setSectionHeight(calculatedHeight);
   }, [numImages]);
-
+ 
   return (
     <>
       {dates.map((date, index) => (
@@ -72,7 +43,6 @@ const Section = memo(({ sectionNumber }) => {
               {date.toLocaleString("default", { month: "short" })}{" "}
               {date.getDate()}
             </div>
-
             <h1 className="title">
               <div className="title">{numImages} </div>
               <span className="drop"></span>
@@ -82,9 +52,17 @@ const Section = memo(({ sectionNumber }) => {
               <span className="drop"></span>
             </h1>
           </div>
-          <div className="section-image">
+          <div className="section-image" ref={container} >
+
             {Array.from({ length: numImages }).map((_, i) => (
-              <Image key={i} sectionHeight={sectionHeight} />
+              <Image
+                key={i}
+                url={Store.getImage().url}
+                top={Math.random()  * (sectionHeight - 100)}
+                left={Math.random() * 90}
+                date={date}
+                index={i}
+              />
             ))}
           </div>
         </div>

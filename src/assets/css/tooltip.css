@@ -1,0 +1,41 @@
+.tooltipContainer{
+    position: relative;
+    width: 250px;
+}
+
+.tooltipContainer .popup-bg{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top:-40px;
+    z-index: 1;
+    left: 40px;
+    opacity: 0;
+    transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.tooltipContainer .popup-text{
+    font-family: var(--toltip-font);
+    font-size: 1.5rem;
+    position: absolute;
+    z-index: 2;
+    top: -45px;
+    left: 60px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+.tooltipContainer .popup-text span:last-child{
+    display: block;
+}
+.tooltipContainer .popup-text span:not(:last-child) {
+  margin-right: 10px;
+}
+.section-img:hover{
+    cursor: pointer;
+}
+.section-img:hover .popup-bg , .section-img:hover .popup-text {
+    opacity: 1;
+}
