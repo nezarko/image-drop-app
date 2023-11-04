@@ -1,4 +1,4 @@
-import { memo, useState, useRef } from "react";
+import { memo, useState } from "react";
 import { gsap } from "gsap";
 import '../assets/css/tooltip.css'
 const Image = memo(({ top, left, url, date, index }) => {
@@ -12,8 +12,6 @@ const Image = memo(({ top, left, url, date, index }) => {
         "index": index
 
     });
-
-    // const tl = useRef(gsap.timeline());
     const imageStyle = {
         top: `${top}px`,
         left: `${left}%`,
@@ -36,19 +34,9 @@ const Image = memo(({ top, left, url, date, index }) => {
             onComplete: () => setExit(true)
 
         });
-        return ;
-        if(!exit) {
-            gsap.to(targets, {
-                opacity: 1,
-                onStart: () => console.log('start Enter'),
-                onComplete: () => setExit(true)
-    
-            });
-    
-        } 
-            }
-
-
+       
+   }
+   
     const handleLeave = ({ currentTarget }) => {
         const targets = [currentTarget.querySelector('.popup-bg'), currentTarget.querySelector('.popup-text')]
         // aniamte ;
@@ -59,16 +47,7 @@ const Image = memo(({ top, left, url, date, index }) => {
             onCompleteParams:[exit]
         });
 
-        // this to activate animation if mouse leave without completing enter ;
-
         gsap.delayedCall(2, leave , [targets]);
-        return ;
-        const active = gsap.getTweensOf(targets).length !== 0 && gsap.getTweensOf(targets)[0].isActive();
-        // if animate
-        // if(active) gsap.getTweensOf(targets).every(tween => tween.kill(targets))
-        if(exit || active) gsap.delayedCall(2, leave , [targets]);
-
-
     }
     return (
         // <>
