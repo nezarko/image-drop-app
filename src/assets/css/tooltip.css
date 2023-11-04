@@ -36,6 +36,6 @@
 .section-img:hover{
     cursor: pointer;
 }
-.section-img:hover .popup-bg , .section-img:hover .popup-text {
+/* .section-img:hover .popup-bg , .section-img:hover .popup-text {
     opacity: 1;
-}
+} */

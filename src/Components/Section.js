@@ -13,8 +13,6 @@ const Section = memo(({ sectionNumber }) => {
   const currentDate = new Date();
   const [dates, setDates] = useState([]);
 
-  const container = useRef(null);
-
   useEffect(() => {
     const dateArray = [];
     let currentDatePointer = new Date(startDate);
@@ -52,7 +50,7 @@ const Section = memo(({ sectionNumber }) => {
               <span className="drop"></span>
             </h1>
           </div>
-          <div className="section-image" ref={container} >
+          <div className="section-image" >
 
             {Array.from({ length: numImages }).map((_, i) => (
               <Image
