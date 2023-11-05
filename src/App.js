@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { fallFlowers } from "./Common/functions";
 import "./App.css";
@@ -8,7 +8,7 @@ import DropedSection from "./Components/dropedSection";
 function App() {
   const sectionsContainerRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const fallImagesInSections = () => {
       if (sectionsContainerRef.current) {
         const sectionElements = sectionsContainerRef.current.querySelectorAll(".section");
