@@ -21,7 +21,7 @@ function App() {
             rect.top < rect.height &&
             section.id !== "receiver-section"
           ) {
-            //fallFlowers(section);
+            fallFlowers(section);
           } else {
             // section.style.background = "red";
           }

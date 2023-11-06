@@ -27,6 +27,9 @@
     transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1);
 
 }
+.popup-bg , .popup-text{
+    z-index: -11111;
+}
 .tooltipContainer .popup-text span:last-child{
     display: block;
 }

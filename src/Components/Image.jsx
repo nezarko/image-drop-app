@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import '../assets/css/tooltip.css'
 const Image = memo(({ top, left, url, date, index }) => {
 
-    const [exit , setExit] = useState(false);
     const [person, setPerson] = useState({
         "name": "Ahmad",
         "age": "3 years",
@@ -22,32 +21,33 @@ const Image = memo(({ top, left, url, date, index }) => {
         width: `80px`,
         height: `100%`,
     };
+   // DONE: before start enter make sure to set inital valuee before animation starts 
 
     const handleEnter = ({ currentTarget }) => {
         // cahce 
         const targets = [currentTarget.querySelector('.popup-bg'), currentTarget.querySelector('.popup-text')]
         // aniamte ;
-        // if exiting do not enter 
+        gsap.set(targets , {
+            zIndex:2222
+        })
+
         gsap.to(targets, {
             opacity: 1,
-            onStart: () => console.log('start Enter'),
-            onComplete: () => setExit(true)
-
         });
        
    }
-   
+
+   // TODO: extract each event aniamtion to a function 
+
     const handleLeave = ({ currentTarget }) => {
         const targets = [currentTarget.querySelector('.popup-bg'), currentTarget.querySelector('.popup-text')]
         // aniamte ;
         const leave = targets =>  gsap.to(targets , {
             opacity:0,
             onStart: () => console.log('start Exit'),
-            onComplete : () => setExit(false),
-            onCompleteParams:[exit]
         });
 
-        gsap.delayedCall(2, leave , [targets]);
+        gsap.delayedCall(2, leave , [targets])
     }
     return (
         // <>
@@ -59,7 +59,9 @@ const Image = memo(({ top, left, url, date, index }) => {
             loading="lazy"
         >
             <GToolTip person={person} />
+             <div className="avatar">
 
+            </div>
         </div>
     );
 });
