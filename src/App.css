@@ -32,6 +32,8 @@ body{
     flex-direction: column; /* Change flex-direction to column */
     align-items: center;
     z-index: 1;
+    /* fix blod drops overrflow issue Cuz a white space in the bottom of page */
+    overflow-y: hidden;
 }
 .dash{
     margin-right: 15px;

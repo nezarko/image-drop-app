@@ -59,9 +59,9 @@ const Image = memo(({ top, left, url, date, index }) => {
             loading="lazy"
         >
             <GToolTip person={person} />
-             <div className="avatar">
+             {/* <div className="avatar">
 
-            </div>
+            </div> */}
         </div>
     );
 });
