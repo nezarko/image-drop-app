@@ -1,4 +1,5 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useRef,useLayoutEffect } from "react";
+
 import gsap from "gsap";
 import { fallFlowers } from "./Common/functions";
 import "./App.css";
@@ -30,6 +31,8 @@ function App() {
     };
 
     window.addEventListener("scroll", fallImagesInSections);
+
+    return () => window.removeEventListener('scroll' , fallImagesInSections)
   }, []);
 
   return (
@@ -43,3 +46,8 @@ function App() {
 }
 
 export default App;
+
+
+// Nizar phone : 0597265683
+
+// Nizar email :  n.ediesat@storyme.info

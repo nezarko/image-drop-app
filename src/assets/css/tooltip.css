@@ -1,0 +1,90 @@
+.tooltipContainer{
+    position: relative;
+    width: 250px;
+    /* z-index: 111111111; */
+
+}
+.wrapper{
+    position: relative;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: 100%;
+    transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1), transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+    opacity: 0;
+    display: none;
+    /* transition: all .2s; */
+    /* background-color: red; */
+
+}
+
+/* .tooltipContainer:hover .wrapper {
+    cursor: pointer;
+    transform: rotateY(180deg);
+} */
+
+.wrapper .front , .wrapper .back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
+.wrapper .front{
+    backface-visibility: hidden;
+    /* z-index: 2; */
+    /* background-color: #f00; */
+}
+
+.wrapper .back{
+    /* z-index: 1; */
+    /* background-color: rgb(164, 224, 142); */
+    transform: rotateY(180deg);
+    /* height: 200px; */
+
+}
+
+
+.tooltipContainer .popup-bg{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top:-40px;
+    z-index: 1;
+    left: 40px;
+    /* opacity: 0; */
+}
+
+.tooltipContainer .popup-text{
+    font-family: var(--toltip-font);
+    font-size: 1.5rem;
+    position: absolute;
+    z-index: 2;
+    top: -45px;
+    left: 60px;
+    width: 100%;
+    text-align: center;
+    /* opacity: 0; */
+    /* transition: opacity .3s cubic-bezier(0.075, 0.82, 0.165, 1); */
+
+}
+.tooltipContainer{
+    z-index: -11111;
+}
+/* .popup-bg , .popup-text ,.tooltipContainer{
+    z-index: -11111;
+} */
+.tooltipContainer .popup-text span:last-child{
+    display: block;
+}
+.tooltipContainer .popup-text span:not(:last-child) {
+  margin-right: 10px;
+}
+.section-img:hover{
+    cursor: pointer;
+}
+/* .section-img:hover .popup-bg , .section-img:hover .popup-text {
+    opacity: 1;
+} */
