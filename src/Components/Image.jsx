@@ -36,6 +36,8 @@ const Image = memo(({ top, left, url, date, index }) => {
 
         gsap.to(currentTarget.querySelector('.tooltipContainer .wrapper'), {
             opacity: 1,
+            duration:.5,   
+
         });
 
     }
@@ -56,6 +58,7 @@ const Image = memo(({ top, left, url, date, index }) => {
           return  gsap.to(target,{
               rotateY:180,
             }).then(tween => {
+                //TODO: when mouse leave while animation not compete kill animation and revert changes applied as inline.
                 gsap.delayedCall(2 , (target , tween) => {
                    // set popup so it wont flush when changing the opacity of parent while changine 
                    // opacity of wrapper it shows the first elmenet while changing 
@@ -63,15 +66,13 @@ const Image = memo(({ top, left, url, date, index }) => {
                     opacity: 0,
                    });
                     gsap.to(target,{
+                     duration:.5,   
                      y:100,
                      opacity:0,
                      clearProps:true
                    }).then(tween => {
                       front.revert(); 
-                    //   gsap.set(target , {
-                    //     y:0,
-                    //     rotateY:0
-                    //   })
+                   
                    })
                    // revert tween default ;                    
                 } , [target , tween])

@@ -6,7 +6,7 @@ import Image from "./Image";
 const Section = memo(({ sectionNumber }) => {
   const [numImages, setNumImages] = useState(
     // Math.floor(Math.random() * 51) + 70
-     1
+     150
   );
   const [sectionHeight, setSectionHeight] = useState(0);
   const startDate = new Date(new Date().getFullYear(), 9, 7);
