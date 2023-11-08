@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/image-drop-app/static/css/main.9c429409.css",
+    "main.js": "/image-drop-app/static/js/main.728a0dc5.js",
+    "static/js/787.f9bcfde0.chunk.js": "/image-drop-app/static/js/787.f9bcfde0.chunk.js",
+    "index.html": "/image-drop-app/index.html",
+    "main.9c429409.css.map": "/image-drop-app/static/css/main.9c429409.css.map",
+    "main.728a0dc5.js.map": "/image-drop-app/static/js/main.728a0dc5.js.map",
+    "787.f9bcfde0.chunk.js.map": "/image-drop-app/static/js/787.f9bcfde0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9c429409.css",
+    "static/js/main.728a0dc5.js"
+  ]
+}
