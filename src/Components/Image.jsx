@@ -1,8 +1,8 @@
 import { memo, useState } from "react";
 import { gsap } from "gsap";
 import '../assets/css/tooltip.css'
-const Image = memo(({ top, left, url, date, index }) => {
-
+const Image = memo(({ top, left, url, date, index ,iposition}) => {
+   
     const [person, setPerson] = useState({
         "name": "Ahmad",
         "age": "3 years",
@@ -12,8 +12,12 @@ const Image = memo(({ top, left, url, date, index }) => {
 
     });
     const imageStyle = {
-        top: `${top}px`,
-        left: `${left}%`,
+        "--i"        : index,
+        "--def-top"  : top ? `${top}px` : null,
+        "--def-left" : left ? `${left}%`: null,
+        "--rc-x"     : iposition.x,
+        '--rc-y'     : iposition.y,
+        '--rc-r'     : iposition.r,
         position: "absolute",
         backgroundImage: `url(${url})`,
         backgroundRepeat: `no-repeat`,
@@ -25,6 +29,8 @@ const Image = memo(({ top, left, url, date, index }) => {
 
     const handleEnter = ({ currentTarget }) => {
         // cahce 
+        // console.log("inEnter")
+
         const targets = [currentTarget.querySelector('.popup-bg'), currentTarget.querySelector('.popup-text')]
         // aniamte ;
         gsap.set(currentTarget.querySelector('.tooltipContainer'), {
@@ -45,6 +51,8 @@ const Image = memo(({ top, left, url, date, index }) => {
     // TODO: extract each event aniamtion to a function 
 
     const handleLeave = async ({ currentTarget }) => {
+
+        // console.log("inLeave")
         const targets = 
         [
         currentTarget.querySelector('.tooltipContainer'),// 0
@@ -57,9 +65,9 @@ const Image = memo(({ top, left, url, date, index }) => {
         const leave = target => {
           return  gsap.to(target,{
               rotateY:180,
-            }).then(tween => {
+            }).then($tween => {
                 //TODO: when mouse leave while animation not compete kill animation and revert changes applied as inline.
-                gsap.delayedCall(2 , (target , tween) => {
+                gsap.delayedCall(2 , (target) => {
                    // set popup so it wont flush when changing the opacity of parent while changine 
                    // opacity of wrapper it shows the first elmenet while changing 
                   const front =  gsap.set(target.querySelector('.front') , {
@@ -72,10 +80,11 @@ const Image = memo(({ top, left, url, date, index }) => {
                      clearProps:true
                    }).then(tween => {
                       front.revert(); 
-                   
+                      //tween.kill()
+                      //$tween.kill()
                    })
                    // revert tween default ;                    
-                } , [target , tween])
+                } , [target , $tween])
             });
         }
       
@@ -87,12 +96,13 @@ const Image = memo(({ top, left, url, date, index }) => {
     }
     return (
         // <>
+
         <div
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-            className="section-img"
+            // onMouseEnter={handleEnter}
+            // onMouseLeave={handleLeave}
+            className="section-img section-img-set section-img-fall section-img-append section-img-rc"
             style={imageStyle}
-            loading="lazy"
+            // loading="lazy"
         >
             <GToolTip person={person} />
 

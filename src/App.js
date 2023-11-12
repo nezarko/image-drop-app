@@ -1,45 +1,60 @@
 import React, { useEffect, useRef,useLayoutEffect } from "react";
 
-import gsap from "gsap";
-import { fallFlowers } from "./Common/functions";
 import "./App.css";
 import Section from "./Components/Section";
 import DropedSection from "./Components/dropedSection";
-
+import Suspence from "./Components/Suspence";
+import LocomotiveScroll from "locomotive-scroll";
 function App() {
+
+  const [init , setInit]        = React.useState(false);
+  const [show , setShow]        = React.useState(true);
+  // dates
+  const startDate = new Date(new Date().getFullYear(), 10, 5);
+  const currentDate = new Date();
+
+
+  const [sections ,setSections] = React.useState([]);
   const sectionsContainerRef = useRef(null);
+  
+ // initlize app data and states
+ useEffect(() => {
+  const $sections = [];
+  let currentDatePointer = new Date(startDate);
+  while (currentDatePointer <= currentDate) {
+    let _section = {
+      date : new Date(currentDatePointer),
+      data:150
+    } 
+    $sections.push(_section);
+    currentDatePointer.setDate(currentDatePointer.getDate() + 1);
+    // setDates((prev) => [...prev , new Date(currentDatePointer)])
+  }
+  // setDates(dateArray);  
+  setSections($sections);
+ }, [])
+
+  useEffect(() => {
+   if(init) {
+    setShow(false)
+    // console.log(document.querySelector('html'))
+
+   }
+  } ,[init]);
 
   useLayoutEffect(() => {
-    const fallImagesInSections = () => {
-      if (sectionsContainerRef.current) {
-        const sectionElements = sectionsContainerRef.current.querySelectorAll(".section");
-        sectionElements.forEach((section, index) => {
-          // const images = section.querySelectorAll('img');
-          const images = section.querySelectorAll(".section-img");
-          const rect = section.getBoundingClientRect();
-          if (
-            rect.top >= 0 &&
-            rect.top < rect.height &&
-            section.id !== "receiver-section"
-          ) {
-            fallFlowers(section);
-          } else {
-            // section.style.background = "red";
-          }
-        });
-      }
-    };
-
-    window.addEventListener("scroll", fallImagesInSections);
-
-    return () => window.removeEventListener('scroll' , fallImagesInSections)
-  }, []);
+    const scroll = new LocomotiveScroll();
+  } , [])
 
   return (
     <div className="App">
+
+
+      <Suspence show={show}/>
+
       <div className="sections" ref={sectionsContainerRef}>
-        <Section />
-        <DropedSection />
+        <Section init={init} setInit={setInit} sections={sections} />
+        <DropedSection sections={sections}/>
       </div>
     </div>
   );
@@ -51,3 +66,6 @@ export default App;
 // Nizar phone : 0597265683
 
 // Nizar email :  n.ediesat@storyme.info
+
+
+
