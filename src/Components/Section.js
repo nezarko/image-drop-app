@@ -6,6 +6,7 @@ import { roses } from "../dataBase/config";
 import { getDocs } from "firebase/firestore";
 
 const Section = memo(({ sectionNumber }) => {
+
   const [numImages] = useState(140);
   const [sectionHeight, setSectionHeight] = useState(0);
   const startDate = new Date(new Date().getFullYear(), 9, 7);
@@ -30,22 +31,6 @@ const Section = memo(({ sectionNumber }) => {
     setSectionHeight(calculatedHeight);
   }, [numImages]);
  
-  // const fetchData = ()=>{
-  //   getDocs(roses)
-  //   .then((res) => {
-  //       console.log(res.docs);
-  //       const blogs = res.docs.map((doc) => ({
-  //           data: doc.data(),
-  //           id: doc.id,
-  //       }));
-  //       blogs.sort()
-  //       setBlogs(blogs);
-  //       console.log(blogs,"blogs")
-  //   })
-  //   .catch((err) => console.log(err.message));
-  
-  
-  // }
   const fetchData = () => {
     getDocs(roses)
       .then((res) => {
