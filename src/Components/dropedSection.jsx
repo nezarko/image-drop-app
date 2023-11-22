@@ -19,10 +19,7 @@ function DropedSection({ sections }) {
       async function handler(e){
         const {detail : {target}} = e ; 
         // dont start excution unless the working function end 
-        setTimeout(() => {
-          q.current.querySelector(`[data-rc="${target}"]`).classList.add('rc-image-append')
-
-        } , 5000)
+        q.current.querySelector(`[data-rc="${target}"]`).classList.add('rc-image-append')
       }
       
       window.addEventListener('section:fall' ,handler)
@@ -71,12 +68,12 @@ function DropedSection({ sections }) {
             <div data-rc={`section-${index}`} className={`section rc-section-${index} rc-section-img-container reciver-section-image `} key={index}>
               <div className="section-image">
 
-                {Array.from({ length: section.data }).map((_, i) => (
+                {Array.from({ length: section.dataPerson.length }).map((_, i) => (
                   <Image
                     key={i}
                     url={Store.getImage().url}
-                    // top={Math.random() * (sectionHeight - 100)}
-                    // left={Math.random() * 90}
+                    top={0}
+                    left={Math.random() * 90}
                     date={section.date}
                     index={i}
                     iposition={positionImages(i)}

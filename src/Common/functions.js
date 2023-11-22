@@ -1,5 +1,5 @@
 import gsap from "gsap";
-
+const stack = new Array()
 // fall images in section fun code
 export const fallImagesInSections = (sectionsContainerRef) => {
   if (sectionsContainerRef.current) {
@@ -23,6 +23,24 @@ export const fallImagesInSections = (sectionsContainerRef) => {
     });
   }
 };
+
+function queue(item){
+  this.stack = [];
+  this.head = 0;
+  this.tail  = 0;
+
+
+  this.enqueu = function(item){
+     this.stack[this.tail] ; 
+    this.tail++;
+  }
+
+
+  this.items = function(){
+    console.log(this.stack)
+  }
+
+}
 
 // falling the image fun  code ..
 export function fallFlowers(section, index) {
@@ -173,6 +191,64 @@ export  function positionImages(index)  {
 
 
 
+export function obserCallback(entries = [], observer) {
+  
+  entries.forEach(async entry => {
+    // check if it falls 
+    console.log(
+      entry.isIntersecting  && entry
+    )
+    const start_fall = Boolean(entry.target.getAttribute('start-fall'));
+    // remove observer if is start fall 
+
+    if (start_fall) observer.unobserve(entry.target);
+
+     if (entry.isIntersecting && !start_fall) {
+       // add intersecting section to queue
+      //  stack.push(entry.target);
+        fall(entry.target ,100000, 
+        _dispatchEvent('section:fall',entry.target.getAttribute('data-fall')));
+    }
+
+    // console.log(stack)
+
+
+
+  });
+
+}
+
+function _dispatchEvent(name , message) {
+  window.dispatchEvent(new CustomEvent(name, {
+    detail: {
+      target: message
+    }
+  }))
+}
+
+function fall(section ,delay = 3000 , cb = null){
+  section.classList.add('container-section-img-fall');
+  section.setAttribute('start-fall' , 1)
+
+  if(cb) cb();
+ return new Promise(resolve => setTimeout(() => resolve(1) , delay))
+}
+
+
+export function attache_observer(target = [] || '', observer) {
+  return new Promise((resolve, reject) => {
+    if (Array.isArray(target)) {
+
+      target.forEach(item => observer.observe(item));
+
+      return resolve(true);
+
+    }
+    observer.observe(target);
+    return resolve(true);
+
+  })
+}
 
 /**
  * This function will only represent floawer fall from section while scroling 
@@ -185,6 +261,3 @@ export  function positionImages(index)  {
  *  */
 
 
-function fallFalawer() {
-
-}
