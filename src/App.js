@@ -1,6 +1,4 @@
-import React, { useEffect, useRef,useLayoutEffect } from "react";
-
-import gsap from "gsap";
+import React, { useRef,useLayoutEffect, useState } from "react";
 import { fallFlowers } from "./Common/functions";
 import "./App.css";
 import Section from "./Components/Section";
@@ -8,7 +6,7 @@ import DropedSection from "./Components/dropedSection";
 
 function App() {
   const sectionsContainerRef = useRef(null);
-
+const [blogs, setBlogs]= useState([]);
   useLayoutEffect(() => {
     const fallImagesInSections = () => {
       if (sectionsContainerRef.current) {
@@ -35,11 +33,13 @@ function App() {
     return () => window.removeEventListener('scroll' , fallImagesInSections)
   }, []);
 
+
   return (
     <div className="App">
       <div className="sections" ref={sectionsContainerRef}>
-        <Section />
+         <Section /> 
         <DropedSection />
+
       </div>
     </div>
   );

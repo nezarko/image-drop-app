@@ -32,57 +32,87 @@ export function fallFlowers(section, index) {
   flowers.forEach((flower, index) => {
     const startRotation = getRandomRotation();
     flower.setAttribute('data-flowe' , index)
-    console.log(index, "index");
+   
     tl.to(flower, {
-      // y: () => getRandomInt(0, 850),
-      opacity: 1,
-      duration: 0.35,
-      ease: "easeInSine",
+      y: () => getRandomInt(0, 850),
+      opacity: 10,
+      duration: 0.55,
+      ease: "ease",
     });
     // Add a callback to update the position and rotation at the bottom
     tl.add(() => {
-      if (index > 140) {
-        gsap.to(flower, {
-          y: () => getRandomInt(50, 100),
-          // y: () => getRandomInt(20, 50),
-          left: () => getRandomInt(600, window.innerWidth - 800),
-          backgroundColor:'green',
-          rotation: startRotation,
-          duration: 1,
-          ease: "linear",
-        });
-      } else if (index >= 98 && index <= 140) {
-        gsap.to(flower, {
-          left: () => getRandomInt(400, window.innerWidth - 600),
-          y: () => getRandomInt(100, 200),
-          rotation: startRotation,
-          duration: 1,
-          ease: "linear",
-        });
-      } else if (index >= 61 && index <= 97) {
-        gsap.to(flower, {
-          left: () => getRandomInt(300, window.innerWidth - 400),
-          y: () => getRandomInt(200, 400),
-          rotation: startRotation,
-          duration: 1,
-          ease: "linear",
-        });
-      } else if (index >= 31 && index <= 60) {
-        gsap.to(flower, {
-          left: () => getRandomInt(200, window.innerWidth - 200),
-          y: () => getRandomInt(400, 600),
-          rotation: startRotation,
-          duration: 1,
-          ease: "linear",
-        });
-      } else if (index < 30) {
-        gsap.to(flower, {
-          left: () => getRandomInt(0, window.innerWidth - 100),
-          y: () => getRandomInt(600, 800),
-          rotation: startRotation,
-          duration: 1,
-          ease: "linear",
-        });
+      switch (true) {
+        case index > 140:
+          gsap.to(flower, {
+            y: () => getRandomInt(80, 150),
+            left: () => getRandomInt(800, window.innerWidth - 900),
+            rotation: startRotation,
+            duration: 1,
+            ease: "ease",
+            opacity: 10,
+          });
+          break;
+
+        case index >= 98 && index <= 140:
+          gsap.to(flower, {
+            left: () => getRandomInt(350, window.innerWidth - 500),
+            y: () => getRandomInt(180, 320),
+            rotation: startRotation,
+            duration:1,
+            ease: "ease",
+            
+          });
+          break;
+
+        case index >= 61 && index <= 97:
+          gsap.to(flower, {
+            left: () => getRandomInt(300, window.innerWidth - 600),
+            y: () => getRandomInt(200, 600),
+            rotation: startRotation,
+            duration: 1,
+            ease: "ease",
+          });
+          break;
+
+        case index >= 31 && index <= 60:
+          gsap.to(flower, {
+            left: () => getRandomInt(170, window.innerWidth - 400),
+            y: () => getRandomInt(400, 600),
+            rotation: startRotation,
+            duration: 1,
+            ease: "ease",
+          });
+          break;
+
+        case index > 16 && index < 30:
+          gsap.to(flower, {
+            left: () => getRandomInt(100, window.innerWidth - 300),
+            y: () => getRandomInt(500, 700),
+            rotation: startRotation,
+            duration: 1,
+            ease: "linear",
+          });
+          break;
+
+        case index < 15:
+          gsap.to(flower, {
+            left: () => getRandomInt(0, window.innerWidth - 200),
+            y: () => getRandomInt(700, 815),
+            rotation: startRotation,
+            duration: 1,
+            ease: "linear",
+          });
+          break;
+
+        default:
+          gsap.to(flower, {
+            left: () => getRandomInt(600, window.innerWidth - 700),
+            y: () => getRandomInt(100, 400),
+            rotation: startRotation,
+            duration: 1,
+            ease: "linear",
+          });
+          break;
       }
       receiverSection.appendChild(flower);
     }, `-=${0.1}`);

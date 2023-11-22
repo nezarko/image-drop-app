@@ -1,18 +1,17 @@
-import React, { useState, useEffect, memo, useLayoutEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import "../App.css";
 import Store from "../Common/Store";
 import Image from "./Image";
+import { roses } from "../dataBase/config";
+import { getDocs } from "firebase/firestore";
 
 const Section = memo(({ sectionNumber }) => {
-  const [numImages, setNumImages] = useState(
-    // Math.floor(Math.random() * 51) + 70
-     140
-  );
+  const [numImages] = useState(140);
   const [sectionHeight, setSectionHeight] = useState(0);
   const startDate = new Date(new Date().getFullYear(), 9, 7);
   const currentDate = new Date();
   const [dates, setDates] = useState([]);
-
+  const [blogs, setBlogs]= useState([]);
   useEffect(() => {
     const dateArray = [];
     let currentDatePointer = new Date(startDate);
@@ -27,10 +26,55 @@ const Section = memo(({ sectionNumber }) => {
 
   useEffect(() => {
     // Calculate the section's height based on the number of images
-    const calculatedHeight = 100 + numImages * 2;
+    const calculatedHeight = 100 + numImages * 1;
     setSectionHeight(calculatedHeight);
   }, [numImages]);
  
+  // const fetchData = ()=>{
+  //   getDocs(roses)
+  //   .then((res) => {
+  //       console.log(res.docs);
+  //       const blogs = res.docs.map((doc) => ({
+  //           data: doc.data(),
+  //           id: doc.id,
+  //       }));
+  //       blogs.sort()
+  //       setBlogs(blogs);
+  //       console.log(blogs,"blogs")
+  //   })
+  //   .catch((err) => console.log(err.message));
+  
+  
+  // }
+  const fetchData = () => {
+    getDocs(roses)
+      .then((res) => {
+        console.log(res.docs);
+        const blogs = res.docs.map((doc) => ({
+          data: doc.data(),
+          id: doc.id,
+        }));
+  
+        // Sort blogs based on the data.date property
+        blogs.sort((a, b) => {
+          const dateA = new Date(a.data.date);
+          const dateB = new Date(b.data.date);
+  
+          return dateA - dateB;
+        });
+  
+        setBlogs(blogs);
+        console.log(blogs, "blogs");
+      })
+      .catch((err) => console.log(err.message));
+  };
+  
+  
+   useEffect(()=>{
+    fetchData()
+   },[])
+
+
   return (
     <>
       {dates.map((date, index) => (
@@ -42,7 +86,7 @@ const Section = memo(({ sectionNumber }) => {
               {date.getDate()}
             </div>
             <h1 className="title">
-              <div className="title">{numImages} </div>
+              <div className="title">{blogs[index]?.data?.numberOfRoses || 0} </div>
               <span className="drop"></span>
               <span className="drop"></span>
               <span className="drop"></span>
@@ -52,7 +96,7 @@ const Section = memo(({ sectionNumber }) => {
           </div>
           <div className="section-image" >
 
-            {Array.from({ length: numImages }).map((_, i) => (
+            {Array.from({ length: (blogs[index]?.data?.numberOfRoses || 0) }).map((_, i) => (
               <Image
                 key={i}
                 url={Store.getImage().url}
