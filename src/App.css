@@ -266,10 +266,6 @@ body {
 }
 
 .reciver-section-image .section-img {
-  /* top:0; */
-  /* top:var(--def-top); */
-
-  /* left: var(--rc-x); */
 
   transform: translateX(var(--rc-x));
 
@@ -286,8 +282,13 @@ body {
 
 .rc-image-append .section-img {
   transform: translateY(var(--rc-y)) translateX(var(--rc-x)) rotate(var(--rc-r));
-  /* left: var(--rc-x); */
   opacity: 1;
   transition-delay: calc(0.055s * var(--i));
 
+}
+
+.reciver-section-image .rc-single-fall{
+  
+  transform: translateY(var(--rc-y)) translateX(var(--rc-x)) rotate(var(--rc-r));
+   opacity: 1;
 }

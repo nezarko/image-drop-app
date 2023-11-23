@@ -9,8 +9,6 @@ import { obserCallback, attache_observer } from "./Common/functions";
 
 import LocomotiveScroll from "locomotive-scroll";
 
-// import LocomotiveScroll from "locomotive-scroll";
-
 /**
  *
  * App map
@@ -81,7 +79,7 @@ function App() {
           <Section
             key={crypto.randomUUID()}
             ref={(el) => (sectionsRef.current[index] = el)}
-            index={index}
+            sectionIndex={index}
             section={section}
             height={(100 + section.dataPerson.length) * 2}
           />

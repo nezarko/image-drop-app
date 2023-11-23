@@ -7,12 +7,11 @@ import Store from "../Common/Store";
 import { positionImages } from "../Common/functions";
 
 function DropedSection({ sections }) {
-
+/**
+ * FIXME: ajdust transtion timing at single fall 
+ */
   const q = useRef(null);
 
-  function waite(time) {
-    return setTimeout(() => true , time)
-  }
   useEffect(() => {
     // attache event listiner to observer
   
@@ -21,11 +20,31 @@ function DropedSection({ sections }) {
         // dont start excution unless the working function end 
         q.current.querySelector(`[data-rc="${target}"]`).classList.add('rc-image-append')
       }
+    
+    function singel_fall_handler(e) {
+      const {
+        detail: {
+          target: { section, person },
+        },
+      } = e;
+      // console.log(se)
+      let a = q.current.querySelector(
+        `div[data-rc="section-${section}"] div[data-person="person-${person}"]`
+      );
+            console.log(`div[data-rc="section-${section}"] div[data-person="person-${person}"]`);
+
+      a.classList.add("rc-single-fall");
+
+    }
       
-      window.addEventListener('section:fall' ,handler)
+    window.addEventListener('section:fall', handler);
+    window.addEventListener("singel:fall", singel_fall_handler);
     
      
-      return () => window.removeEventListener('section:fall' , handler);
+    return () => {
+      window.removeEventListener("section:fall", handler);
+      window.removeEventListener("singel:fall", singel_fall_handler);
+      } 
      
   }, []);
 
@@ -36,13 +55,10 @@ function DropedSection({ sections }) {
       className="section reciver-section-image-container"
       id="receiver-section"
       style={{
-        // height: "1100px",
         width: "95%",
         marginBottom: "10px",
         marginTop: "10px",
         position: "relative",
-        // background: "linear-gradient(to bottom, #fff 40%, #00f 100%)",
-        // borderRadius: "10% / 700px 700px 100px 100px",
         boxSizing: "border-box",
         padding: "5px",
         margin: "10px"
@@ -65,24 +81,30 @@ function DropedSection({ sections }) {
         {sections.map((section, index) => {
 
           return (
-            <div data-rc={`section-${index}`} className={`section rc-section-${index} rc-section-img-container reciver-section-image `} key={index}>
+            <div
+              data-rc={`section-${index}`}
+              className={`section rc-section-${index} rc-section-img-container reciver-section-image `}
+              key={index}
+            >
               <div className="section-image">
-
-                {Array.from({ length: section.dataPerson.length }).map((_, i) => (
-                  <Image
-                    key={i}
-                    url={Store.getImage().url}
-                    top={0}
-                    left={Math.random() * 90}
-                    date={section.date}
-                    index={i}
-                    iposition={positionImages(i)}
-                  />
-                ))}
+                {Array.from({ length: section.dataPerson.length }).map(
+                  (_, i) => (
+                    <Image
+                      key={i}
+                      url={Store.getImage().url}
+                      top={0}
+                      left={Math.random() * 90}
+                      date={section.date}
+                      index={i}
+                      iposition={positionImages(i)}
+                      data-person={`person-${i}`}
+                      className="section-img section-img-rc"
+                    />
+                  )
+                )}
               </div>
             </div>
-
-          )
+          );
         })}
       </>
 

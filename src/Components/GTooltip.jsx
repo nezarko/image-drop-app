@@ -1,45 +1,73 @@
-import '../assets/css/tooltip.css'
+import { useRef } from "react";
+import "../assets/css/tooltip.css";
 
-const GToolTip = ({ person ,date}) => {
-   
-   
-    return (
-        <>
-            <div className="tooltipContainer">
-                <div className="wrapper">
-                    <div className="front">
-                        <svg className="popup-bg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.16 41.68">
-                            <path fill="#404041" d="m18.75,19.8c4.26-10.32,15.87-15.66,26.91-17.39,10.32-1.62,21.01-1.59,31.43-2.26,7.3-.47,14.17.34,21.4.79,5.88.37,10.99.68,14.82,6.01,3.25,4.51,3.73,10.8,1.41,15.85-.93,2.02-2.25,3.83-3.64,5.56-4.77,5.93-10.38,8.82-17.79,10.22-9.46,1.79-19.2.3-28.83.5-12.14.25-24.37,3.25-36.5,1.32-10.12-1.61-18.91-7.51-27.95,1.29.83-3.87,4.07-6.72,7.28-9.05,5.12-3.71,9.07-7,11.47-12.84Z" />
-                        </svg>
-                        <div className="popup-text" dataindex={person.id}>
-                            <p>
-                                <span>{person.name}</span>
-                                <span>{person.age}</span>
-                                <span>
-                                    {
-                                        date.toLocaleString("default", { month: "short" })
-                                        + ' '
-                                        + date.getDay()
-                                        + ','
-                                        + date.getFullYear()
-                                    }
-                                </span>
-                            </p>
-                        </div>
+import av from "../assets/imags/av.png";
+/**
+ *
+ * @Tooltip commponentn
+ *
+ * 1- display tooltip container
+ * 2- delay
+ * 3- flip tooltip container
+ * 4- delay
+ * 5- fade out avatar
+ * 6- delay [No need]
+ * 7- fall flawer
+ *
+ * @action (On fllawer)
+ * Css selectors
+ *
+ * tooltip-container : this will whold perspective and transfrom origin
+ * tooltip-wrapper   : this selector aimd to hold tooltip decendend front and back face
+ * front-face        : front face will hold tooltip background
+ * back-face         : will hold avatr
+ *
+ * ######
+ * Events
+ * onStart : tooltip start appearing
+ * BeforFlip : before flip tooltip
+ * OnFlip     : while fliping tooltip
+ * afterFlip   : after flip tooltip
+ * avatarShow
+ * flipComplete
+ * startFall
+ *
+ *
+ * ######
+ * HTML
+ *
+ * container > wrapper > (front-face > content > text) + (back-face > person image as a content)
+ */
+const GToolTip = ({ person, date }) => {
 
-                    </div>
-                    <div className="back">
-                        <div className="avatar">
-                           
-                        </div>
-
-                    </div>
-                </div>
-
+  return (
+    <>
+      <div  className="tooltip-container">
+        <div className="tooltip-wrapper">
+          <div className="front">
+            <div className="content">
+              <p className="content-text">
+                <span>{person.name}</span>
+                <span>{person.age}</span>
+                <span>
+                  {date.toLocaleString("default", { month: "short" }) +
+                    " " +
+                    date.getDay() +
+                    "," +
+                    date.getFullYear()}
+                </span>
+              </p>
             </div>
-
-        </>
-    )
-}
+          </div>
+          <div className="back">
+            <div className="avatar">
+              <img src={av} alt={person.name} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default GToolTip;

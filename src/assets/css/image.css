@@ -1,0 +1,11 @@
+.fall-single{
+    transform: translateY(100px);
+    opacity: 0;
+    transition-delay: initial !important;
+    transition-timing-function: cubic-bezier(0.750, -0.015, 0.565, 1.055);
+    transition: transform .3s , opacity .3s !important;
+}
+
+.fall-single * {
+    display: none;
+}

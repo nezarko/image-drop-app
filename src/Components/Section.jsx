@@ -3,15 +3,15 @@ import "../App.css";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
 
-const Section = forwardRef(({ height, section, index }, ref) => {
+const Section = forwardRef(({ height, section, sectionIndex }, ref) => {
   return (
     <>
       <div
         ref={ref}
-        className={`section section-${index} contianer-section-img-set`}
+        className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
-        key={index}
-        data-fall={`section-${index}`}
+        key={sectionIndex}
+        data-fall={`section-${sectionIndex}`}
       >
         <SectionDate date={section.date} />
 
@@ -22,9 +22,12 @@ const Section = forwardRef(({ height, section, index }, ref) => {
               key={person.id}
               person={person}
               index={index}
+              sectionIndex={sectionIndex}
               height={height}
             />
           ))}
+
+          {/* <Person sectionIndex={index} date={section.date} person={section.dataPerson[0]} index={0} height={height} /> */}
         </div>
       </div>
     </>
