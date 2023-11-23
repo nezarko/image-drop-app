@@ -31,7 +31,6 @@ function DropedSection({ sections }) {
       let a = q.current.querySelector(
         `div[data-rc="section-${section}"] div[data-person="person-${person}"]`
       );
-            console.log(`div[data-rc="section-${section}"] div[data-person="person-${person}"]`);
 
       a.classList.add("rc-single-fall");
 
