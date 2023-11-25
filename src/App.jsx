@@ -8,7 +8,7 @@ import { obserCallback, attache_observer, fall } from "./Common/functions";
 import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
-
+import { Comments } from "./Components/Comments";
 /**
  *
  * App map
@@ -108,9 +108,9 @@ function App() {
               // data-scroll-ofsset="200px , 0"
             />
           ))}
-
-        <DropedSection sections={sections} />
       </div>
+      <DropedSection sections={sections} />
+      <Comments />
     </div>
   );
 }

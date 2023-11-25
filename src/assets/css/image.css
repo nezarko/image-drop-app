@@ -9,3 +9,25 @@
 .fall-single * {
     display: none;
 }
+
+.animate-singel{
+    animation-name: move ;
+    animation-duration: .5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-delay: calc(0.055 * var(--i));
+}
+
+@keyframes move {
+    0%{
+   transform: translateX(-50px);
+    }
+   50%{
+    transform: translateX(0px);
+   }
+    100%{
+    transform: translateX(50px);
+    }
+}

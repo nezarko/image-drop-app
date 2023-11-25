@@ -17,7 +17,7 @@ const Person = ({ person, index, date, height , sectionIndex }) => {
         index={index}
         sectionIndex={sectionIndex}
         iposition={positionImages(index)}
-        className="section-img section-img-set section-img-fall"
+        className="section-img section-img-set section-img-fall animate-singel"
       >
         <GToolTip person={person} date={date} />
       </Image>

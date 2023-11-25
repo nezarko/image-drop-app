@@ -237,21 +237,39 @@ body {
 
 .contianer-section-img-set .section-img-set {
   transition-property: opacity, transform;
-  transition-duration: 0.3s;
+  transition-duration: 1s;
   transition-timing-function: cubic-bezier(0.750, -0.015, 0.565, 1.055);
   top: var(--def-top);
   left: var(--def-left);
 }
 
 .container-section-img-fall .section-img-fall {
-  transform: translateY(100px);
-  opacity: 0;
-  transition-delay: calc(0.055s * var(--i));
+  transform: translateY(110vh);
+  /* opacity: 0; */
+  transition-delay: calc(0.004s * var(--i)); 
 
 }
 
 .reciver-section-image-container {
   height: 100vh !important;
+  
+}
+
+.reciver-section-image-container::after{
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  transform: translateX(5%);
+  background-image: url(./assets/imags/ci.png);
+  background-repeat: repeat;
+  background-position: bottom center;
+  background-clip: border-box;
+  background-size: contain;
+  width: 80%;
+  height: 150px;
+  z-index: 1;
+  /* margin: 0 auto; */
 }
 
 .reciver-section-image {
@@ -263,6 +281,7 @@ body {
   justify-content: center;
   align-items: start;
   contain: layout;
+  z-index: 2;
 }
 
 .reciver-section-image .section-img {
@@ -296,3 +315,4 @@ body {
 .white{
   background: white !important;
 }
+
