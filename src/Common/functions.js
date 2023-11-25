@@ -166,7 +166,9 @@ export function obserCallback(entries = [], observer) {
 
     // if (start_fall) observer.unobserve(entry.target);
     // if (!entry.target.classList.contains('section-0')) {
-      if (entry.boundingClientRect.top <= -1 && !start_fall) {
+    const r = Math.floor(entry.intersectionRatio * 100);
+    // console.log("r", entry.intersectionRatio);
+      if (entry.boundingClientRect.top <= -1 && r >= 40 && !start_fall) {
         fall(
           entry.target,
           100000,
