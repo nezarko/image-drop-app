@@ -133,27 +133,44 @@ export function positionImages(index) {
     r: getRandomRotation() + "deg",
   };
   let _w = window.innerWidth;
+console.log(_w,"w")
   if (window.innerWidth > 1200) _w = 1200;
-  // set postions of images in reciecer section according to index
 
-  if (index >= 141) {
-    posistion.y = `${getRandomInt(50, 100)}px`;
-    posistion.x = getRandomInt(600, window.innerWidth - 800) + "px";
-  } else if (index >= 98 && index <= 140) {
-    posistion.y = `${getRandomInt(100, 200)}px`;
-    posistion.x = getRandomInt(400, window.innerWidth - 600) + "px";
-  } else if (index >= 61 && index <= 97) {
-    posistion.y = `${getRandomInt(200, 400)}px`;
-    posistion.x = getRandomInt(300, window.innerWidth - 400) + "px";
-  } else if (index >= 31 && index <= 60) {
-    posistion.y = `${getRandomInt(400, 600)}px`;
-    posistion.x = getRandomInt(200, _w - 200) + "px";
-  } else if (index <= 30) {
-    posistion.y = `${getRandomInt(600, 800)}px`;
-    posistion.x = getRandomInt(0, _w - 100) + "px";
+  // set positions of images in receiver section according to index
+  switch (true) {
+    case index >= 141:
+      posistion.y = `${getRandomInt(10, 180)}px`;
+      posistion.x = getRandomInt(750, window.innerWidth - 1060) + "px";
+      break;
+
+    case index >= 98 && index <= 140:
+      posistion.y = `${getRandomInt(100, 250)}px`;
+      posistion.x = getRandomInt(550, window.innerWidth - 900) + "px";
+      break;
+
+    case index >= 61 && index <= 97:
+      posistion.y = `${getRandomInt(200,570)}px`;
+      posistion.x = getRandomInt(390, window.innerWidth - 650) + "px";
+      break;
+
+    case index >= 41 && index <= 60:
+      posistion.y = `${getRandomInt(480, 680)}px`;
+      posistion.x = getRandomInt(280, _w + 260) + "px";
+      break;
+
+    case index <= 40:
+      posistion.y = `${getRandomInt(660, 880)}px`;
+      posistion.x = getRandomInt(160, _w + 340) + "px";
+      break;
+
+    default:
+      // Handle any other cases if needed
+      break;
   }
+
   return posistion;
 }
+
 let i = 0;
 export function obserCallback(entries = [], observer) {
   i++;
