@@ -100,7 +100,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 2px rgb(167, 7, 7) solid;
+  border-left: 2px rgb(234, 226, 226) solid;
   /* */
 }
 
@@ -237,7 +237,7 @@ body {
 
 .contianer-section-img-set .section-img-set {
   transition-property: opacity, transform;
-  transition-duration: 1s;
+  transition-duration: 0.9s;
   transition-timing-function: cubic-bezier(0.750, -0.015, 0.565, 1.055);
   top: var(--def-top);
   left: var(--def-left);
@@ -245,8 +245,8 @@ body {
 
 .container-section-img-fall .section-img-fall {
   transform: translateY(110vh);
-  /* opacity: 0; */
-  transition-delay: calc(0.004s * var(--i)); 
+  opacity: 0;
+  transition-delay: calc(0.004s * var(--i));
 
 }
 

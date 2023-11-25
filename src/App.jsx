@@ -8,6 +8,7 @@ import { obserCallback, attache_observer, fall } from "./Common/functions";
 import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
+import Header from "./Components/Header";
 import { Comments } from "./Components/Comments";
 /**
  *
@@ -91,6 +92,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header/>
       <Suspence show={!init} />
 
       <div className="sections" ref={sectionsContainerRef}>
@@ -108,6 +110,8 @@ function App() {
               // data-scroll-ofsset="200px , 0"
             />
           ))}
+
+        <DropedSection sections={sections} />
       </div>
       <DropedSection sections={sections} />
       <Comments />
