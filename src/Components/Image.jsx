@@ -4,7 +4,7 @@ import "../assets/css/image.css";
 const Image = memo(
   (props) => {
 
-    const { top, left, url, date, index, iposition, children, sectionIndex } =
+    const { top, left, url, date, index, iposition, children, sectionIndex,...$props } =
       props;
     const imageStyle = {
       "--i": index,
@@ -21,11 +21,8 @@ const Image = memo(
       height: `100%`,
     };
 
-
-
     const [active, setActive] = useState(true);
     const item = useRef(null);
-
     async function flip() {
       //DONE: transition delay function when its single its a must to set it to initla state
       //DONE: When fall single remove it from nodes
@@ -88,7 +85,8 @@ const Image = memo(
             style={imageStyle}
             ref={item}
             data-tooltip-start={false}
-            {...props}
+            
+            {...$props}
           >
             {children}
           </div>

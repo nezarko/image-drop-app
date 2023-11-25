@@ -1,4 +1,4 @@
-import {useEffect , useRef} from "react";
+import { useEffect, useRef } from "react";
 import "../App.css";
 
 import Image from "./Image";
@@ -7,20 +7,24 @@ import Store from "../Common/Store";
 import { positionImages } from "../Common/functions";
 
 function DropedSection({ sections }) {
-/**
- * FIXME: ajdust transtion timing at single fall 
- */
+  /**
+   * FIXME: ajdust transtion timing at single fall
+   */
   const q = useRef(null);
 
   useEffect(() => {
     // attache event listiner to observer
-  
-      async function handler(e){
-        const {detail : {target}} = e ; 
-        // dont start excution unless the working function end 
-        q.current.querySelector(`[data-rc="${target}"]`).classList.add('rc-image-append')
-      }
-    
+
+    async function handler(e) {
+      const {
+        detail: { target },
+      } = e;
+      // dont start excution unless the working function end
+      q.current
+        .querySelector(`[data-rc="${target}"]`)
+        .classList.add("rc-image-append");
+    }
+
     function singel_fall_handler(e) {
       const {
         detail: {
@@ -33,21 +37,18 @@ function DropedSection({ sections }) {
       );
 
       a.classList.add("rc-single-fall");
-
     }
-      
-    window.addEventListener('section:fall', handler);
+
+    window.addEventListener("section:fall", handler);
     window.addEventListener("singel:fall", singel_fall_handler);
-    
-     
+
+
     return () => {
       window.removeEventListener("section:fall", handler);
       window.removeEventListener("singel:fall", singel_fall_handler);
-      } 
-     
+    };
   }, []);
 
-  
   return (
     <div
       ref={q}
@@ -60,7 +61,7 @@ function DropedSection({ sections }) {
         position: "relative",
         boxSizing: "border-box",
         padding: "5px",
-        margin: "10px"
+        margin: "10px",
       }}
     >
       <div
@@ -76,9 +77,7 @@ function DropedSection({ sections }) {
       ></div>
 
       <>
-
         {sections.map((section, index) => {
-
           return (
             <div
               data-rc={`section-${index}`}
@@ -86,7 +85,7 @@ function DropedSection({ sections }) {
               key={index}
             >
               <div className="section-image">
-                {Array.from({ length: section.dataPerson.length }).map(
+                {Array.from({ length: section.dataPerson.roses.length }).map(
                   (_, i) => (
                     <Image
                       key={i}
@@ -106,9 +105,6 @@ function DropedSection({ sections }) {
           );
         })}
       </>
-
-
-
     </div>
   );
 }

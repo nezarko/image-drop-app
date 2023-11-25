@@ -4,9 +4,9 @@ import "./App.css";
 import Section from "./Components/Section";
 import DropedSection from "./Components/dropedSection";
 import Suspence from "./Components/Suspence";
-import persons from "./data/persons.json";
-import { obserCallback, attache_observer } from "./Common/functions";
-
+import { obserCallback, attache_observer, fall } from "./Common/functions";
+import { getDocs } from "firebase/firestore";
+import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
 
 /**
@@ -16,74 +16,98 @@ import LocomotiveScroll from "locomotive-scroll";
  * Loading screen
  * Sections > Section > date + Person > Image + info  > tooltip
  * DropSection > Sections > section > Perosn
- *
+ *FIXME: change state of section in order to render once 
+  TODO:  add initial state to app in order to activate susbnce loading component
+  TODO: level up state of dropsection and sections ref 
+  TODO: reomve adding section side effect in order to reduce rendering count 
  */
 
 function App() {
-  const [init, setInit] = React.useState({
-    sections: null,
-    dropSection: null,
-    app: null,
-  });
-  const [show, setShow] = React.useState(true);
+  const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
   // dates
-  const startDate = new Date(new Date().getFullYear(), 10, 20);
-  const currentDate = new Date();
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
+  function onScroll({ scroll, limit, velocity, direction, progress }) {
+    console.log(scroll, limit, velocity, direction, progress);
+  }
 
   // initlize app data and states
   useEffect(() => {
-    const $sections = [];
-    let currentDatePointer = new Date(startDate);
-    while (currentDatePointer <= currentDate) {
-      let _section = {
-        date: new Date(currentDatePointer),
-        dataPerson: persons,
-      };
-      $sections.push(_section);
-      currentDatePointer.setDate(currentDatePointer.getDate() + 1);
-    }
-
-    setSections($sections);
-
-    const locomotiveScroll = new LocomotiveScroll();
-
-  }, []);
-
-  useEffect(() => {
-    if (sectionsRef.current.length === sections.length) {
+    if (init && sectionsRef.current.length === sections.length) {
       const observer = new IntersectionObserver(obserCallback, {
-        threshold: 1,
+        threshold: 0.5,
+        // root:sectionsContainerRef.current,
+        // rootMargin: "0px 0px -300px 0px",
       });
+
       sectionsRef.current.forEach((section) =>
         attache_observer(section, observer)
       );
+
+      const lscrol = new LocomotiveScroll();
+    }
+  }, [init]);
+
+  useEffect(() => {
+    //FIXME: delete this side effect ;
+    async function f() {
+      const $docs = await getDocs(roses);
+      const $data = new Promise((resolve) => {
+        let a = $docs.docs
+          .map((doc) => {
+            const { date, numberOfRoses, ...$doc } = doc.data();
+            return {
+              date: date,
+              numberOfRoses: numberOfRoses,
+              dataPerson: $doc,
+            };
+          })
+          .sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+
+            return dateA - dateB;
+          });
+
+        resolve(a);
+      }).then((r) => setSections(r));
+    }
+    f();
+
+    
+  }, []);
+
+  useEffect(() => {
+    if (sections.length) {
+      setInit(true);
     }
   }, [sections]);
-
   //TODO: CREATE INITLIZE STATE FOR THE APP, get to kno when app is ready
-
   //TODO: observe each section when its in view port fall person
   // when all section flowers had fallen applay animation to drop section
   // Issue, Queue each section
 
   return (
     <div className="App">
-      {/* <Suspence show={show} /> */}
+      <Suspence show={!init} />
 
       <div className="sections" ref={sectionsContainerRef}>
-        {sections.map((section, index) => (
-          <Section
-            key={crypto.randomUUID()}
-            ref={(el) => (sectionsRef.current[index] = el)}
-            sectionIndex={index}
-            section={section}
-            height={(100 + section.dataPerson.length) * 2}
-          />
-        ))}
+        {init &&
+          sections.map((section, index) => (
+            <Section
+              key={crypto.randomUUID()}
+              ref={(el) => (sectionsRef.current[index] = el)}
+              sectionIndex={index}
+              section={section}
+              height={(100 + section.dataPerson.roses.length) * 2}
+              // data-scroll
+              // data-scroll-speed="0.3"
+              // data-scroll-call="scrollEvent"
+              // data-scroll-ofsset="200px , 0"
+            />
+          ))}
 
         <DropedSection sections={sections} />
       </div>

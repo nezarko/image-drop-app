@@ -292,3 +292,7 @@ body {
   transform: translateY(var(--rc-y)) translateX(var(--rc-x)) rotate(var(--rc-r));
    opacity: 1;
 }
+
+.white{
+  background: white !important;
+}

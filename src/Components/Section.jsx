@@ -1,9 +1,10 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useEffect } from "react";
 import "../App.css";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
 
-const Section = forwardRef(({ height, section, sectionIndex }, ref) => {
+const Section = forwardRef((props, ref) => {
+  const { height, section, sectionIndex , ...$props } = props;
   return (
     <>
       <div
@@ -12,14 +13,26 @@ const Section = forwardRef(({ height, section, sectionIndex }, ref) => {
         style={{ height: height }}
         key={sectionIndex}
         data-fall={`section-${sectionIndex}`}
+        {...$props}
       >
-        <SectionDate date={section.date} />
+        <SectionDate
+          date={new Date(section.date)}
+          title={section.numberOfRoses}
+        />
 
-        <div className="section-image" data-scroll data-scroll-speed="0.3">
-          {section.dataPerson.map((person, index) => (
+        <div
+          className="section-image"
+          data-scroll
+          data-scroll-speed="0.1"
+          // data-scroll-call="scrollEvent"
+          // data-scroll-postion="end,start"
+          // data-scroll-offset="50%,50%"
+          // data-scroll-event-progress="progressEvent"
+        >
+          {section.dataPerson.roses.map((person, index) => (
             <Person
-              date={section.date}
-              key={person.id}
+              date={new Date(section.date)}
+              key={crypto.randomUUID()}
               person={person}
               index={index}
               sectionIndex={sectionIndex}
@@ -27,7 +40,6 @@ const Section = forwardRef(({ height, section, sectionIndex }, ref) => {
             />
           ))}
 
-          {/* <Person sectionIndex={index} date={section.date} person={section.dataPerson[0]} index={0} height={height} /> */}
         </div>
       </div>
     </>

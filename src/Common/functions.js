@@ -24,7 +24,6 @@ export const fallImagesInSections = (sectionsContainerRef) => {
   }
 };
 
-
 // falling the image fun  code ..
 export function fallFlowers(section, index) {
   // in order to limit function excution we set attribute as indicator we use to check if section has intersect and excuted fallFlawers
@@ -155,25 +154,30 @@ export function positionImages(index) {
   }
   return posistion;
 }
-
+let i = 0;
 export function obserCallback(entries = [], observer) {
+  i++;
   entries.forEach(async (entry) => {
     // check if it falls
-    console.log(entry.isIntersecting && entry);
+    console.log(`Et ${i}`, entry);
+
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
     // remove observer if is start fall
 
-    if (start_fall) observer.unobserve(entry.target);
+    // if (start_fall) observer.unobserve(entry.target);
+    // if (!entry.target.classList.contains('section-0')) {
+      if (entry.boundingClientRect.top <= -1 && !start_fall) {
+        fall(
+          entry.target,
+          100000,
+          _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
+        ); // add intersecting section to queue
+        //  stack.push(entry.target);
+      }
+    //}
 
-    if (entry.isIntersecting && !start_fall) {
-      // add intersecting section to queue
-      //  stack.push(entry.target);
-      fall(
-        entry.target,
-        100000,
-        _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
-      );
-    }
+    
+    
 
     // console.log(stack)
   });
@@ -189,7 +193,7 @@ export function _dispatchEvent(name, message) {
   );
 }
 
-function fall(section, delay = 3000, cb = null) {
+export function fall(section, delay = 3000, cb = null) {
   section.classList.add("container-section-img-fall");
   section.setAttribute("start-fall", 1);
 
@@ -198,15 +202,12 @@ function fall(section, delay = 3000, cb = null) {
 }
 
 export function attache_observer(target = [] || "", observer) {
-  return new Promise((resolve, reject) => {
-    if (Array.isArray(target)) {
-      target.forEach((item) => observer.observe(item));
+  if (Array.isArray(target)) {
+    target.forEach((item) => observer.observe(item));
 
-      return resolve(true);
-    }
-    observer.observe(target);
     return resolve(true);
-  });
+  }
+  observer.observe(target);
 }
 
 export function delay(time) {
