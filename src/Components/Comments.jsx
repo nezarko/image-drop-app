@@ -1,7 +1,7 @@
 import "../assets/css/comments.css";
 export function Comments() {
   return (
-    <div className="comment-container">
+    <div id="commnets" className="comment-container">
       <div className="divide">
         <svg
           width="100%"

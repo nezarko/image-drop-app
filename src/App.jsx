@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useLayoutEffect } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 
 import "./App.css";
 import Section from "./Components/Section";
@@ -48,6 +48,8 @@ function App() {
       );
 
       const lscrol = new LocomotiveScroll();
+
+
     }
   }, [init]);
 
@@ -89,10 +91,17 @@ function App() {
   //TODO: observe each section when its in view port fall person
   // when all section flowers had fallen applay animation to drop section
   // Issue, Queue each section
+ 
+  const scroll_to = useCallback((target, option) => {
+    
+    LocomotiveScroll.scrollTo(target, option);
+    
+  }, []);
+
 
   return (
     <div className="App">
-      <Header/>
+      <Header scrollTo={scroll_to} />
       <Suspence show={!init} />
 
       <div className="sections" ref={sectionsContainerRef}>
@@ -110,8 +119,6 @@ function App() {
               // data-scroll-ofsset="200px , 0"
             />
           ))}
-
-        <DropedSection sections={sections} />
       </div>
       <DropedSection sections={sections} />
       <Comments />
