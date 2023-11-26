@@ -1,16 +1,18 @@
-import React, { useRef,useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import { fallFlowers } from "./Common/functions";
 import "./App.css";
 import Section from "./Components/Section";
 import DropedSection from "./Components/dropedSection";
+import { NeverAgain } from "./Components/NeverAgain";
 
 function App() {
   const sectionsContainerRef = useRef(null);
-const [blogs, setBlogs]= useState([]);
+  const [blogs, setBlogs] = useState([]);
   useLayoutEffect(() => {
     const fallImagesInSections = () => {
       if (sectionsContainerRef.current) {
-        const sectionElements = sectionsContainerRef.current.querySelectorAll(".section");
+        const sectionElements =
+          sectionsContainerRef.current.querySelectorAll(".section");
         sectionElements.forEach((section, index) => {
           // const images = section.querySelectorAll('img');
           const images = section.querySelectorAll(".section-img");
@@ -30,23 +32,21 @@ const [blogs, setBlogs]= useState([]);
 
     window.addEventListener("scroll", fallImagesInSections);
 
-    return () => window.removeEventListener('scroll' , fallImagesInSections)
+    return () => window.removeEventListener("scroll", fallImagesInSections);
   }, []);
-
 
   return (
     <div className="App">
       <div className="sections" ref={sectionsContainerRef}>
-         <Section /> 
+        <Section />
         <DropedSection />
-
+        <NeverAgain />
       </div>
     </div>
   );
 }
 
 export default App;
-
 
 // Nizar phone : 0597265683
 
