@@ -1,6 +1,6 @@
 import {
   getRandomInRange,
-  getTangentOfIndex,
+  getNormalOfIndex,
   placePointOnRow,
   indexToT,
 } from "./utils";
@@ -31,7 +31,7 @@ export const svgFill = ({
   const getPositionAtIndex = (index, others) => {
     const rowIndex = Math.floor(index / itemsPerRow);
 
-    const tangent = getTangentOfIndex(
+    const normal = getNormalOfIndex(
       rowIndex,
       path,
       indexToTCalculator,
@@ -39,8 +39,8 @@ export const svgFill = ({
     );
 
     const p = placePointOnRow({
-      start: tangent.start,
-      end: tangent.end,
+      start: normal.start,
+      end: normal.end,
       others,
       column: index % itemsPerRow,
       itemsPerRow,
@@ -51,7 +51,7 @@ export const svgFill = ({
     return {
       x: p.x,
       y: p.y,
-      tangent,
+      normal,
       rotation: getRandomInRange(Math.random, -0.1, 0.1),
       zIndex: Math.ceil(randomFn() * 999),
     };

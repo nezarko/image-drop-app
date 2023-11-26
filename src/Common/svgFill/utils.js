@@ -22,16 +22,16 @@ export const lerp = (start, end, t) => {
   };
 };
 
-export function getTangentOfIndex(
+export function getNormalOfIndex(
   index,
   path,
   indexToTCalculator,
   strokeWidth,
-  flipTangent = false
+  flip = false
 ) {
   const pathLength = path.getTotalLength();
   const point = path.getPointAtLength(indexToTCalculator(index) * pathLength);
-  const nextIndex = flipTangent ? -1 : 1;
+  const nextIndex = flip ? -1 : 1;
 
   let nextPoint = path.getPointAtLength(
     indexToTCalculator(index + nextIndex) * pathLength
@@ -40,29 +40,23 @@ export function getTangentOfIndex(
   const dx = nextPoint.x - point.x;
   const dy = nextPoint.y - point.y;
   const length = Math.sqrt(dx ** 2 + dy ** 2);
-  if (length > strokeWidth * 2 && !flipTangent) {
-    return getTangentOfIndex(
-      index,
-      path,
-      indexToTCalculator,
-      strokeWidth,
-      true
-    );
+  if (length > strokeWidth * 2 && !flip) {
+    return getNormalOfIndex(index, path, indexToTCalculator, strokeWidth, true);
   }
   const angle = Math.atan2(dy, dx) - (Math.PI / 2) * nextIndex;
 
   const sin = Math.sin(angle);
   const cos = Math.cos(angle);
-  const tangent = {
+  const normalStart = {
     x: point.x + (strokeWidth / 2) * cos,
     y: point.y + (strokeWidth / 2) * sin,
   };
 
   return {
-    start: tangent,
+    start: normalStart,
     end: {
-      x: 2 * point.x - tangent.x,
-      y: 2 * point.y - tangent.y,
+      x: 2 * point.x - normalStart.x,
+      y: 2 * point.y - normalStart.y,
     },
   };
 }
