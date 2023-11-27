@@ -1,0 +1,95 @@
+.comment-container {
+    position: relative;
+    width: 1170px;
+}
+
+.comment {
+    position: relative;
+    width: 100%;
+    /* height: 150px; */
+}
+.comment{
+    display: flex;
+    /* align-items: start; */
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem 3rem;
+}
+.comment::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+.comment > p {
+  position: relative;
+  z-index: 2;
+  text-wrap: wrap;
+  word-break: break-all;
+  font-size: .9rem;
+  line-height: 1.6;
+  width: 100%;
+  text-align: justify;
+  margin-bottom: 5px;
+  padding-right: 2%;
+  padding-left: 3%;
+}
+
+.comment > p >p:first-child{
+    margin: 0;
+}
+.commatnable {
+    --red-2: #ff1e25;
+    --red-1: #fc0101;
+    position: relative;
+    z-index: 1111;
+    align-self: flex-start;
+    font-size: .8rem;
+    padding-right: 2%;
+        padding-left: 3%;
+}
+.b1::before {
+    background-image: url('../imags/CommentBubble_01.svg');
+}
+
+
+.b2::before {
+    background-image: url('../imags/CommentBubble_02.svg');
+}
+
+.b3::before {
+    background-image: url('../imags/CommentBubble_03.svg');
+}
+
+.b4::before {
+    background-image: url('../imags/CommentBubble_04.svg');
+}
+
+.b5::before {
+    background-image: url('../imags/CommentBubble_05.svg');
+}
+
+.b6::before {
+    background-image: url('../imags/CommentBubble_06.svg');
+}
+
+.b7::before {
+    background-image: url('../imags/CommentBubble_07.svg');
+}
+
+.b8::before {
+    background-image: url('../imags/CommentBubble_08.svg');
+}
+
+.divide {
+    position: absolute;
+    top: -115px;
+    width: 100%;
+    z-index: 11111;
+}

@@ -1,12 +1,19 @@
 /* App.css */
 @import url('https://fonts.googleapis.com/css2?family=Single+Day&display=swap');
-
+@import url('https://fonts.cdnfonts.com/css/code-new-roman');
 /* @import './assets/css/locomotive.css' layer lcoco ; */
+
+@import './assets/css/utils.css';
 :root {
   --toltip-font: 'Single Day', cursive;
+  --code-new-roman:'Code New Roman',
+    sans-serif;
   /* --black-bg */
 }
 
+*{
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   scroll-behavior: smooth;

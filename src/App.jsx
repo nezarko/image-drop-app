@@ -9,7 +9,10 @@ import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
-import { Comments } from "./Components/Comments";
+// import { Comments } from "./Components/Comments";
+
+import KhComments from "./Components/KhComments";
+import Form from "./Components/Form";
 /**
  *
  * App map
@@ -34,10 +37,10 @@ function App() {
   // initlize app data and states
   useEffect(() => {
     if (init && sectionsRef.current.length === sections.length) {
-      console.log(sectionsContainerRef.current.getBoundingClientRect());
+
       const { height: _s_h } = sectionsContainerRef.current.getBoundingClientRect();
       const observer = new IntersectionObserver(obserCallback, {
-        threshold: 0.5,
+        threshold: 0.9,
         // root:sectionsContainerRef.current,
         // rootMargin: "0px 0px -300px 0px",
       });
@@ -50,7 +53,6 @@ function App() {
 
       sectionsRef.current.forEach((section) => {
         attache_observer(section, observer);
-
         const { top  , height} = section.getBoundingClientRect(); 
 
         const _f = top > _s_h ? "100vh" :( _s_h - top) + 'px'; 
@@ -90,7 +92,7 @@ function App() {
       });
     }
     f();
-
+   
     
   }, []);
 
@@ -98,6 +100,8 @@ function App() {
     if (sections.length) {
 
       setInit(true);
+
+
     }
   }, [sections]);
   //TODO: CREATE INITLIZE STATE FOR THE APP, get to kno when app is ready
@@ -115,10 +119,13 @@ function App() {
       {/* <Header /> */}
       <Suspence show={!init} />
 
-      <div className="sections" ref={sectionsContainerRef} style={{
-        '--parent-sections-h': 1
-        
-      }}>
+      <div
+        className="sections"
+        ref={sectionsContainerRef}
+        style={{
+          "--parent-sections-h": 1,
+        }}
+      >
         {init &&
           sections.map((section, index) => (
             <Section
@@ -126,17 +133,17 @@ function App() {
               ref={(el) => (sectionsRef.current[index] = el)}
               sectionIndex={index}
               section={section}
-              height={( 100+ section.dataPerson.roses.length) * 1.2}
+              height={(100 + section.dataPerson.roses.length) * 1.2}
               // data-scroll
               // data-scroll-speed="0.3"
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
           ))}
-          <DropedSection sections={sections} />
+        <DropedSection sections={sections} />
+        <KhComments />
+        <Form />
       </div>
-      
-      <Comments />
     </div>
   );
 }

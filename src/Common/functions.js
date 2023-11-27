@@ -133,7 +133,7 @@ export function positionImages(index) {
     r: getRandomRotation() + "deg",
   };
   let _w = window.innerWidth;
-  if (window.innerWidth > 1200) _w = 1200;
+  // if (window.innerWidth > 1200) _w = 1200;
 
   // set positions of images in receiver section according to index
   switch (true) {
@@ -186,9 +186,12 @@ export function positionImages(index) {
 }
 
 export function obserCallback(entries = [], observer) {
+
   entries.forEach(async (entry) => {
     // check if it falls
     // console.log(`Et ${i}`, entry);
+    let  e = entry.target.classList.contains('section-0') ? entry : null
+      console.log(e );
 
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
     // remove observer if is start fall
@@ -197,15 +200,16 @@ export function obserCallback(entries = [], observer) {
     // if (!entry.target.classList.contains('section-0')) {
     const r = Math.floor(entry.intersectionRatio * 100);
     // console.log("r", entry.intersectionRatio);
-      console.log(entry)
-      if (entry.boundingClientRect.top <= 100 && r >= 40 && !start_fall) {
-        console.log("Enter" , entry)
+      if (entry.boundingClientRect.top <= -15 && r >= 85 && !start_fall) {
+        
+        
+        console.log("Enter", [entry , entry.target])
        
-        // fall(
-        //   entry.target,
-        //   100000,
-        //   _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
-        // ); // add intersecting section to queue
+        fall(
+          entry.target,
+          100000,
+          _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
+        ); // add intersecting section to queue
         //  stack.push(entry.target);
       }
     //}

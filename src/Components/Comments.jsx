@@ -1,5 +1,5 @@
 import React from 'react';
-import '../assets/css/comments.css';
+// import '../assets/css/comments.css';
 import bottom from '../assets/imags/bottom.svg';
 import comment1 from '../assets/imags/CommentBubble_01.svg';
 

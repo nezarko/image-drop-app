@@ -4,6 +4,13 @@ import "./App.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+// Globa primtive class injecction : Future feauute , create Dependicy ijection and factory pattren. 
+String.prototype.wordCount = function () {
+  return (this.length && this.split(/\s+\b/).length) || 0;
+};
+
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
