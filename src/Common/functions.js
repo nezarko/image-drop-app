@@ -121,7 +121,7 @@ export function fallFlowers(section, index) {
 
 export function getRandomRotation() {
   // Generate a random rotation value between -180 and 180 degrees
-  return getRandomInt(-180, 180);
+  return getRandomInt(-25, 45);
 }
 
 export function getRandomInt(min, max) {
@@ -137,33 +137,48 @@ export function positionImages(index) {
 
   // set positions of images in receiver section according to index
   switch (true) {
-    case index >= 141:
-      posistion.y = `${getRandomInt(10, 180)}px`;
-      posistion.x = getRandomInt(750, window.innerWidth - 1060) + "px";
+    case index >= 171:
+      posistion.y = `${getRandomInt(100, 490)}px`;
+      posistion.x = getRandomInt(680, _w -100) + "px";
+      break;
+    case index  >= 169 && index <= 170:
+      posistion.y = `${getRandomInt(120, 480)}px`;
+      posistion.x = getRandomInt(600, _w -30) + "px";
+      break;
+      case index >= 141 && index <= 167:
+        posistion.y = `${getRandomInt(170, 650)}px`;
+        posistion.x = getRandomInt(570, _w + 60) + "px";
+        break;
+    case index >= 121 && index <= 140:
+      posistion.y = `${getRandomInt(200, 730)}px`;
+      posistion.x = getRandomInt(530, _w + 80) + "px";
+      break;
+    case index >= 98 && index <= 120:
+      posistion.y = `${getRandomInt(240, 590)}px`;
+      posistion.x = getRandomInt(350, _w + 130) + "px";
       break;
 
-    case index >= 98 && index <= 140:
-      posistion.y = `${getRandomInt(100, 250)}px`;
-      posistion.x = getRandomInt(550, window.innerWidth - 900) + "px";
+    case index >= 63 && index <= 97:
+      posistion.y = `${getRandomInt(400,790)}px`;
+      posistion.x = getRandomInt(220, _w + 238) + "px";
       break;
 
-    case index >= 61 && index <= 97:
-      posistion.y = `${getRandomInt(200,570)}px`;
-      posistion.x = getRandomInt(390, window.innerWidth - 650) + "px";
+    case index >= 41 && index <= 62:
+      posistion.y = `${getRandomInt(600, 870)}px`;
+      posistion.x = getRandomInt(60, _w + 470) + "px";
       break;
-
-    case index >= 41 && index <= 60:
-      posistion.y = `${getRandomInt(480, 680)}px`;
-      posistion.x = getRandomInt(280, _w + 260) + "px";
-      break;
-
-    case index <= 40:
-      posistion.y = `${getRandomInt(660, 880)}px`;
-      posistion.x = getRandomInt(160, _w + 340) + "px";
+      case index >=31 && index <= 40:
+        posistion.y = `${getRandomInt(640, 870)}px`;
+        posistion.x = getRandomInt(30, _w + 500) + "px";
+        break;
+    case index <= 30:
+      posistion.y = `${getRandomInt(780, 910)}px`;
+      posistion.x = getRandomInt(-30, _w + 620) + "px";
       break;
 
     default:
-      // Handle any other cases if needed
+      posistion.y = `${getRandomInt(580, 900)}px`;
+      posistion.x = getRandomInt(250, _w + 350) + "px";
       break;
   }
 

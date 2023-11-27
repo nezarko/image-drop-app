@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
 import '../assets/css/Header.css';
-
 import logo from '../assets/imags/oo.png'
 
 import scrollimg from "../assets/imags/scro.png";
