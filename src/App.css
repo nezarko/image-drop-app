@@ -63,7 +63,7 @@ body {
   align-items: center;
   z-index: 1;
   /* fix blod drops overrflow issue Cuz a white space in the bottom of page */
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 
 }
 
@@ -237,15 +237,15 @@ body {
 
 .contianer-section-img-set .section-img-set {
   transition-property: opacity, transform;
-  transition-duration: 0.9s;
+  transition-duration: 2s;
   transition-timing-function: cubic-bezier(0.750, -0.015, 0.565, 1.055);
   top: var(--def-top);
   left: var(--def-left);
 }
 
 .container-section-img-fall .section-img-fall {
-  transform: translateY(110vh);
-  opacity: 0;
+  transform: translateY(var(--fall-distance));
+  /* opacity: 0; */
   transition-delay: calc(0.004s * var(--i));
 
 }
@@ -256,7 +256,7 @@ body {
 }
 
 .reciver-section-image-container::after{
-  content: '';
+  /* content: ''; */
   position: absolute;
   bottom: 0px;
   left: 0;
@@ -309,7 +309,7 @@ body {
 .reciver-section-image .rc-single-fall{
   
   transform: translateY(var(--rc-y)) translateX(var(--rc-x)) rotate(var(--rc-r));
-   opacity: 1;
+  opacity: 1;
 }
 
 .white{

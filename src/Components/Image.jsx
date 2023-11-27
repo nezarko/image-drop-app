@@ -1,8 +1,8 @@
-import { memo, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { delay ,_dispatchEvent} from "../Common/functions";
 import "../assets/css/image.css";
-const Image = memo(
-  (props) => {
+const Image = forwardRef(
+  (props , ref) => {
 
     const { top, left, url, date, index, iposition, children, sectionIndex,...$props } =
       props;
@@ -22,14 +22,18 @@ const Image = memo(
     };
 
     const [active, setActive] = useState(true);
-    const item = useRef(null);
+    
+    useEffect(() => {
+      // console.log("Image",ref)
+    },[])
+    // const item = useRef(null);
     async function flip() {
       //DONE: transition delay function when its single its a must to set it to initla state
       //DONE: When fall single remove it from nodes
       //DONE: Image fall single , fall the one in dropsection
       //FIXME: Tooltip element float at the top of all elements , Remove element unless no action
 
-      const { current: $item } = item;
+      const { current: $item } = ref;
 
       const is_aniamting =
         $item.getAttribute("data-tooltip-start") === "true" ? true : false;
@@ -83,7 +87,7 @@ const Image = memo(
             // onMouseLeave={handleLeave}
             // className="section-img section-img-set section-img-fall section-img-append section-img-rc"
             style={imageStyle}
-            ref={item}
+            ref={ref}
             data-tooltip-start={false}
             
             {...$props}

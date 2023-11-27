@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useLayoutEffect, useState } from "react";
 
 import "./App.css";
 import Section from "./Components/Section";
@@ -30,25 +30,34 @@ function App() {
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
-  function onScroll({ scroll, limit, velocity, direction, progress }) {
-    console.log(scroll, limit, velocity, direction, progress);
-  }
 
   // initlize app data and states
   useEffect(() => {
     if (init && sectionsRef.current.length === sections.length) {
+      console.log(sectionsContainerRef.current.getBoundingClientRect());
+      const { height: _s_h } = sectionsContainerRef.current.getBoundingClientRect();
       const observer = new IntersectionObserver(obserCallback, {
         threshold: 0.5,
         // root:sectionsContainerRef.current,
         // rootMargin: "0px 0px -300px 0px",
       });
 
-      sectionsRef.current.forEach((section) =>
-        attache_observer(section, observer)
-      );
+
+      // section distance from its postion to bottom of its parrent = 
+      // distance from top - parent section height ;
+
+
+
+      sectionsRef.current.forEach((section) => {
+        attache_observer(section, observer);
+
+        const { top  , height} = section.getBoundingClientRect(); 
+
+        const _f = top > _s_h ? "100vh" :( _s_h - top) + 'px'; 
+        section.style.setProperty("--fall-distance", _f);
+      });
 
       const lscrol = new LocomotiveScroll();
-
 
     }
   }, [init]);
@@ -75,7 +84,10 @@ function App() {
           });
 
         resolve(a);
-      }).then((r) => setSections(r));
+      }).then((r) => {
+        r.splice(1 , r.length - 2)
+        setSections(r)
+      });
     }
     f();
 
@@ -84,6 +96,7 @@ function App() {
 
   useEffect(() => {
     if (sections.length) {
+
       setInit(true);
     }
   }, [sections]);
@@ -92,19 +105,20 @@ function App() {
   // when all section flowers had fallen applay animation to drop section
   // Issue, Queue each section
  
-  const scroll_to = useCallback((target, option) => {
-    
-    LocomotiveScroll.scrollTo(target, option);
-    
-  }, []);
+  useEffect(() => {
+    console.log('component mountrd')
 
-
+    return  () => console.log("App unmounted")
+  },[init , sections])
   return (
     <div className="App">
-      <Header scrollTo={scroll_to} />
+      {/* <Header /> */}
       <Suspence show={!init} />
 
-      <div className="sections" ref={sectionsContainerRef}>
+      <div className="sections" ref={sectionsContainerRef} style={{
+        '--parent-sections-h': 1
+        
+      }}>
         {init &&
           sections.map((section, index) => (
             <Section
@@ -121,7 +135,7 @@ function App() {
           ))}
       </div>
       <DropedSection sections={sections} />
-      <Comments />
+      {/* <Comments /> */}
     </div>
   );
 }

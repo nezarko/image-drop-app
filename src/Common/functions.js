@@ -133,7 +133,6 @@ export function positionImages(index) {
     r: getRandomRotation() + "deg",
   };
   let _w = window.innerWidth;
-console.log(_w,"w")
   if (window.innerWidth > 1200) _w = 1200;
 
   // set positions of images in receiver section according to index
@@ -171,12 +170,10 @@ console.log(_w,"w")
   return posistion;
 }
 
-let i = 0;
 export function obserCallback(entries = [], observer) {
-  i++;
   entries.forEach(async (entry) => {
     // check if it falls
-    console.log(`Et ${i}`, entry);
+    // console.log(`Et ${i}`, entry);
 
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
     // remove observer if is start fall
@@ -185,12 +182,15 @@ export function obserCallback(entries = [], observer) {
     // if (!entry.target.classList.contains('section-0')) {
     const r = Math.floor(entry.intersectionRatio * 100);
     // console.log("r", entry.intersectionRatio);
-      if (entry.boundingClientRect.top <= -1 && r >= 40 && !start_fall) {
-        fall(
-          entry.target,
-          100000,
-          _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
-        ); // add intersecting section to queue
+      console.log(entry)
+      if (entry.boundingClientRect.top <= 100 && r >= 40 && !start_fall) {
+        console.log("Enter" , entry)
+       
+        // fall(
+        //   entry.target,
+        //   100000,
+        //   _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
+        // ); // add intersecting section to queue
         //  stack.push(entry.target);
       }
     //}

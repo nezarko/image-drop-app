@@ -1,10 +1,15 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef, useEffect, useLayoutEffect } from "react";
 import "../App.css";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
+// import { doc } from "firebase/firestore";
 
 const Section = forwardRef((props, ref) => {
-  const { height, section, sectionIndex , ...$props } = props;
+  const { height, section, sectionIndex, ...$props } = props;
+  useLayoutEffect(() => {
+    let a = document.querySelector(".sections").getBoundingClientRect();
+    console.log(a , height);
+  })
   return (
     <>
       <div
