@@ -55,7 +55,7 @@ function DropedSection({ sections }) {
       className="section reciver-section-image-container"
       id="receiver-section"
       style={{
-        width: "95%",
+        width: "99%",
         marginBottom: "10px",
         marginTop: "10px",
         position: "relative",

@@ -1,10 +1,11 @@
 .header {
     width: 85%;
-    height: 720px;
+    height: 700px;
     margin-top: 200px;
     font-size: 140px;
     font-family:  'Arial Narrow', Arial, sans-serif;
     position: relative;
+    z-index: 5;
   }
   
   .flower-container {

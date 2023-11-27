@@ -8,7 +8,19 @@
 
 .divide{
     position: absolute;
-    top:-250px;
+    top:-115px;
     width: 100%;
-    z-index: 111111;
+    z-index: 11111;
 }
+.comment {
+    height: 600px;
+    width: 900px;
+    display: flex;
+    background-repeat: no-repeat;
+    font-size: xx-small;
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: start;
+    align-items: start;
+}
+  

@@ -1,26 +1,39 @@
-import "../assets/css/comments.css";
+import React from 'react';
+import '../assets/css/comments.css';
+import bottom from '../assets/imags/bottom.svg';
+import comment1 from '../assets/imags/CommentBubble_01.svg';
+
 export function Comments() {
   return (
-    <div id="commnets" className="comment-container">
+    <div id="comments" className="comment-container">
       <div className="divide">
-        <svg
-          width="100%"
-          height="100%"
-          id="svg"
-          viewBox="0 0 1440 390"
-          xmlns="http://www.w3.org/2000/svg"
-          className="transition duration-300 ease-in-out delay-150"
-        >
-          <path
-            d="M 0,400 C 0,400 0,200 0,200 C 57.18390652673874,224.2231092548045 114.36781305347748,248.44621850960903 169,248 C 223.63218694652252,247.55378149039097 275.7126543128288,222.43823521636835 312,230 C 348.2873456871712,237.56176478363165 368.7815696952074,277.80084062491744 407,263 C 445.2184303047926,248.1991593750826 501.1610669063417,178.35840228396202 554,178 C 606.8389330936583,177.64159771603798 656.5741626794259,246.76555023923447 703,268 C 749.4258373205741,289.23444976076553 792.5422823759552,262.5793967591002 843,254 C 893.4577176240448,245.42060324089985 951.2567078167542,254.91686272436493 1003,264 C 1054.7432921832458,273.08313727563507 1100.4308863570275,281.7531523434402 1142,264 C 1183.5691136429725,246.24684765655977 1221.019746755135,202.07052790187421 1270,187 C 1318.980253244865,171.92947209812579 1379.4901266224324,185.96473604906288 1440,200 C 1440,200 1440,400 1440,400 Z"
-            stroke="none"
-            stroke-width="0"
-            fill="#000000"
-            fill-opacity="1"
-            className="transition-all duration-300 ease-in-out delay-150 path-0"
-          ></path>
-        </svg>
+        <img src={bottom} alt="comments" />
+        <div className='blocks'>
+        <div className='blocks'>
+          <CommentBlock
+            backgroundImage={comment1}
+            title="“Children recounted stories that would haunt anyone who hears them.
+            We witnessed horrified people who entered the shelter still carrying white flags, symbols of surrender & desperate hope for sanctuary as they passed Israeli Armed Forces.”
+            UNRWA"
+            key="unique-key"
+          />
+        </div><CommentBlock
+            backgroundImage={comment1}
+            title="“Children recounted stories that would haunt anyone who hears them.
+            We witnessed horrified people who entered the shelter still carrying white flags, symbols of surrender & desperate hope for sanctuary as they passed Israeli Armed Forces.”
+            UNRWA"
+            key="unique-key"
+          />
+        </div>
       </div>
     </div>
+  );
+}
+
+function CommentBlock({ backgroundImage, title }) {
+  return (
+    <span className="comment" style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <h1>{title}</h1>
+    </span>
   );
 }

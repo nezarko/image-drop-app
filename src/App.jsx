@@ -112,15 +112,16 @@ function App() {
               ref={(el) => (sectionsRef.current[index] = el)}
               sectionIndex={index}
               section={section}
-              height={(100 + section.dataPerson.roses.length) * 2}
+              height={( 100+ section.dataPerson.roses.length) * 1.2}
               // data-scroll
               // data-scroll-speed="0.3"
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
           ))}
+          <DropedSection sections={sections} />
       </div>
-      <DropedSection sections={sections} />
+      
       <Comments />
     </div>
   );
