@@ -9,10 +9,9 @@ import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
-// import { Comments } from "./Components/Comments";
-
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
+import Footer from "./Components/Footer";
 /**
  *
  * App map
@@ -144,6 +143,7 @@ function App() {
       <DropedSection sections={sections} />
       <Comments />
         <Form />
+        <Footer />
     </div>
   );
 }
