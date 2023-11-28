@@ -25,10 +25,12 @@
     top:0;
     width: 100%;
     z-index: 11111;
+    height: 150px;
 
 }
 .divide img{
 object-fit: cover;
+height: 100%;
 }
 
 .comment {
