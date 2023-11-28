@@ -216,7 +216,7 @@ body {
 
 @keyframes drop {
   0% {
-    transform: translateY(0) scaleX(.85) rotate(360deg);
+    transform: translateY(0) scaleX(.85) rotate(160deg);
     animation-timing-function: ease-out;
   }
 
@@ -251,9 +251,11 @@ body {
 }
 
 .container-section-img-fall .section-img-fall {
-  transform: translateY(var(--fall-distance));
-  /* opacity: 0; */
-  transition-delay: calc(0.004s * var(--i));
+  /* transform: translateY(var(--fall-distance)); */
+  transform: translateY(120vh);
+
+  opacity: 0;
+  transition-delay: calc(0.025s * var(--i));
 
 }
 
@@ -263,20 +265,21 @@ body {
 }
 
 .reciver-section-image-container::after{
-  /* content: ''; */
+  content: '';
   position: absolute;
   bottom: 20px;
-  left: 50px;
+  left: 0px;
   transform: translateX(5%);
   background-image: url(./assets/imags/ci.png);
   background-repeat: repeat;
   background-position: bottom center;
   background-clip: border-box;
   background-size: contain;
-  width: 90%;
-  height: 140px;
+  width: 95%;
+  top: 90%;
+  height: 180px;
   z-index: 1;
-  margin-bottom: 50px;
+  margin-bottom: 5px;
   /* margin: 0 auto; */
 }
 
