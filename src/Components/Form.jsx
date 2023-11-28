@@ -128,7 +128,6 @@ const Form = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    handle_filled();
 
   
     try {
@@ -156,6 +155,8 @@ const Form = (props) => {
       });
 
       if (response.ok) {
+         handle_filled();
+
         console.log("Form data successfully submitted to the backend!");
         // Optionally, you can handle the success response here
       } else {
