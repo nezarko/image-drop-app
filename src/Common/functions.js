@@ -24,101 +24,6 @@ export const fallImagesInSections = (sectionsContainerRef) => {
   }
 };
 
-// falling the image fun  code ..
-export function fallFlowers(section, index) {
-  // in order to limit function excution we set attribute as indicator we use to check if section has intersect and excuted fallFlawers
-  // bu setting an attribute to  seciton tells that has recevived this scrope of function
-
-  section.setAttribute("data-fall", 1);
-
-  // excute animation only to interscting section
-
-  const target_selector = `.${section.classList[1]} .section-img`;
-
-  // const flowers = Array.from(section.querySelectorAll(target_selector));
-  // const receiverSection = document.getElementById("receiver-section");
-
-  // remove timeline and replace with a cache
-  //const tl = gsap.timeline(1);
-
-  gsap
-    .to(target_selector, {
-      y: 250,
-      opacity: 0,
-      // duration: 0.05,
-      ease: "easeInSine",
-      stagger: 0.1,
-    })
-    .then((tween) => tween.kill());
-
-  // do a stager for falling flalwers
-
-  // cache falawers into cache or queue recever div animation and appnding
-
-  // remove this section because we are moveing this senario to cahce
-  // flowers.forEach((flower, index) => {
-  //   const startRotation = getRandomRotation();
-  //   tl.to(flower, {
-  //     y: () => getRandomInt(0, 850),
-  //     opacity: 1,
-  //     duration: 0.35,
-  //     ease: "easeInSine",
-  //   });
-
-  //   // Add a callback to update the position and rotation at the bottom
-
-  //   // do not excute this untile you reach the end and excuted it for a few
-
-  //   // issue: drow the pile again : forget until reach it.
-
-  //   tl.add(() => {
-  //     if (index > 140) {
-  //       gsap.to(flower, {
-  //         y: () => getRandomInt(50, 100),
-  //         // y: () => getRandomInt(20, 50),
-  //         left: () => getRandomInt(600, window.innerWidth - 800),
-  //         rotation: startRotation,
-  //         duration: 1,
-  //         ease: "linear",
-  //       });
-  //     } else if (index >= 98 && index <= 140) {
-  //       gsap.to(flower, {
-  //         left: () => getRandomInt(400, window.innerWidth - 600),
-  //         y: () => getRandomInt(100, 200),
-  //         rotation: startRotation,
-  //         duration: 1,
-  //         ease: "linear",
-  //       });
-  //     } else if (index >= 61 && index <= 97) {
-  //       gsap.to(flower, {
-  //         left: () => getRandomInt(300, window.innerWidth - 400),
-  //         y: () => getRandomInt(200, 400),
-  //         rotation: startRotation,
-  //         duration: 1,
-  //         ease: "linear",
-  //       });
-  //     } else if (index >= 31 && index <= 60) {
-  //       gsap.to(flower, {
-  //         left: () => getRandomInt(200, window.innerWidth - 200),
-  //         y: () => getRandomInt(400, 600),
-  //         rotation: startRotation,
-  //         duration: 1,
-  //         ease: "linear",
-  //       });
-  //     } else if (index < 30) {
-  //       gsap.to(flower, {
-  //         left: () => getRandomInt(0, window.innerWidth - 100),
-  //         y: () => getRandomInt(600, 800),
-  //         rotation: startRotation,
-  //         duration: 1,
-  //         ease: "linear",
-  //       });
-  //     }
-  //     receiverSection.appendChild(flower);
-  //   }, `-=${0.1}`);
-  // });
-}
-
 export function getRandomRotation() {
   // Generate a random rotation value between -180 and 180 degrees
   return getRandomInt(-25, 45);
@@ -133,52 +38,52 @@ export function positionImages(index) {
     r: getRandomRotation() + "deg",
   };
   let _w = window.innerWidth;
-  // if (window.innerWidth > 1200) _w = 1200;
+  if (window.innerWidth > 1200) _w = 1200;
 
   // set positions of images in receiver section according to index
   switch (true) {
     case index >= 171:
-      posistion.y = `${getRandomInt(100, 490)}px`;
-      posistion.x = getRandomInt(680, _w -100) + "px";
+      posistion.y = `${getRandomInt(100, 790)}px`;
+      posistion.x = getRandomInt(570, _w -230) + "px";
       break;
     case index  >= 169 && index <= 170:
-      posistion.y = `${getRandomInt(120, 480)}px`;
-      posistion.x = getRandomInt(600, _w -30) + "px";
+      posistion.y = `${getRandomInt(120, 880)}px`;
+      posistion.x = getRandomInt(520, _w -190) + "px";
       break;
       case index >= 141 && index <= 167:
-        posistion.y = `${getRandomInt(170, 650)}px`;
-        posistion.x = getRandomInt(570, _w + 60) + "px";
+        posistion.y = `${getRandomInt(170, 750)}px`;
+        posistion.x = getRandomInt(450, _w ) + "px";
         break;
     case index >= 121 && index <= 140:
-      posistion.y = `${getRandomInt(200, 730)}px`;
-      posistion.x = getRandomInt(530, _w + 80) + "px";
+      posistion.y = `${getRandomInt(270, 790)}px`;
+      posistion.x = getRandomInt(380, _w + 30) + "px";
       break;
     case index >= 98 && index <= 120:
-      posistion.y = `${getRandomInt(240, 590)}px`;
-      posistion.x = getRandomInt(350, _w + 130) + "px";
+      posistion.y = `${getRandomInt(200, 590)}px`;
+      posistion.x = getRandomInt(220, _w + 80) + "px";
       break;
 
     case index >= 63 && index <= 97:
       posistion.y = `${getRandomInt(400,790)}px`;
-      posistion.x = getRandomInt(220, _w + 238) + "px";
+      posistion.x = getRandomInt(100, _w + 150) + "px";
       break;
 
     case index >= 41 && index <= 62:
-      posistion.y = `${getRandomInt(600, 870)}px`;
-      posistion.x = getRandomInt(60, _w + 470) + "px";
+      posistion.y = `${getRandomInt(590, 860)}px`;
+      posistion.x = getRandomInt(20, _w+270) + "px";
       break;
       case index >=31 && index <= 40:
-        posistion.y = `${getRandomInt(640, 870)}px`;
-        posistion.x = getRandomInt(30, _w + 500) + "px";
+        posistion.y = `${getRandomInt(620, 870)}px`;
+        posistion.x = getRandomInt(10, _w+360) + "px";
         break;
     case index <= 30:
-      posistion.y = `${getRandomInt(780, 910)}px`;
-      posistion.x = getRandomInt(-30, _w + 620) + "px";
+      posistion.y = `${getRandomInt(780, 900)}px`;
+      posistion.x = getRandomInt(-80, _w+ 400) + "px";
       break;
 
     default:
-      posistion.y = `${getRandomInt(580, 900)}px`;
-      posistion.x = getRandomInt(250, _w + 350) + "px";
+      posistion.y = `${getRandomInt(580, 700)}px`;
+      posistion.x = getRandomInt(50, _w + 20) + "px";
       break;
   }
 
@@ -190,8 +95,6 @@ export function obserCallback(entries = [], observer) {
   entries.forEach(async (entry) => {
     // check if it falls
     // console.log(`Et ${i}`, entry);
-    let  e = entry.target.classList.contains('section-0') ? entry : null
-      console.log(e );
 
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
     // remove observer if is start fall
@@ -201,9 +104,6 @@ export function obserCallback(entries = [], observer) {
     const r = Math.floor(entry.intersectionRatio * 100);
     // console.log("r", entry.intersectionRatio);
       if (entry.boundingClientRect.top <= -15 && r >= 85 && !start_fall) {
-        
-        
-        console.log("Enter", [entry , entry.target])
        
         fall(
           entry.target,

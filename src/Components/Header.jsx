@@ -6,15 +6,15 @@ import scrollimg from "../assets/imags/scro.png";
 import LocomotiveScroll from 'locomotive-scroll';
 function Header() {
   
-  const loco = useRef(new LocomotiveScroll())
-  function s(target , o = {}) {
-     loco.current.scrollTo(target , o)
-  }
+  // const loco = useRef(new LocomotiveScroll())
+  // function s(target , o = {}) {
+  //    loco.current.scrollTo(target , o)
+  // }
 
-    const scrollToBottom = () => {
-      // Scroll to the bottom of the page
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    };
+  //   const scrollToBottom = () => {
+  //     // Scroll to the bottom of the page
+  //     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+  //   };
 
 
   return (
@@ -23,9 +23,9 @@ function Header() {
         <img src={logo} alt="flower" className="flower-image" />
 
         <img
-          onClick={scrollToBottom}
           src={scrollimg}
           alt="flower"
+          style={{marginTop:"250px",height:"80px",marginBottom:"40px"}}
           className="flower-image2"
         />
       </div>

@@ -11,7 +11,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
 // import { Comments } from "./Components/Comments";
 
-import KhComments from "./Components/KhComments";
+import Comments from "./Components/Comments";
 import Form from "./Components/Form";
 /**
  *
@@ -87,7 +87,6 @@ function App() {
 
         resolve(a);
       }).then((r) => {
-        r.splice(1 , r.length - 2) // delete this line
         setSections(r)
       });
     }
@@ -116,7 +115,7 @@ function App() {
   },[init , sections])
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <Suspence show={!init} />
 
       <div
@@ -140,10 +139,11 @@ function App() {
               // data-scroll-ofsset="200px , 0"
             />
           ))}
-        <DropedSection sections={sections} />
-        <KhComments />
-        <Form />
+        
       </div>
+      <DropedSection sections={sections} />
+      <Comments />
+        <Form />
     </div>
   );
 }
