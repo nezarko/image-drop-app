@@ -43,29 +43,29 @@ export function positionImages(index) {
   // set positions of images in receiver section according to index
   switch (true) {
     case index >= 171:
-      posistion.y = `${getRandomInt(100, 790)}px`;
-      posistion.x = getRandomInt(570, _w -230) + "px";
+      posistion.y = `${getRandomInt(100, 690)}px`;
+      posistion.x = getRandomInt(560, _w -220) + "px";
       break;
     case index  >= 169 && index <= 170:
-      posistion.y = `${getRandomInt(120, 880)}px`;
-      posistion.x = getRandomInt(520, _w -190) + "px";
+      posistion.y = `${getRandomInt(150, 880)}px`;
+      posistion.x = getRandomInt(520, _w -180) + "px";
       break;
       case index >= 141 && index <= 167:
-        posistion.y = `${getRandomInt(170, 750)}px`;
-        posistion.x = getRandomInt(450, _w ) + "px";
+        posistion.y = `${getRandomInt(169, 750)}px`;
+        posistion.x = getRandomInt(480, _w -30) + "px";
         break;
     case index >= 121 && index <= 140:
       posistion.y = `${getRandomInt(270, 790)}px`;
-      posistion.x = getRandomInt(380, _w + 30) + "px";
+      posistion.x = getRandomInt(390, _w + 50) + "px";
       break;
     case index >= 98 && index <= 120:
-      posistion.y = `${getRandomInt(200, 590)}px`;
+      posistion.y = `${getRandomInt(250, 590)}px`;
       posistion.x = getRandomInt(220, _w + 80) + "px";
       break;
 
     case index >= 63 && index <= 97:
       posistion.y = `${getRandomInt(400,790)}px`;
-      posistion.x = getRandomInt(100, _w + 150) + "px";
+      posistion.x = getRandomInt(130, _w + 150) + "px";
       break;
 
     case index >= 41 && index <= 62:

@@ -15,11 +15,9 @@ import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
 import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
-// import { Comments } from "./Components/Comments";
-
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
-
+import Footer from "./Components/Footer";
 import { NeverAgain } from "./Components/NeverAgain";
 /**
  *
@@ -129,7 +127,7 @@ function App() {
           "--parent-sections-h": 1,
         }}
       >
-        {/* {init &&
+        {init &&
           sections.map((section, index) => (
             <Section
               key={crypto.randomUUID()}
@@ -142,12 +140,13 @@ function App() {
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
-          ))} */}
+          ))}
       </div>
       <DropedSection sections={sections} />
       <Comments />
       <Form />
-      <NeverAgain />
+      {/* <NeverAgain /> */}
+      <Footer/>
     </div>
   );
 }

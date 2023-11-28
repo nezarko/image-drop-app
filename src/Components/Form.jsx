@@ -15,6 +15,7 @@ const Form = () => {
     friend_mail_2: null,
     friend_mail_3: null,
   });
+  
   const stylesSelect = {
     control: (styles) => ({
       ...styles,
@@ -55,7 +56,6 @@ const Form = () => {
         "https://api.eveschildren48.com/country/read"
       );
       let data = await respons.json();
-      console.log(data);
       data = data.records.map((r) => ({
         value: r.countrycode,
         label: r.countryname,
@@ -67,23 +67,23 @@ const Form = () => {
     c();
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    let f = new FormData(e.target);
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   let f = new FormData(e.target);
 
-    // prepare statment 
+  //   // prepare statment 
 
-    for (const [key, value] of f.entries()) {
+  //   for (const [key, value] of f.entries()) {
      
-      console.log(key, value)
+  //     console.log(key, value)
       
-      if (key === 'invite') {
-        let a = split_invites(value)
-           console.log(a)
-      }
-    }
-    // console.log(f)
-  } 
+  //     if (key === 'invite') {
+  //       let a = split_invites(value)
+  //          console.log(a)
+  //     }
+  //   }
+  //   console.log(f)
+  // } 
 
   function split_invites(invites = '') {
      if(invites === '' || invites === " ") throw new Error("Invites empty")
@@ -94,6 +94,68 @@ const Form = () => {
     return invites
     
   }
+
+
+
+
+
+
+  useEffect(() => {
+    async function fetchCountries() {
+      try {
+        const response = await fetch("https://api.eveschildren48.com/country/read");
+        const data = await response.json();
+        const countryOptions = data.records.map((r) => ({
+          value: r.countrycode,
+          label: r.countryname,
+        }));
+        setCountries(countryOptions);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    }
+
+    fetchCountries();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Use FormData to handle form data
+      const formData = new FormData(e.target);
+
+      // Convert FormData to an object
+      const formObject = {};
+      formData.forEach((value, key) => {
+        formObject[key] = value;
+      });
+
+      // Log the form data object
+      console.log(formObject);
+
+      // Replace the following URL with your backend API endpoint
+      const apiUrl = "https://api.eveschildren48.com/solidarity/create";
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formObject),
+      });
+
+      if (response.ok) {
+        console.log("Form data successfully submitted to the backend!");
+        // Optionally, you can handle the success response here
+      } else {
+        console.error("Failed to submit form data to the backend");
+        // Optionally, you can handle the error response here
+      }
+    } catch (error) {
+      console.error("Error during form submission:", error);
+    }
+  };
+
   return (
     <>
       <div className="form-container">
@@ -143,8 +205,8 @@ const Form = () => {
                     <input
                       className="gray-300"
                       type="email"
-                      placeholder="Email"
-                      name="email"
+                      placeholder="Search"
+                      name="search"
                     />
                     <input
                       className="gray-300"
