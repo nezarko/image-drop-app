@@ -1,0 +1,32 @@
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  height: 200px;
+  width: 80%;
+  align-items: start;
+  text-align: left;
+}
+.leftFooter {
+  right: 99%;
+  left: 1%;
+  top: 60%;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+}
+.rightFooter {
+  position: absolute;
+  left: 96%;
+  top: 80%;
+  right: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  width: 180px;
+}
+.item {
+  width: 100%;
+  text-align: left;
+}

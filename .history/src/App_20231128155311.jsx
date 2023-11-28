@@ -17,9 +17,6 @@ import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
-import Footer from "./Components/Footer";
-
-import { NeverAgain } from "./Components/NeverAgain";
 /**
  *
  * App map
@@ -145,9 +142,7 @@ function App() {
       </div>
       <DropedSection sections={sections} />
       <Comments />
-      <Form setSign={setSign} />
-      <NeverAgain signed={signed} />
-        <Footer />
+        <Form />
     </div>
   );
 }

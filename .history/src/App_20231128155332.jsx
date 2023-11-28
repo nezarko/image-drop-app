@@ -145,9 +145,10 @@ function App() {
       </div>
       <DropedSection sections={sections} />
       <Comments />
+        <Form />
+        <Footer />
       <Form setSign={setSign} />
       <NeverAgain signed={signed} />
-        <Footer />
     </div>
   );
 }

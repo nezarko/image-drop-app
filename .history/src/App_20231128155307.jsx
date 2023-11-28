@@ -17,9 +17,12 @@ import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
-import Footer from "./Components/Footer";
+<<<<<<< .merge_file_23csqo
 
 import { NeverAgain } from "./Components/NeverAgain";
+=======
+import Footer from "./Components/Footer";
+>>>>>>> .merge_file_ugAjI9
 /**
  *
  * App map
