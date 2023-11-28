@@ -41,7 +41,7 @@
 }
 
 .form-group .form-control,
-.form-group input[type="text"],
+.form-group input[type="text"],input,
 textarea,
 select {
     border: none;

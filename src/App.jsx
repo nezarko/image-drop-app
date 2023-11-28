@@ -87,7 +87,7 @@ function App() {
 
         resolve(a);
       }).then((r) => {
-        r.splice(1 , r.length - 2)
+        r.splice(1 , r.length - 2) // delete this line
         setSections(r)
       });
     }

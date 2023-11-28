@@ -79,7 +79,7 @@ const Form = () => {
       
       if (key === 'invite') {
         let a = split_invites(value)
-           console.log(a)
+        console.log(a)
       }
     }
     // console.log(f)
