@@ -2,9 +2,6 @@ import { useEffect } from "react";
 import "../assets/css/khc.css";
 import bottom from "../assets/imags/bottom.svg";
 const KhComments = () => {
-  useEffect(() => {
-    console.log("hello wolrd words 4".wordCount());
-  }, []);
 
   // bassed on word counts select template
 
@@ -13,9 +10,9 @@ const KhComments = () => {
   //TODO: template selection ;
   return (
     <div className="Cwrapper">
-      <div className="divide">
+      {/* <div className="divide">
         <img src={bottom} alt="comments" />
-      </div>
+      </div> */}
 
       <div className="comment-container">
         <div className="row flex items-end">
