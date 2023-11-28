@@ -107,27 +107,27 @@ const Form = (props) => {
 
 
 
-  useEffect(() => {
-    async function fetchCountries() {
-      try {
-        const response = await fetch("https://api.eveschildren48.com/country/read");
-        const data = await response.json();
-        const countryOptions = data.records.map((r) => ({
-          value: r.countrycode,
-          label: r.countryname,
-        }));
-        setCountries(countryOptions);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchCountries() {
+  //     try {
+  //       const response = await fetch("https://api.eveschildren48.com/country/read");
+  //       const data = await response.json();
+  //       const countryOptions = data.records.map((r) => ({
+  //         value: r.countrycode,
+  //         label: r.countryname,
+  //       }));
+  //       setCountries(countryOptions);
+  //     } catch (error) {
+  //       console.error("Error fetching countries:", error);
+  //     }
+  //   }
 
-    fetchCountries();
-  }, []);
+  //   fetchCountries();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    handle_filled();
     try {
       // Use FormData to handle form data
       const formData = new FormData(e.target);
@@ -229,7 +229,7 @@ const Form = (props) => {
                   <img src={f} alt="" />
                 </div>
                 <div className="col-2">
-                  <button onClick={handle_filled} type="button" className="btn-green text-green-400">
+                  <button type="submit"className="btn-green text-green-400">
                     protect
                   </button>
                 </div>
