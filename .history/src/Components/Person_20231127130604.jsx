@@ -17,7 +17,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
     if (imageRef) {
       imageRef.current.ontransitionend = () => {
         
-        // setActive(false);
+        setActive(false);
         
         _dispatchEvent("singel:fall", {
               section: sectionIndex,
@@ -38,7 +38,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
   },[])
   return (
     <>
-      
+      {active && (
         <div className="person" key={person.id}>
           <Image
             //   key={i}
@@ -55,7 +55,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
             <GToolTip person={person} date={date} />
           </Image>
         </div>
-      
+      )}
     </>
   );
 };

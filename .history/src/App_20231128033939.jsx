@@ -20,7 +20,7 @@ import Header from "./Components/Header";
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
 
-import { NeverAgain } from "./Components/NeverAgain";
+imp
 /**
  *
  * App map
@@ -37,14 +37,10 @@ import { NeverAgain } from "./Components/NeverAgain";
 function App() {
   const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
-  
-  const [sing, setSing] = useState([]);
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
-
-
 
   // initlize app data and states
   useEffect(() => {
@@ -129,7 +125,7 @@ function App() {
           "--parent-sections-h": 1,
         }}
       >
-        {/* {init &&
+        {init &&
           sections.map((section, index) => (
             <Section
               key={crypto.randomUUID()}
@@ -142,12 +138,11 @@ function App() {
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
-          ))} */}
+          ))}
       </div>
       <DropedSection sections={sections} />
       <Comments />
       <Form />
-      <NeverAgain />
     </div>
   );
 }

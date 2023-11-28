@@ -38,7 +38,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
   },[])
   return (
     <>
-      
+      {active && (
         <div className="person" key={person.id}>
           <Image
             //   key={i}
@@ -55,7 +55,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
             <GToolTip person={person} date={date} />
           </Image>
         </div>
-      
+      )}
     </>
   );
 };

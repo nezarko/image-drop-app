@@ -55,7 +55,7 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
             <GToolTip person={person} date={date} />
           </Image>
         </div>
-      
+      )}
     </>
   );
 };

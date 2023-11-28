@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useRef,
-  useCallback,
-  useLayoutEffect,
-  useState,
-} from "react";
+import React, { useEffect, useRef, useCallback, useLayoutEffect, useState } from "react";
 
 import "./App.css";
 import Section from "./Components/Section";
@@ -19,8 +13,6 @@ import Header from "./Components/Header";
 
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
-
-import { NeverAgain } from "./Components/NeverAgain";
 /**
  *
  * App map
@@ -37,38 +29,38 @@ import { NeverAgain } from "./Components/NeverAgain";
 function App() {
   const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
-  
-  const [sing, setSing] = useState([]);
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
 
-
-
   // initlize app data and states
   useEffect(() => {
     if (init && sectionsRef.current.length === sections.length) {
-      const { height: _s_h } =
-        sectionsContainerRef.current.getBoundingClientRect();
+
+      const { height: _s_h } = sectionsContainerRef.current.getBoundingClientRect();
       const observer = new IntersectionObserver(obserCallback, {
         threshold: 0.9,
         // root:sectionsContainerRef.current,
         // rootMargin: "0px 0px -300px 0px",
       });
 
-      // section distance from its postion to bottom of its parrent =
+
+      // section distance from its postion to bottom of its parrent = 
       // distance from top - parent section height ;
+
+
 
       sectionsRef.current.forEach((section) => {
         attache_observer(section, observer);
-        const { top, height } = section.getBoundingClientRect();
+        const { top  , height} = section.getBoundingClientRect(); 
 
-        const _f = top > _s_h ? "100vh" : _s_h - top + "px";
+        const _f = top > _s_h ? "100vh" :( _s_h - top) + 'px'; 
         section.style.setProperty("--fall-distance", _f);
       });
 
       const lscrol = new LocomotiveScroll();
+
     }
   }, [init]);
 
@@ -95,28 +87,33 @@ function App() {
 
         resolve(a);
       }).then((r) => {
-        let s = r.splice(1, r.lenght - 3);
-        setSections(r);
+        let s = r.splice(1 , r.lenght - 3)
+        setSections(r)
       });
     }
     f();
+   
+    
   }, []);
 
   useEffect(() => {
     if (sections.length) {
+
       setInit(true);
+
+
     }
   }, [sections]);
   //TODO: CREATE INITLIZE STATE FOR THE APP, get to kno when app is ready
   //TODO: observe each section when its in view port fall person
   // when all section flowers had fallen applay animation to drop section
   // Issue, Queue each section
-
+ 
   useEffect(() => {
-    console.log("component mountrd");
+    console.log('component mountrd')
 
-    return () => console.log("App unmounted");
-  }, [init, sections]);
+    return  () => console.log("App unmounted")
+  },[init , sections])
   return (
     <div className="App">
       <Header />
@@ -129,7 +126,7 @@ function App() {
           "--parent-sections-h": 1,
         }}
       >
-        {/* {init &&
+        {init &&
           sections.map((section, index) => (
             <Section
               key={crypto.randomUUID()}
@@ -142,12 +139,12 @@ function App() {
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
-          ))} */}
+          ))}
+        
       </div>
       <DropedSection sections={sections} />
-      <Comments />
-      <Form />
-      <NeverAgain />
+      {/* <Comments /> */}
+        <Form />
     </div>
   );
 }

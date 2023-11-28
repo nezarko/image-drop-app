@@ -38,7 +38,7 @@ function App() {
   const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
   
-  const [sing, setSing] = useState([]);
+  const [sing , setSing]= useState([])
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
