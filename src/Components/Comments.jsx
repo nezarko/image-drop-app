@@ -57,7 +57,7 @@ const KhComments = () => {
                 <span>18.Oct.2023</span>
               </p>
               <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                UNRWA
+              Middle East Children’s Alliance
               </span>
             </div>
           </div>
@@ -109,7 +109,7 @@ const KhComments = () => {
                 The world must act before it is too late.{" "}
               </p>
               <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                Doctors Without Borders
+              UNOCHA
               </span>
             </div>
           </div>
@@ -125,7 +125,7 @@ const KhComments = () => {
                 investigated as war crimes.”{" "}
               </p>
               <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                UNRWA
+              Human Rights Watch
               </span>
             </div>
           </div>
