@@ -148,10 +148,10 @@ const Form = (props) => {
       const apiUrl = "https://api.eveschildren48.com/solidarity/create";
       const response = await fetch(apiUrl, {
         method: "POST",
-        headers: {
-         "Access-Control-Allow-Origin":'*',
-          "Content-Type": "application/json",
-        },
+        // headers: {
+        //  "Access-Control-Allow-Origin":'*',
+        //   "Content-Type": "application/json",
+        // },
         body: JSON.stringify(formObject),
       });
 
