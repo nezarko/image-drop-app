@@ -87,7 +87,10 @@ const Image = forwardRef(
             // onMouseLeave={handleLeave}
             // className="section-img section-img-set section-img-fall section-img-append section-img-rc"
             style={imageStyle}
-            ref={ref}
+            ref={el => {
+              ref = el;
+              ref2 = el
+            }}
             data-tooltip-start={false}
             
             {...$props}

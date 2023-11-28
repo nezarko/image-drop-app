@@ -89,6 +89,7 @@ const Form = (props) => {
   function split_invites(invites = '') {
      if(invites === '' || invites === " ") throw new Error("Invites empty")
     // convert string to array by splice array by comma 
+    
     invites = invites.split(',')
 
     return invites

@@ -135,7 +135,7 @@ export function NeverAgain({signed}) {
             */}
         </svg>
 
-        {f.length && f.map((point, index) => (
+        {f.map((point, index) => (
           <Flower
             key={index}
             style={{

@@ -17,9 +17,6 @@ export function NeverAgain({signed}) {
   
   
   useEffect(() => {
-    console.log("Nwve",signed)
-      f.push(svg.fill(signed, f));
-    setF(f);
   }, [signed])
 
 
@@ -135,7 +132,7 @@ export function NeverAgain({signed}) {
             */}
         </svg>
 
-        {f.length && f.map((point, index) => (
+        {filled.map((point, index) => (
           <Flower
             key={index}
             style={{

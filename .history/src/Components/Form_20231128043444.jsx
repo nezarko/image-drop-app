@@ -80,7 +80,7 @@ const Form = (props) => {
       
       if (key === 'invite') {
         let a = split_invites(value)
-           console.log(a)
+           .log(consolea)
       }
     }
     // console.log(f)

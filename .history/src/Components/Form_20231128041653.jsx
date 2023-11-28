@@ -89,6 +89,7 @@ const Form = (props) => {
   function split_invites(invites = '') {
      if(invites === '' || invites === " ") throw new Error("Invites empty")
     // convert string to array by splice array by comma 
+    
     invites = invites.split(',')
 
     return invites
@@ -96,10 +97,12 @@ const Form = (props) => {
   }
 
   function handle_filled() {
-    props.setSign(counter.current);
+    props.setSign(prev => [
+      ...prev,
+      counter.current
+    ]);
 
-    counter.current += 1
-    // console.log()
+    counter.current+1
   }
   return (
     <>
@@ -120,7 +123,7 @@ const Form = (props) => {
             </div>
           </div>
           <div className="form-body">
-            <form id="form">
+            <form id="form" }>
               <div className="relative row flex items-align-start justify-space-between">
                 <div className="col-8">
                   <div className="form-group grid-1 mb-5">

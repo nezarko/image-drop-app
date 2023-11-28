@@ -1,11 +1,11 @@
 import "../assets/css/form.css";
 import seeds from "../assets/imags/formseeds.png";
 import f from "../assets/imags/formf.png";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 
-const Form = (props) => {
-  const counter = useRef(0)
+const Form = () => {
+  const counter = useRe
   const [countries, setCountries] = useState([]);
   const [formData, setFormData] = useState({
     name: null,
@@ -89,6 +89,7 @@ const Form = (props) => {
   function split_invites(invites = '') {
      if(invites === '' || invites === " ") throw new Error("Invites empty")
     // convert string to array by splice array by comma 
+    
     invites = invites.split(',')
 
     return invites
@@ -96,10 +97,7 @@ const Form = (props) => {
   }
 
   function handle_filled() {
-    props.setSign(counter.current);
-
-    counter.current += 1
-    // console.log()
+    
   }
   return (
     <>
@@ -120,7 +118,7 @@ const Form = (props) => {
             </div>
           </div>
           <div className="form-body">
-            <form id="form">
+            <form id="form" onSubmit={handleSubmit}>
               <div className="relative row flex items-align-start justify-space-between">
                 <div className="col-8">
                   <div className="form-group grid-1 mb-5">
@@ -167,7 +165,7 @@ const Form = (props) => {
                   <img src={f} alt="" />
                 </div>
                 <div className="col-2">
-                  <button onClick={handle_filled} type="button" className="btn-green text-green-400">
+                  <button type="submit" className="btn-green text-green-400">
                     protect
                   </button>
                 </div>

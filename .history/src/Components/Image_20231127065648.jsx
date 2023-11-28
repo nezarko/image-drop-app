@@ -22,7 +22,7 @@ const Image = forwardRef(
     };
 
     const [active, setActive] = useState(true);
-    const ref2 = useRef(null)
+    
     useEffect(() => {
       // console.log("Image",ref)
     },[])
@@ -33,10 +33,10 @@ const Image = forwardRef(
       //DONE: Image fall single , fall the one in dropsection
       //FIXME: Tooltip element float at the top of all elements , Remove element unless no action
 
-      const { current: $item } = ref2;
+      const { current: $item } = ref;
 
       const is_aniamting =
-      $item.getAttribute("data-tooltip-start") === "true" ? true : false;
+        $item.getAttribute("data-tooltip-start") === "true" ? true : false;
 
       const container = $item.querySelector(".tooltip-container");
       const wrapper = $item.querySelector(".tooltip-wrapper");

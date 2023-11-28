@@ -38,7 +38,7 @@ function App() {
   const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
   
-  const [signed, setSign] = useState(0);
+  const [sing, setSing] = useState([]);
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
@@ -146,8 +146,8 @@ function App() {
       </div>
       <DropedSection sections={sections} />
       <Comments />
-      <Form setSign={setSign} />
-      <NeverAgain signed={signed} />
+      <Form setSign={set} />
+      <NeverAgain />
     </div>
   );
 }

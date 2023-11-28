@@ -89,6 +89,7 @@ const Form = (props) => {
   function split_invites(invites = '') {
      if(invites === '' || invites === " ") throw new Error("Invites empty")
     // convert string to array by splice array by comma 
+    
     invites = invites.split(',')
 
     return invites
@@ -99,7 +100,7 @@ const Form = (props) => {
     props.setSign(counter.current);
 
     counter.current += 1
-    // console.log()
+    console.log()
   }
   return (
     <>
