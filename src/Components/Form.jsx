@@ -127,7 +127,10 @@ const Form = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     handle_filled();
+
+  
     try {
       // Use FormData to handle form data
       const formData = new FormData(e.target);
@@ -146,6 +149,7 @@ const Form = (props) => {
       const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
+         "Access-Control-Allow-Origin":'*',
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formObject),
@@ -182,7 +186,7 @@ const Form = (props) => {
             </div>
           </div>
           <div className="form-body">
-            <form id="form">
+            <form id="form" onSubmit={handleSubmit} method="post">
               <div className="relative row flex items-align-start justify-space-between">
                 <div className="col-8">
                   <div className="form-group grid-1 mb-5">
@@ -212,8 +216,8 @@ const Form = (props) => {
                     <input
                       className="gray-300"
                       type="email"
-                      placeholder="Search"
-                      name="search"
+                      placeholder="Email"
+                      name="email"
                     />
                     <input
                       className="gray-300"
@@ -229,7 +233,7 @@ const Form = (props) => {
                   <img src={f} alt="" />
                 </div>
                 <div className="col-2">
-                  <button type="submit"className="btn-green text-green-400">
+                  <button type="submit" className="btn-green text-green-400">
                     protect
                   </button>
                 </div>

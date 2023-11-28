@@ -19,7 +19,7 @@ export function NeverAgain({signed}) {
   useEffect(() => {
     console.log("Nwve",signed)
       f.push(svg.fill(signed, f));
-    setF(f);
+      setF(f);
   }, [signed])
 
 

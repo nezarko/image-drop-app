@@ -98,3 +98,9 @@ textarea:focus {
     position: absolute;
     top: -140px;right: 140px;;
 }
+
+
+button:focus,button:active{
+    transition: transform .3s;
+    transform: translateY(-10px);
+}

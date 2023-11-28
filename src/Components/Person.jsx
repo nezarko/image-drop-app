@@ -14,8 +14,8 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
     
     // console.log("person ref" , imageRef.current)
     
-    if (imageRef) {
-      imageRef.current.ontransitionend = () => {
+    if (imageRef && imageRef.current) {
+        imageRef.current.ontransitionend = () => {
         
         // setActive(false);
         
@@ -25,17 +25,15 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
         });
       } 
     
-      const observer = new IntersectionObserver((entry) => console.log(entry))
       
-      // observer.observe(imageRef.current)
 
     }
 
     return () => {
-      console.log(`person un mount ${index}`);
-      imageRef.current.ontransitionend = null;
+       
+      //  imageRef.current.ontransitionend = null;
     }
-  },[])
+  },[]) 
   return (
     <>
       

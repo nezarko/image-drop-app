@@ -93,7 +93,7 @@ function App() {
 
         resolve(a);
       }).then((r) => {
-        let s = r.splice(1, r.lenght - 3);
+        let s = r.splice(1, r.lenght - 2);
         setSections(r);
       });
     }

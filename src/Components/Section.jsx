@@ -6,13 +6,9 @@ import Person from "./Person";
 
 const Section = forwardRef((props, ref) => {
   const { height, section, sectionIndex, ...$props } = props;
-  useLayoutEffect(() => {
-    let a = document.querySelector(".sections").getBoundingClientRect();
-    console.log(a , height);
-  })
   return (
     <>
-      <div
+      <div  
         ref={ref}
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
