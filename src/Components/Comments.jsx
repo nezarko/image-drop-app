@@ -1,135 +1,131 @@
-import { useEffect } from "react";
-import "../assets/css/khc.css";
-import bottom from "../assets/imags/bottom.svg";
-const KhComments = () => {
+import { useEffect, useRef } from "react";
+import "../assets/css/comments.css";
+const Comments = (props) => {
+  /**
+   * A auto fit grid system with 12 columnd and each cell in a grid
+   * dont go bellow 250px in width
+   */
 
-  // bassed on word counts select template
+  const ref = useRef(null);
+  useEffect(() => {
+    let d = 1000;
 
-  //TODO: add comment user name
-  //TODO: add comment date
-  //TODO: template selection ;
+    const observer = new IntersectionObserver(
+      (enteris) => {
+        enteris.forEach((e) => {
+          const { isIntersecting } = e;
+          isIntersecting && e.target.classList.add("scale");
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: "0px 0px -200px 0px  ",
+      }
+    );
+    const items = ref.current.querySelectorAll(".item").forEach(item => observer.observe(item));
+
+  }, []);
+
+  
   return (
-    <div className="Cwrapper">
-      {/* <div className="divide">
-        <img src={bottom} alt="comments" />
-      </div> */}
-
-      <div className="comment-container">
-        <div className="row flex items-end">
-          <div className="col-7" style={{ marginBottom: "20px" }}>
-            <div className="comment b1">
-              <p>
-                Children recounted stories that would haunt anyone who hears
-                them. We witnessed horrified people who entered the shelter
-                still carrying white flags, symbols of surrender & desperate
-                hope for sanctuary as they passed Israeli Armed Forces.
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                UNRWA
-              </span>
-            </div>
+    <>
+      <div ref={ref} className="grid-container">
+        <div
+          data-scroll
+          // data-offset="100,100"
+          data-scroll-call="scroll"
+          data-scroll-css-progress
+          className="item"
+          data-show-mob="1"
+        >
+          <div className="sub-item b1">
+            <p>
+              "Children recounted stories that would haunt anyone who hears
+              them. We witnessed horrified people who entered the shelter still
+              carrying white flags, symbols of surrender & desperate hope for
+              sanctuary as they passed Israeli Armed Forces.”
+            </p>
+            <span>UNRWA</span>
           </div>
         </div>
-
-        <div className="row flex">
-          <div className="col-7 ">
-            <div className="comment b1">
-              <p>
-                Children recounted stories that would haunt anyone who hears
-                them. We witnessed horrified people who entered the shelter
-                still carrying white flags, symbols of surrender & desperate
-                hope for sanctuary as they passed Israeli Armed Forces.
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                UNRWA
-              </span>
-            </div>
-          </div>
-          <div className="col-6" style={{ marginTop: "80px" }}>
-            <div className="comment b5">
-              <p>
-                “Israel is deliberately denying 2.3 million Palestinians half of
-                them children from accessing safe, clean water. This will have
-                dire consequences on their health.”
-                <span>18.Oct.2023</span>
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-              Middle East Children’s Alliance
-              </span>
-            </div>
+        <div className="item" data-show-mob="2">
+          <div className="sub-item b1">
+            <p>
+              "Children recounted stories that would haunt anyone who hears
+              them. We witnessed horrified people who entered the shelter still
+              carrying white flags, symbols of surrender & desperate hope for
+              sanctuary as they passed Israeli Armed Forces.”
+            </p>
+            <span>UNRWA</span>
           </div>
         </div>
-
-        <div className="row flex">
-          <div className="col-5 offset-2">
-            <div className="comment b5">
-              <p>
-                “How many people have to die before world leaders wake up and
-                call for a ceasefire?”
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                Doctors Without Borders
-              </span>
-            </div>
-          </div>
-          <div className="col-5 ml-auto pull-2" style={{ marginTop: "50px" }}>
-            <div className="comment b5">
-              <p>
-                “How many people have to die before world leaders wake up and
-                call for a ceasefire?”
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                Doctors Without Borders
-              </span>
-            </div>
+        <div className="item" data-show-mob="6">
+          <div className="sub-item b5">
+            <p>
+              “Israel is deliberately denying 2.3 million Palestinians – half of
+              them children – from accessing safe, clean water. This will have
+              dire consequences on their health.”
+            </p>
+            <span className="date">18.Oct.2023</span>
+            <span>Middle East Children’s Alliance</span>
           </div>
         </div>
-
-        <div className="row flex">
-          <div className="col-7">
-            <div className="comment b1">
-              <p>
-                Children recounted stories that would haunt anyone who hears
-                them. We witnessed horrified people who entered the shelter
-                still carrying white flags, symbols of surrender & desperate
-                hope for sanctuary as they passed Israeli Armed Forces.
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-                UNRWA
-              </span>
-            </div>
-          </div>
-          <div className="col-4 offset-2">
-            <div className="comment b8">
-              <p>
-                “The carnage in #Gaza reaches new levels of horror every day.
-                The world must act before it is too late.{" "}
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-              UNOCHA
-              </span>
-            </div>
+        <div className="item" data-show-mob="4">
+          <div className="sub-item b5">
+            <p>
+              How many people have to die before world leaders wake up and call
+              for a ceasefire?”
+            </p>
+            <span className="date"> 4.Nov.2023</span>
+            <span>Doctors Without Borders</span>
           </div>
         </div>
-
-        <div className="row">
-          <div className="col-6 offset-3">
-            <div className="comment b6">
-              <p className="pr-10" style={{ transform: "translateY(-10px)" }}>
-                "The Israeli military’s repeated, apparently unlawful attacks on
-                medical facilities, personnel, and transport are further
-                destroying the Gaza Strip’s healthcare system and should be
-                investigated as war crimes.”{" "}
-              </p>
-              <span className="commatnable" style={{ color: "var(--red-2)" }}>
-              Human Rights Watch
-              </span>
-            </div>
+        <div className="item " data-show-mob="5">
+          <div className="sub-item b5">
+            <p>
+              How many people have to die before world leaders wake up and call
+              for a ceasefire?”
+            </p>
+            <span className="date"> 4.Nov.2023</span>
+            <span>Doctors Without Borders</span>
+          </div>
+        </div>
+        <div className="item" data-show-mob="3">
+          <div className="sub-item b1">
+            <p className="m-0">
+              "Children recounted stories that would haunt anyone who hears
+              them. We witnessed horrified people who entered the shelter still
+              carrying white flags, symbols of surrender & desperate hope for
+              sanctuary as they passed Israeli Armed Forces.”
+            </p>
+            <span>UNRWA</span>
+          </div>
+        </div>
+        <div className="item" data-show-mob="7">
+          <div className="sub-item b8">
+            <p>
+              “The carnage in #Gaza reaches new levels of horror every day. The
+              world must act before it is too late.”
+            </p>{" "}
+            <span className="date">15.Nov.2023 </span>
+            <span>UNOCHA</span>
+          </div>
+        </div>
+        <div className="item" data-show-mob="8">
+          <div className="sub-item b6">
+            <p>
+              "The Israeli military’s repeated, apparently unlawful attacks on
+              medical facilities, personnel, and transport are further
+              destroying the Gaza Strip’s healthcare system and should be
+              investigated as war crimes.”
+              <span className="date"> 14.Nov.2023</span>
+              <span> Human Rights Watch</span>
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default KhComments;
+export default Comments;

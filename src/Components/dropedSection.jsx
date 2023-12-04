@@ -39,7 +39,7 @@ function DropedSection({ sections }) {
     }
 
     // window.addEventListener("section:fall", handler);
-    window.addEventListener("singel:fall", singel_fall_handler);
+     window.addEventListener("singel:fall", singel_fall_handler);
 
 
     return () => {

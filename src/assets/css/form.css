@@ -100,7 +100,7 @@ textarea:focus {
 }
 
 
-button:focus,button:active{
+button:active{
     transition: transform .3s;
     transform: translateY(-10px);
 }
