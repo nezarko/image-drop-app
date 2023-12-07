@@ -33,7 +33,7 @@ const Form = (props) => {
       backgroundColor: "#4d4d4d",
       color: isSelected ? "red" : "white",
       padding: "10px",
-      overflowY: "scroll",
+      // overflowY: "scroll",
     }),
     singleValue: (styles) => ({
       ...styles,
