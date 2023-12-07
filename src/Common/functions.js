@@ -152,6 +152,16 @@ export function attache_observer(target = [] || "", observer) {
 export function delay(time) {
   return new Promise((resolve) => setTimeout(() => resolve(1), time));
 }
+
+
+export function  interploate(input, fromMax, fromMin, toMax, toMin , stop = null) {
+  
+               
+  const value = (input - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;
+    
+  return value
+  
+}
 /**
  * This function will only represent floawer fall from section while scroling
  * and only excute while section is in view port

@@ -93,19 +93,21 @@
     padding-right: 10%;
 }
 
-.text-green-400{
-    color:#7ac943;
+.text-green-400 {
+    color: #7ac943;
 }
 
-.text-red-400{
+.text-red-400 {
     color: #ff1e25;
 }
-.gray-300{
- background-color: #4d4d4d;
+
+.gray-300 {
+    background-color: #4d4d4d;
 }
+
 /* Globals */
 
-img{
+img {
     max-width: 100%;
     display: block;
     margin: 0 auto;
@@ -114,32 +116,84 @@ img{
 
 /* Flex */
 
-.align-baseline{
+.align-baseline {
     align-items: baseline;
 }
 
-.justify-space-between{
-    justify-content: space-between  ;
+.justify-space-between {
+    justify-content: space-between;
 }
 
 .justify-start {
     justify-content: flex-start;
 }
+
 .align-center {
     align-items: center;
 }
 
-.items-align-center{
+.items-align-center {
     align-items: center;
 }
-.items-align-start{
+
+/* Deperacated */
+.items-align-start {
     align-items: start;
 }
-.mb-5{
+
+/* Check if start works in flex dispaly in all broswers */
+.align-items-start {
+    align-items: start;
+}
+
+
+.justify-content-center {
+    justify-content: center;
+}
+
+
+.jusitfy-content-start{
+    justify-content: start;
+}
+
+
+.flex-column{
+    flex-direction: column;
+}
+.grow-3{
+    flex-grow: 3;
+}
+.grow-2{
+  flex-grow: 2;
+}
+
+.grow-1{
+    flex-grow: 1;
+}
+.w-full{
+ width: 100%;
+}
+.mb-5 {
     margin-bottom: 15px;
 }
 
+.mx-5{
+    margin-left: 5px;
+    margin-right: 5px;
+}
 
-.relative{
+
+
+.relative {
     position: relative;
+}
+
+
+.grid {
+    display: grid;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
 }

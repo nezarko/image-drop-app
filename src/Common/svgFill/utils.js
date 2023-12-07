@@ -16,6 +16,9 @@ export const lerp = (start, end, t) => {
   const lerp = (start, end, t) => {
     return start * (1 - t) + end * t;
   };
+
+  if(typeof start === 'number') return lerp(start , end , t)
+ 
   return {
     x: lerp(start.x, end.x, t),
     y: lerp(start.y, end.y, t),

@@ -1,10 +1,13 @@
-.form-container {
+/* .form-container {
     width: 1170px;
     position: relative;
     overflow: hidden;
     padding: 100px 30px;
-}
+} */
 
+.form-main{
+    margin-bottom: 100px;
+}
 .form-header {
     width: 100%;
     position: relative;
@@ -54,12 +57,12 @@ textarea::placeholder {
     color: white;
 }
 
-input:focus,
+/* input:focus,
 textarea:focus {
     border: none;
     outline-color: #ff1e25;
     outline-offset: 0;
-}
+} */
 
 
 .btn {
@@ -67,32 +70,14 @@ textarea:focus {
     border: 1px solid white;
     color: white;
     font-weight: 700;
-    padding: 1rem 2rem;
+    padding: .8rem .8rem;
 }
 .btn-green{
     border: 2px solid white;
     font-weight: 800;
     text-transform: uppercase;
-    padding: 1rem 2rem;
+    padding: .5rem 2rem;
     background-color: #000;
-}
-.grid-1,
-.grid-2 {
-    display: grid;
-    grid-gap: 10px;
-    align-items: center;
-    justify-content: start;
-    align-content: center;
-}
-
-.grid-1 {
-    grid-template-columns: 30% 18% auto;
-    grid-template-rows: auto;
-}
-
-.grid-2 {
-    grid-template-columns: 30% 54.5% auto;
-    grid-template-rows: auto
 }
 .f{
     position: absolute;
@@ -103,4 +88,51 @@ textarea:focus {
 button:active{
     transition: transform .3s;
     transform: translateY(-10px);
+}
+/* Seeds  */
+.form-main .seeds {
+    display: grid;
+    gap: 10px;
+    grid-template-columns:repeat(2 ,1fr);
+    grid-template-rows: repeat(2 , 1fr);
+}
+
+.seeds > img:first-child{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    transform: scale(.8) rotate(45deg);
+}
+
+
+.seeds > img:nth-child(2){
+    grid-column: 2/3;
+    grid-row: 1/2;
+    transform: scale(1.2) rotate(90deg);
+    translate: 5px -30px;
+}
+
+.seeds > img:nth-child(3){
+    grid-column: 1/2;
+    grid-row: 2/3;
+    transform: scale(.6) rotate(330deg);
+}
+
+.seeds > img:nth-child(4){
+    grid-column: 2/3;
+    grid-row:2/3;
+    transform:rotate(280deg) scale(.8);
+    translate: -20px -20px;
+    
+}
+
+.seed{
+ transition: opacity .3s ease-in;
+ }
+
+ /* .svg .flower:nt */
+.error > p{
+   width: 50%;
+   border: 1px solid red;
+   padding: 10px 20px;
+   font-size: 1rem;
 }

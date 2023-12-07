@@ -1,14 +1,14 @@
 import React, {
   useEffect,
   useRef,
-  useCallback,
-  useLayoutEffect,
   useState,
 } from "react";
 
 import "./App.css";
-import Section from "./Components/Section";
-import DropedSection from "./Components/dropedSection";
+
+
+// import Section from "./Components/Section";
+// import DropedSection from "./Components/dropedSection";
 import Suspence from "./Components/Suspence";
 import { obserCallback, attache_observer, fall } from "./Common/functions";
 import { getDocs } from "firebase/firestore";
@@ -19,6 +19,7 @@ import Comments from "./Components/Comments";
 import Form from "./Components/Form";
 import Footer from "./Components/Footer";
 import { NeverAgain } from "./Components/NeverAgain";
+import { Flower } from "./Components/Flower";
 /**
  *
  * App map
@@ -36,12 +37,14 @@ function App() {
   const [init, setInit] = React.useState(false);
   const [sections, setSections] = React.useState([]);
 
-  const [signed, setSign] = useState(0);
+  const [signed, setSign] = useState(null);
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
   const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
 
+
+  useEffect(() => console.log(signed), [signed])
   // initlize app data and states
   useEffect(() => {
     if (init && sectionsRef.current.length === sections.length) {
@@ -113,7 +116,8 @@ function App() {
 
     return () => console.log("App unmounted");
   }, [init, sections]);
-  return (
+
+    return (
     <div className="App">
       <Header />
       <Suspence show={!init} />
@@ -144,7 +148,7 @@ function App() {
       <Comments />
       <Form setSign={setSign} />
       <NeverAgain signed={signed} />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
