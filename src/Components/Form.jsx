@@ -201,6 +201,7 @@ const Form = (props) => {
   }
 
   async function handleRose(e = null) {
+     handleSeed(e,1)
     if (e && e.target.value.length === 2) {
       await new Promise((resole) => {
         formRef.current
