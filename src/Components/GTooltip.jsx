@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import "../assets/css/tooltip.css";
 
 import av from "../assets/imags/av.png";

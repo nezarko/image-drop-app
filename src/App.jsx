@@ -13,13 +13,14 @@ import Suspence from "./Components/Suspence";
 import { obserCallback, attache_observer, fall } from "./Common/functions";
 import { getDocs } from "firebase/firestore";
 import { roses } from "../firebase";
-import LocomotiveScroll from "locomotive-scroll";
+// import LocomotiveScroll from "locomotive-scroll";
 import Header from "./Components/Header";
 import Comments from "./Components/Comments";
 import Form from "./Components/Form";
 import Footer from "./Components/Footer";
 import { NeverAgain } from "./Components/NeverAgain";
-import { Flower } from "./Components/Flower";
+import Section from './Components/Section';
+import DropedSection from "./Components/dropedSection";
 /**
  *
  * App map
@@ -44,7 +45,7 @@ function App() {
   const sectionsRef = useRef([]);
 
 
-  useEffect(() => console.log(signed), [signed])
+  // useEffect(() => console.log(signed), [signed])
   // initlize app data and states
   useEffect(() => {
     if (init && sectionsRef.current.length === sections.length) {
@@ -67,7 +68,7 @@ function App() {
         section.style.setProperty("--fall-distance", _f);
       });
 
-      const lscrol = new LocomotiveScroll();
+      // const lscrol = new LocomotiveScroll();
     }
   }, [init]);
 
@@ -75,8 +76,8 @@ function App() {
     //FIXME: delete this side effect ;
     async function f() {
       const $docs = await getDocs(roses);
-      const $data = new Promise((resolve) => {
-        let a = $docs.docs
+      const $data = await new Promise((resolve) => {
+        let data = $docs.docs
           .map((doc) => {
             const { date, numberOfRoses, ...$doc } = doc.data();
             return {
@@ -92,10 +93,10 @@ function App() {
             return dateA - dateB;
           });
 
-        resolve(a);
-      }).then((r) => {
-        let s = r.splice(1, r.lenght - 2);
-        setSections(r);
+        data.splice(1, data.length - 5);
+        setSections(data);
+        // setSections(data.splice(1, data.length - 2));
+         resolve(data);
       });
     }
     f();
@@ -112,24 +113,31 @@ function App() {
   // Issue, Queue each section
 
   useEffect(() => {
-    console.log("component mountrd");
+    console.log("component mountrd" , sections);
 
     return () => console.log("App unmounted");
   }, [init, sections]);
 
-    return (
-    <div className="App">
-      <Header />
-      <Suspence show={!init} />
 
-      <div
-        className="sections"
-        ref={sectionsContainerRef}
-        style={{
-          "--parent-sections-h": 1,
-        }}
-      >
-        {/* {init &&
+  // return (
+  //   <>
+  //   </>
+  // )
+  return (
+      
+
+      <div className="App">
+        <Header />
+        <Suspence show={!init} />
+
+        <div
+          className="sections"
+          ref={sectionsContainerRef}
+          style={{
+            "--parent-sections-h": 1,
+          }}
+        >
+          {init &&
           sections.map((section, index) => (
             <Section
               key={crypto.randomUUID()}
@@ -142,15 +150,15 @@ function App() {
               // data-scroll-call="scrollEvent"
               // data-scroll-ofsset="200px , 0"
             />
-          ))} */}
-      </div>x
-      {/* <DropedSection sections={sections} /> */}
-      <Comments />
-      <Form setSign={setSign} />
-      <NeverAgain signed={signed} />
-      {/* <Footer /> */}
-    </div>
-  );
+          ))}
+        </div>
+        <DropedSection sections={sections} />
+        <Comments />
+        <Form setSign={setSign} />
+        <NeverAgain signed={signed} />
+        <Footer />
+      </div>
+    );
 }
 
 export default App;

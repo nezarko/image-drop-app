@@ -27,6 +27,9 @@
     align-items: center;
 }
 
+.form-header .content > div:first-child{
+    margin-bottom: 60px;
+}
 
 
 .form-header .content h3 {
@@ -135,4 +138,37 @@ button:active{
    border: 1px solid red;
    padding: 10px 20px;
    font-size: 1rem;
+}
+
+
+
+.btn-disabled{
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@keyframes plant-stem {
+    from{
+        stroke-dashoffset: 91;
+    }
+
+    to{
+        stroke-dashoffset: 0;
+    }
+    
+}
+
+/* .animate-stem{
+    animation-name: plant-stem;
+    animation-timing-function: ease-in-out;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+} */
+.stroke-animate{
+    stroke-dasharray: 91;
+    stroke-dashoffset: 91;
+    transition:  all 1s ease-in-out;
+}
+.animate-stroke{
+    stroke-dashoffset: 0;
 }

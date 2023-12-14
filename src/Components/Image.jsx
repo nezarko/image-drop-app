@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useState } from "react";
 import { delay ,_dispatchEvent} from "../Common/functions";
 import "../assets/css/image.css";
 const Image = forwardRef(

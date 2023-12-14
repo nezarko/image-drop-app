@@ -3,7 +3,6 @@ import '../assets/css/Header.css';
 import logo from '../assets/imags/oo.png'
 
 import scrollimg from "../assets/imags/scro.png";
-import LocomotiveScroll from 'locomotive-scroll';
 function Header() {
   
   // const loco = useRef(new LocomotiveScroll())

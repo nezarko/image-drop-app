@@ -12,6 +12,7 @@
   --toltip-font: 'Single Day', cursive;
   --code-new-roman:'Code New Roman',
     sans-serif;
+    --theme-x-padding: 2%
   /* --black-bg */
 }
 
@@ -272,6 +273,7 @@ body {
 
 .reciver-section-image-container {
   height: 910px !important;
+  overflow: hidden;
   
 }
 

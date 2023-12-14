@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { lerp, svgFill } from "../Common/svgFill";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { svgFill } from "../Common/svgFill";
 import { Flower } from "./Flower";
 const options = {
   viewBox: [1045, 194],
@@ -12,12 +12,15 @@ const options = {
 };
 
 export function NeverAgain({signed}) {
-  const svg = useMemo(() => svgFill(options), []);
+    const svg = useMemo(() => svgFill(options), []);
   const [filled, setFilled] = useState([]);
   
   
   useEffect(() => {
+    
     setFilled((prev) => [...prev, svg.fill(signed, filled)]);
+    
+    console.log(filled)
   }, [signed])
 
 
@@ -39,7 +42,7 @@ export function NeverAgain({signed}) {
         style={{
           position: "relative",
         }}
-        className="neverAgain"
+        className="neverAgain px-theme"
       >
         <svg
           ref={ref}
