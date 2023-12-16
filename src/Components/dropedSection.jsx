@@ -38,12 +38,12 @@ function DropedSection({ sections }) {
       a.classList.add("rc-single-fall");
     }
 
-    // window.addEventListener("section:fall", handler);
+     window.addEventListener("section:fall", handler);
      window.addEventListener("singel:fall", singel_fall_handler);
 
 
     return () => {
-      // window.removeEventListener("section:fall", handler);
+      window.removeEventListener("section:fall", handler);
       window.removeEventListener("singel:fall", singel_fall_handler);
     };
   }, []);

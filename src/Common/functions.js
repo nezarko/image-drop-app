@@ -92,29 +92,33 @@ export function positionImages(index) {
 }
 
 export function obserCallback(entries = [], observer) {
+  
 
   entries.forEach(async (entry) => {
     // check if it falls
-    // console.log(`Et ${i}`, entry);
 
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
     // remove observer if is start fall
 
     // if (start_fall) observer.unobserve(entry.target);
     // if (!entry.target.classList.contains('section-0')) {
-    const r = Math.floor(entry.intersectionRatio * 100);
+    // const r = Math.floor(entry.intersectionRatio * 100);
+
+    //  console.log(entry)
     // console.log("r", entry.intersectionRatio);
-      if (entry.boundingClientRect.top <= -15 && r >= 85 && !start_fall) {
+      // if (entry.boundingClientRect.top <= -15 && r >= 85 && !start_fall) {
        
-        fall(
+    if (start_fall) observer.unobserve(entry.target);
+    
+    
+       entry.isIntersecting && fall(
           entry.target,
-          100000,
           _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
         ); // add intersecting section to queue
-        //  stack.push(entry.target);
-      }
+      //   //  stack.push(entry.target);
+      // }
     //}
-
+    
     
     
 
@@ -132,12 +136,12 @@ export function _dispatchEvent(name, message) {
   );
 }
 
-export function fall(section, delay = 3000, cb = null) {
+export function fall(section, cb = null) {
   section.classList.add("container-section-img-fall");
   section.setAttribute("start-fall", 1);
 
   if (cb) cb();
-  return new Promise((resolve) => setTimeout(() => resolve(1), delay));
+  // return new Promise((resolve) => setTimeout(() => resolve(1), delay));
 }
 
 export function attache_observer(target = [] || "", observer) {

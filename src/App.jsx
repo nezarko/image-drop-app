@@ -41,7 +41,7 @@ function App() {
   const [signed, setSign] = useState(null);
   // dates
   //uw7o1b7pqfohc7sewcopqptnnrn93ec66z9tad0g
-  const sectionsContainerRef = useRef(null);
+    const sectionsContainerRef = useRef(null);
   const sectionsRef = useRef([]);
 
 
@@ -54,7 +54,7 @@ function App() {
       const observer = new IntersectionObserver(obserCallback, {
         threshold: 0.9,
         // root:sectionsContainerRef.current,
-        // rootMargin: "0px 0px -300px 0px",
+        rootMargin: "-100px 0px 0px 0px",
       });
 
       // section distance from its postion to bottom of its parrent =

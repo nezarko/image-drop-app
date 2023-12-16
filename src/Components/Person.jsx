@@ -10,30 +10,29 @@ const Person = ({ person, index, date, height, sectionIndex }) => {
   // each person component is an image and a tool tip actiavte onclick perosn
   const imageRef = useRef(null);
   
-  useEffect(() => {
+  // useEffect(() => {
     
-    // console.log("person ref" , imageRef.current)
+  //   // console.log("person ref" , imageRef.current)
     
-    if (imageRef && imageRef.current) {
-        imageRef.current.ontransitionend = () => {
+  //   if (imageRef && imageRef.current) {
+  //       imageRef.current.ontransitionend = () => {
         
-        // setActive(false);
-        
-        _dispatchEvent("singel:fall", {
-              section: sectionIndex,
-              person: index,
-        });
-      } 
+  //       // setActive(false);
+  //       _dispatchEvent("singel:fall", {
+  //             section: sectionIndex,
+  //             person: index,
+  //       });
+  //     } 
     
       
 
-    }
+  //   }
 
-    return () => {
+  //   return () => {
        
-      //  imageRef.current.ontransitionend = null;
-    }
-  },[]) 
+  //     //  imageRef.current.ontransitionend = null;
+  //   }
+  // },[]) 
   return (
     <>
       
