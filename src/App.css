@@ -72,7 +72,7 @@ body {
 
 .section-image {
   height: 100%;
-}
+  }
 
 .sections {
   width: 100%;
@@ -114,13 +114,25 @@ body {
   color: white;
   height: 100%;
   width: 6%;
-  background: #0c0c0c;
+  background: #070000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 2px rgb(234, 226, 226) solid;
+  border-left: 3px rgb(39, 35, 35) solid;
+  border-image: linear-gradient(to bottom, #0a0a0a, #3b3c3b, #19191c) 1;
+  
   /* */
+}
+.dot {
+  height: 12px;
+  width: 12px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+ position: relative;
+ right: 50%;
+ top: 8%;
 }
 
 .numImages {
@@ -130,9 +142,9 @@ body {
 
 .section-numberT {
   /* transform: rotate(-90deg); */
-  color: rgb(240, 241, 246);
+  color: rgb(68, 68, 73);
   font-size: 22px;
-  font-weight: bold;
+  font-weight:normal;
   margin-left: 5px;
 }
 
@@ -344,7 +356,7 @@ body {
 .reciver-section-image-container::before{
   content: '';
   position: absolute;
-  bottom: -45px;
+  bottom: -85px;
   left: -250px;
   height: 200px;
   width: 200%;
@@ -354,4 +366,46 @@ body {
   background-size: contain;
   background-position: bottom left;
   z-index: 1111;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoom-target {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.zoom-target:hover .number {
+  opacity: 1;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+
+.zoom-target.active img {
+  display: block;
 }

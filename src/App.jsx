@@ -93,7 +93,7 @@ function App() {
             return dateA - dateB;
           });
 
-        data.splice(1, data.length - 5);
+        // data.splice(1, data.length - 5);
         setSections(data);
         // setSections(data.splice(1, data.length - 2));
          resolve(data);

@@ -54,13 +54,12 @@ function DropedSection({ sections }) {
       className="section reciver-section-image-container"
       id="receiver-section"
       style={{
-        width: "90%",
+        width: "100%",
         marginBottom: "10px",
         marginTop: "10px",
         position: "relative",
         boxSizing: "border-box",
         padding: "5px",
-        margin: "10px",
       }}
     >
       <div
