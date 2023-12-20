@@ -1,4 +1,4 @@
-import "../App.css";
+// import "../App.css";
 import ZoomTarget from '../Components/zoomTarget'
 const SectionDate = ({ date  , title}) => {
 

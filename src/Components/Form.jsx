@@ -279,7 +279,6 @@ const Form = (props) => {
       topPosition + offset + -20
     }px)  scale(.2)`;
     handle_filled(counter.current);
-    console.log(counter.current, postiosn);
 
     counter.current += 1;
 
@@ -351,7 +350,7 @@ const Form = (props) => {
           <div className="form-body">
             <form
               id="form"
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               method="post"
             >
               <div className="level-1 relative row">
@@ -400,7 +399,7 @@ const Form = (props) => {
                         formData.email.length <= 0 && "btn-disabled"
                       }`}
                       // disabled={formData.email.length <= 0}
-                      // onClick={handleFlowerSubmitTransform}
+                      onClick={handleFlowerSubmitTransform}
                       // onClick={handle_filled}
                     >
                       Commit
