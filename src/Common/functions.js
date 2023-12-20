@@ -45,7 +45,7 @@ export function positionImages(index) {
   switch (true) {
     case index >= 178:
       posistion.y = `${getRandomInt(700, 920) - image_height}px`;
-      posistion.x = getRandomInt(-20, _w +600 ) + "px";
+      posistion.x = getRandomInt(-20, _w +600 /250 ) + "%";
       break;
     case index  >= 168 && index <= 177:
       posistion.y = `${getRandomInt(500, 880) - image_height}px`;
@@ -113,6 +113,8 @@ export function obserCallback(entries = [], observer) {
     // check if it falls
 
     const start_fall = Boolean(entry.target.getAttribute("start-fall"));
+
+    const index = entry.target.getAttribute('data-index') ;
     // remove observer if is start fall
 
     // if (start_fall) observer.unobserve(entry.target);
@@ -126,10 +128,23 @@ export function obserCallback(entries = [], observer) {
     if (start_fall) observer.unobserve(entry.target);
     
     
-       entry.isIntersecting && fall(
+       if(entry.isIntersecting) {
+         console.log(entry.target.children.length)
+        
+        fall(
           entry.target,
           _dispatchEvent("section:fall", entry.target.getAttribute("data-fall"))
-        ); // add intersecting section to queue
+        );
+
+        const time = entry.target.querySelector('.section-image').children.length * 0.045 * 900
+       
+        console.log("time" , time)
+
+        setTimeout(() => {
+          entry.target.querySelector(`[data-section-fog="${index}"]`).style.display = "block";
+        } , Math.floor(time))
+       } 
+        // add intersecting section to queue
       //   //  stack.push(entry.target);
       // }
     //}

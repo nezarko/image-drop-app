@@ -2,7 +2,7 @@
     width: 85%;
     height: 700px;
     margin-top: 200px;
-    font-size: 140px;
+    /* font-size: 140px; */
     font-family:  'Arial Narrow', Arial, sans-serif;
     position: relative;
     z-index: 5;
@@ -19,4 +19,25 @@
     justify-content: space-between;
   }
 
+  :where(.header .flower-container > div:has(p)) {
+    width: 40%;
+  }
 
+  :where(.header .flower-container > div:has(p) > p) {
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+
+
+  
+
+  
+@keyframes bouns {
+  0%{
+    transform: translateY(0px);
+  }
+  50%{transform:translateY(15px)}
+  100%{transform:translateY(0px)}
+
+
+}

@@ -1,11 +1,23 @@
-import React, { forwardRef, useEffect, useLayoutEffect } from "react";
+import React, { forwardRef, useEffect, useLayoutEffect, useState } from "react";
 import "../App.css";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
 // import { doc } from "firebase/firestore";
 
 const Section = forwardRef((props, ref) => {
+  const [showFog,setShowFog] = useState(false);
   const { height, section, sectionIndex, ...$props } = props;
+  
+
+  useEffect(() => {
+    const stagger_delay = 0.045 ;
+    const ms = 1000 ;
+    const delay = (section.dataPerson.roses.length * stagger_delay) * ms;
+    console.log(Math.floor(delay))
+    setTimeout(() => {
+      setShowFog(true)
+    } , Math.floor(delay))
+  },[])
   return (
     <>
       <div  
@@ -14,6 +26,7 @@ const Section = forwardRef((props, ref) => {
         style={{ height: height }}
         key={sectionIndex}
         data-fall={`section-${sectionIndex}`}
+        data-index={sectionIndex}
         {...$props}
       >
         <SectionDate
@@ -30,6 +43,8 @@ const Section = forwardRef((props, ref) => {
           // data-scroll-offset="50%,50%"
           // data-scroll-event-progress="progressEvent"
         >
+        
+         <img style={{display:"none"}} data-section-fog={sectionIndex} src="https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png" alt="" />              
           {section.dataPerson.roses.map((person, index) => (
             <Person
               date={new Date(section.date)}
