@@ -137,7 +137,9 @@ export function obserCallback(entries = [], observer) {
         );
 
         const time = entry.target.querySelector('.section-image').children.length * 0.045 * 900
-       
+         
+
+
 
         setTimeout(() => {
           entry.target.querySelector(`[data-section-fog="${index}"]`).style.display = "block";

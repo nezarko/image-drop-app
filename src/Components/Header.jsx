@@ -19,10 +19,10 @@ function Header() {
     <div className="header">
       <div className="flower-container">
         <img src={logo} alt="flower" className="flower-image" />
-        <div className='flex justify-space-between items-align-center'>
-         <p>dont scroll</p>
-         <img src={scrollIcon} alt="" />
-        </div>
+          {/* <div className='flex justify-space-between items-align-center'>
+          <p>dont scroll</p>
+          <img src={scrollIcon} alt="" />
+          </div> */}
       </div>
     </div>
   );
