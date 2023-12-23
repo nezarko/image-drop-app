@@ -24,9 +24,9 @@
   background-color: #981d07;
   color: #fff;
   padding: 5px 8px;
-  border-radius: 5px;
+  border-radius: 50px;
   z-index: 1;
-  animation: zoomOut 0.5s ease forwards; /* Add zoom-out animation */
+  animation: zoomOut 0.9s ease forwards; /* Add zoom-out animation */
 }
 
 @keyframes pulse {
@@ -49,6 +49,6 @@
   }
 
   100% {
-    transform: translateX(-50%) scale(1);
+    transform: translateX(-50%) scale(1.5);
   }
 }
