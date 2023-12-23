@@ -273,16 +273,18 @@ const Form = (props) => {
 
     flowerRef.current.style.transition = "transform 2s";
     flowerRef.current.style.transform = `translate(${x}px ,${
-      topPosition + offset + -20
+      topPosition 
     }px)  scale(.2)`;
+
+
     handle_filled(counter.current);
 
     counter.current += 1;
 
-    setTimeout(() => {
-      flowerRef.current.style.transition = "none";
-      flowerRef.current.style.transform = "initial";
-    }, 2300);
+    // setTimeout(() => {
+    //   flowerRef.current.style.transition = "none";
+    //   flowerRef.current.style.transform = "initial";
+    // }, 2300);
   }
 
   useEffect(() => {
@@ -347,8 +349,8 @@ const Form = (props) => {
           <div className="form-body">
             <form
               id="form"
-              onSubmit={handleSubmit}
-              method="post"
+              // onSubmit={handleSubmit}
+              // method="post"
             >
               <div className="level-1 relative row">
                 <div className="span-full flex align-items-start justify-content-start flex-column">
@@ -376,7 +378,7 @@ const Form = (props) => {
                       className="gray-300 mb-10 lg-mb-0 lg-grow-1"
                       type="email"
                       placeholder="Email"
-                      name="email"
+                      name="text"
                       value={formData.email}
                       onChange={handleEmail}
                     />
@@ -391,9 +393,9 @@ const Form = (props) => {
                       onChange={handelInviteSeed}
                     />
                     <button
-                      type="submit"
+                      type="button"
                       className={`grow-1 btn-green text-green-400 sm-block ${
-                        formData.email.length <= 0 && "btn-disabled"
+                        formData.email.length <= 0 && "btn-dissabled"
                       }`}
                       // disabled={formData.email.length <= 0}
                       // onClick={handleFlowerSubmitTransform}
