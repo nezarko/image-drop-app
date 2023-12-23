@@ -153,7 +153,6 @@ const Form = (props) => {
       if (response.ok) {
         // handle_filled();
         handleFlowerSubmitTransform();
-        console.log("Form data successfully submitted to the backend!");
         handleError("Form data successfully submitted");
         setFormData({
           name: "",
@@ -163,7 +162,6 @@ const Form = (props) => {
         });
         // Optionally, you can handle the success response here
       } else {
-        console.error("Failed to submit form data to the backend");
         handleError("Failed to submit form data to the backend");
       }
     } catch (error) {
@@ -349,7 +347,7 @@ const Form = (props) => {
           <div className="form-body">
             <form
               id="form"
-              // onSubmit={handleSubmit}
+              onSubmit={handleSubmit}
               method="post"
             >
               <div className="level-1 relative row">
@@ -398,7 +396,7 @@ const Form = (props) => {
                         formData.email.length <= 0 && "btn-disabled"
                       }`}
                       // disabled={formData.email.length <= 0}
-                      onClick={handleFlowerSubmitTransform}
+                      // onClick={handleFlowerSubmitTransform}
                       // onClick={handle_filled}
                     >
                       Commit
