@@ -1,5 +1,3 @@
-import gsap from "gsap";
-const stack = new Array();
 // fall images in section fun code
 export const fallImagesInSections = (sectionsContainerRef) => {
   if (sectionsContainerRef.current) {
@@ -76,7 +74,7 @@ export function positionImages(index) {
       case index >=31 && index <= 40:
         posistion.y = `${getRandomInt(600, 900) - image_height}px`;
         posistion.x = getRandomInt(460, _w+ 580) + "%";
-        break;
+        break; 
     case index <= 30 && index > 21:
       posistion.y = `${getRandomInt(180, 600) - image_height}px`;
       posistion.x = getRandomInt(790, _w -100) + "%";

@@ -1,10 +1,11 @@
-import React, { forwardRef, useRef, useEffect, useLayoutEffect, useState, useImperativeHandle } from "react";
 import "../App.css";
+
+import React, { useRef,useLayoutEffect, useState} from "react";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
 import Fog from "./fog/Fog";
+
 import { fall, _dispatchEvent } from "../Common/functions";
-// import { doc } from "firebase/firestore";
 
 const Section = (props) => {
   const [showFog, setShowFog] = useState(false);
@@ -16,7 +17,6 @@ const Section = (props) => {
    * 
    * A way to handle observer unobserve when section is not droping and complete droping
    */
-
 
   // attach observer
 
@@ -34,31 +34,22 @@ const Section = (props) => {
 
       const start_fall = Boolean(entry.target.getAttribute("start-fall"));
 
-      const index = entry.target.getAttribute('data-index');
-
       if (start_fall) observer.unobserve(entry.target)
-       // the tototla of childred down bellow * sttager (Transition delay) convert to Ms by * 1000
-      
-      const stagger = 0.025; 
-      const duration = 2000 ; 
-      const time  =( sectionImageRef.current.children.length * stagger )  * 1000 + duration
-      
-      if (entry.isIntersecting) {
-        
-        fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))     
-         setTimeout(() => {
-          // entry.target.style.background  = "green"
+      // the tototla of childred down bellow * sttager (Transition delay) convert to Ms by * 1000 + transtion duration 
+
+      const stagger = 0.025;
+      const duration = 2000;
+      const time = (sectionImageRef.current.children.length * stagger) * 1000 + duration
+      const r = Math.floor(entry.intersectionRatio * 100);
+      if (entry.boundingClientRect.top <= -15 && r >= 8 && !start_fall) {
+        fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))
+        setTimeout(() => {
           setShowFog(true)
-          console.log("hello" , time )
-         } , time);
+        }, time);
       }
 
-      
-
-    
     }, {
-      threshold:0.8,
-      rootMargin: "100px 0px 0px 0px"
+      threshold: 0.81,
     });
     if (section_ref.current) {
 
@@ -85,26 +76,15 @@ const Section = (props) => {
           title={section.numberOfRoses}
         />
 
-{
-          showFog &&  <Fog />
-         }
+        {
+          showFog && <Fog />
+        }
 
         <div
-        ref={sectionImageRef}
+          ref={sectionImageRef}
           className="section-image"
-          data-scroll
-          data-scroll-speed="0.1"
-        // data-scroll-call="scrollEvent"
-        // data-scroll-postion="end,start"
-        // data-scroll-offset="50%,50%"
-        // data-scroll-event-progress="progressEvent"
-        >
 
-          
-          
-        
-          
-          
+        >
           {section.dataPerson.roses.map((person, index) => (
             <Person
               date={new Date(section.date)}
@@ -120,18 +100,7 @@ const Section = (props) => {
       </div>
     </>
   );
-} 
+}
 
 export default Section;
 
-/**
- *
- * Create a queue to solve appending issue and animation to reciver section
- * Do a worker to compute havay calcluation
- *
- * Plan :
- *
- * render section data on reciver and tage each section with data indicator
- * toggle animation from a queue each section start falling floawer (animation) enquue incrument in queue
- *
- */

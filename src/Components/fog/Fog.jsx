@@ -6,7 +6,8 @@ const onSceneReady = (scene) => {
   var camera = new ArcRotateCamera("ArcRotateCamera", 1, Math.PI / 2, 50, new Vector3(0, 0, 0), scene);
   const canvas = scene.getEngine().getRenderingCanvas();
 
-  camera.attachControl(canvas, true);
+  // camera.attachControl(canvas, true);
+  camera.detachControl()
 
   scene.clearColor = new Color4(0, 0, 0, 0);
 

@@ -79,7 +79,7 @@ function DropedSection({ sections }) {
           return (
             <div
               data-rc={`section-${index}`}
-              className={`section rc-section-${index} rc-section-img-container reciver-section-image `}
+              className={`rc-section rc-section-${index} rc-section-img-container reciver-section-image `}
               key={index}
             >
               <div className="section-image">

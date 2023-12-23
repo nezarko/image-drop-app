@@ -1,57 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 53.72 68.87">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #c91f1f;
-        mix-blend-mode: multiply;
-      }
-
-      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
-        stroke-width: 0px;
-      }
-
-      .cls-2 {
-        fill: none;
-        stroke: #202020;
-      }
-
-      .cls-6 {
-        opacity: .7;
-      }
-
-      .cls-7 {
-        isolation: isolate;
-      }
-
-      .cls-4 {
-        fill: #202020;
-      }
-
-      .cls-5 {
-        fill: #e50516;
-      }
-
-      .bounce{
-            animation-name: bouns;
-    animation-timing-function: ease-in-out;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-fill-mode: both;
-
-      }
-
-      @keyframes bouns {
-  0%{
-    transform: translateY(0px);
-  }
-  50%{transform:translateY(8px)}
-  100%{transform:translateY(0px)}
-
-
-}
-    </style>
-  </defs>
+  
   <g class="cls-7">
     <g id="Layer_1" data-name="Layer 1">
       <g>

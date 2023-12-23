@@ -1,43 +1,132 @@
 .header {
-    width: 85%;
-    height: 700px;
-    margin-top: 200px;
-    /* font-size: 140px; */
-    font-family:  'Arial Narrow', Arial, sans-serif;
-    position: relative;
-    z-index: 5;
-  }
-  
-  .flower-container {
-    position: absolute;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    flex-direction: column;
-    display: flex;
-    align-items: center; /* Center vertically */
-    justify-content: space-between;
-  }
+  width: 85%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* margin-top: 200px; */
+  /* font-size: 140px; */
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  position: relative;
+  z-index: 5;
+}
 
-  :where(.header .flower-container > div:has(p)) {
-    width: 40%;
-  }
+.flower-container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  /* Center vertically */
+  justify-content: flex-start;
+}
 
-  :where(.header .flower-container > div:has(p) > p) {
-    text-transform: capitalize;
-    font-weight: 600;
-  }
+/* :where(.header .flower-container > div:has(p)) {
+  width: 40%;
+} */
+
+:where(.header .flower-container > div:has(p) > p) {
+  text-transform: capitalize;
+  font-weight: 600;
+}
 
 
-  
 
-  
+/* SVG */
+
+.scroll-logo{
+  cursor: pointer;
+  margin-left: 10px;
+}
+.scroll-logo svg {
+  width: 100%;
+  height: 50px;
+}
+
+.cls-1 {
+  fill: #c91f1f;
+  mix-blend-mode: multiply;
+}
+
+.cls-1,
+.cls-2,
+.cls-3,
+.cls-4,
+.cls-5 {
+  stroke-width: 0px;
+}
+
+.cls-2 {
+  fill: none;
+  stroke: #202020;
+}
+
+.cls-6 {
+  opacity: .7;
+}
+
+.cls-7 {
+  isolation: isolate;
+}
+
+.cls-4 {
+  fill: #202020;
+}
+
+.cls-5 {
+  fill: #e50516;
+}
+
+.bounce {
+  animation-name: bouns;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+}
+
+.bounsup{
+  animation-name: bounsup;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+
+}
 @keyframes bouns {
-  0%{
+  0% {
     transform: translateY(0px);
   }
-  50%{transform:translateY(15px)}
-  100%{transform:translateY(0px)}
+
+  50% {
+    transform: translateY(4px)
+  }
+
+  100% {
+    transform: translateY(0px)
+  }
 
 
 }
+
+
+
+@keyframes bounsup {
+  0%{
+    transform: translateY(0);
+  }
+
+  50%{
+    transform:translateY(-4px)
+  }
+
+  100%{
+    transform: translateY(0px);
+  }
+  
+}
+
