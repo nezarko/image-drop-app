@@ -1,0 +1,54 @@
+.dotsGIF-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 3px;
+  /* height: 100vh; Adjust height as needed */
+}
+
+.dotGIF {
+  width: 8px;
+  height: 8px;
+  background-color: #dbe2e7; /* Dot color */
+  border-radius: 50%;
+  cursor: pointer;
+  /* Animation */
+  animation: pulse 1s infinite;
+}
+
+.popup {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scale(0); /* Initial scale set to 0 */
+  font-size: 14px;
+  background-color: #981d07;
+  color: #fff;
+  padding: 5px 8px;
+  border-radius: 5px;
+  z-index: 1;
+  animation: zoomOut 0.5s ease forwards; /* Add zoom-out animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: translateX(-50%) scale(0);
+  }
+
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+}
