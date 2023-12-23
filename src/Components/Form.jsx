@@ -84,7 +84,6 @@ const Form = (props) => {
   useEffect(() => {
     async function c() {
       try {
-        console.log("wsss");
         const respons = await fetch(
           "https://api.eveschildren48.com/country/read"
         );

@@ -47,30 +47,30 @@ function App() {
 
   // useEffect(() => console.log(signed), [signed])
   // initlize app data and states
-  useEffect(() => {
-    if (init && sectionsRef.current.length === sections.length) {
-      const { height: _s_h } =
-        sectionsContainerRef.current.getBoundingClientRect();
-      const observer = new IntersectionObserver(obserCallback, {
-        threshold: 0.9,
-        // root:sectionsContainerRef.current,
-        rootMargin: "-100px 0px 0px 0px",
-      });
+  // useEffect(() => {
+  //   if (init && sectionsRef.current.length === sections.length) {
+  //     const { height: _s_h } =
+  //       sectionsContainerRef.current.getBoundingClientRect();
+  //     const observer = new IntersectionObserver(obserCallback, {
+  //       threshold: 0.9,
+  //       // root:sectionsContainerRef.current,
+  //       rootMargin: "-100px 0px 0px 0px",
+  //     });
 
-      // section distance from its postion to bottom of its parrent =
-      // distance from top - parent section height ;
+  //     // section distance from its postion to bottom of its parrent =
+  //     // distance from top - parent section height ;
 
-      sectionsRef.current.forEach((section) => {
-        attache_observer(section, observer);
-        const { top, height } = section.getBoundingClientRect();
+  //     sectionsRef.current.forEach((section) => {
+  //       // attache_observer(section, observer);
+  //       const { top, height } = section.getBoundingClientRect();
 
-        const _f = top > _s_h ? "100vh" : _s_h - top + "px";
-        section.style.setProperty("--fall-distance", _f);
-      });
+  //       const _f = top > _s_h ? "100vh" : _s_h - top + "px";
+  //       section.style.setProperty("--fall-distance", _f);
+  //     });
 
-      // const lscrol = new LocomotiveScroll();
-    }
-  }, [init]);
+  //     // const lscrol = new LocomotiveScroll();
+  //   }
+  // }, [init]);
 
   useEffect(() => {
     //FIXME: delete this side effect ;
@@ -112,11 +112,6 @@ function App() {
   // when all section flowers had fallen applay animation to drop section
   // Issue, Queue each section
 
-  useEffect(() => {
-    console.log("component mountrd" , sections);
-
-    return () => console.log("App unmounted");
-  }, [init, sections]);
 
 
   // return (
@@ -141,7 +136,7 @@ function App() {
           sections.map((section, index) => (
             <Section
               key={crypto.randomUUID()}
-              ref={(el) => (sectionsRef.current[index] = el)}
+  
               sectionIndex={index}
               section={section}
               height={(100 + section.dataPerson.roses.length) * 1.2}

@@ -4,7 +4,7 @@ const SectionDate = ({ date  , title}) => {
 
     return (
         <div className="section-number">
-            <span class="dot"></span>
+            <span className="dot"></span>
             <div className="section-numberT">
             
                 {date.toLocaleString("default", { month: "short" })}{" "}

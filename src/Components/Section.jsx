@@ -1,27 +1,78 @@
-import React, { forwardRef, useEffect, useLayoutEffect, useState } from "react";
+import React, { forwardRef, useRef, useEffect, useLayoutEffect, useState, useImperativeHandle } from "react";
 import "../App.css";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
+import Fog from "./fog/Fog";
+import { fall, _dispatchEvent } from "../Common/functions";
 // import { doc } from "firebase/firestore";
 
-const Section = forwardRef((props, ref) => {
-  const [showFog,setShowFog] = useState(false);
+const Section = (props) => {
+  const [showFog, setShowFog] = useState(false);
   const { height, section, sectionIndex, ...$props } = props;
-  
 
-  useEffect(() => {
-    const stagger_delay = 0.045 ;
-    const ms = 1000 ;
-    const delay = (section.dataPerson.roses.length * stagger_delay) * ms;
-    console.log(Math.floor(delay))
-    setTimeout(() => {
-      setShowFog(true)
-    } , Math.floor(delay))
-  },[])
+  /**
+   * 
+   * A try to handler intersection obsever only on single section component 
+   * 
+   * A way to handle observer unobserve when section is not droping and complete droping
+   */
+
+
+  // attach observer
+
+  // this component is a frowerd ref to parrent in order to attache observer
+
+  const section_ref = useRef(null);
+
+  const sectionImageRef = useRef(null)
+
+  useLayoutEffect(() => {
+    // attach obserevre 
+    const observer = new IntersectionObserver((enteris, observer) => {
+
+      const entry = enteris[0];
+
+      const start_fall = Boolean(entry.target.getAttribute("start-fall"));
+
+      const index = entry.target.getAttribute('data-index');
+
+      if (start_fall) observer.unobserve(entry.target)
+       // the tototla of childred down bellow * sttager (Transition delay) convert to Ms by * 1000
+      
+      const stagger = 0.025; 
+      const duration = 2000 ; 
+      const time  =( sectionImageRef.current.children.length * stagger )  * 1000 + duration
+      
+      if (entry.isIntersecting) {
+        
+        fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))     
+         setTimeout(() => {
+          // entry.target.style.background  = "green"
+          setShowFog(true)
+          console.log("hello" , time )
+         } , time);
+      }
+
+      
+
+    
+    }, {
+      threshold:0.8,
+      rootMargin: "100px 0px 0px 0px"
+    });
+    if (section_ref.current) {
+
+      observer.observe(section_ref.current)
+    }
+
+    return () => {
+      observer.unobserve(section_ref.current)
+    }
+  }, [])
   return (
     <>
-      <div  
-        ref={ref}
+      <div
+        ref={section_ref}
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
         key={sectionIndex}
@@ -34,17 +85,26 @@ const Section = forwardRef((props, ref) => {
           title={section.numberOfRoses}
         />
 
+{
+          showFog &&  <Fog />
+         }
+
         <div
+        ref={sectionImageRef}
           className="section-image"
           data-scroll
           data-scroll-speed="0.1"
-          // data-scroll-call="scrollEvent"
-          // data-scroll-postion="end,start"
-          // data-scroll-offset="50%,50%"
-          // data-scroll-event-progress="progressEvent"
+        // data-scroll-call="scrollEvent"
+        // data-scroll-postion="end,start"
+        // data-scroll-offset="50%,50%"
+        // data-scroll-event-progress="progressEvent"
         >
+
+          
+          
         
-         <img style={{display:"none"}} data-section-fog={sectionIndex} src="https://raw.githubusercontent.com/danielstuart14/CSS_FOG_ANIMATION/master/fog2.png" alt="" />              
+          
+          
           {section.dataPerson.roses.map((person, index) => (
             <Person
               date={new Date(section.date)}
@@ -60,7 +120,7 @@ const Section = forwardRef((props, ref) => {
       </div>
     </>
   );
-});
+} 
 
 export default Section;
 

@@ -20,11 +20,7 @@ const AnimatedSvgPath = ({
    */
   const animationRef = useRef(null);
   const refPath = useRef(null);
-    useEffect(() => {
-        console.log(animationRef.current)
- } , [])
   useEffect(() => {
-     console.log(stroke)
     if (play && stroke === undefined) animationRef.current.beginElement();
 
     if(play && stroke) refPath.current.classList.add("animate-stroke");

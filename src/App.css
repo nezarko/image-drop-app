@@ -72,6 +72,7 @@ body {
 
 .section-image {
   height: 100%;
+  z-index: 111111;
   }
 
 .sections {
@@ -399,4 +400,16 @@ body {
 
 .zoom-target.active img {
   display: block;
+}
+
+
+.fog{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
