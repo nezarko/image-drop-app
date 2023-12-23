@@ -339,14 +339,14 @@ body {
   content: '';
   position: absolute;
   bottom: 0;
-  left: 1%;
+  left: 0%;
   /* transform: translateX(5%); */
   background-image: url(./assets/imags/ci.png);
   background-repeat: repeat;
   background-position: bottom center;
   background-clip: border-box;
   background-size: contain;
-  width: 100%;
+  width: 98%;
   /* top: 93%; */
   height: 150px;
   z-index: 1;
