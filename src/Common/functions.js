@@ -47,11 +47,11 @@ export function positionImages(index) {
       break;
     case index  >= 168 && index <= 177:
       posistion.y = `${getRandomInt(550, 900) - image_height}px`;
-      posistion.x = getRandomInt(100, _w +700 ) + "%";
+      posistion.x = getRandomInt(120, _w +700 ) + "%";
       break;
       case index >= 141 && index <= 167:
         posistion.y = `${getRandomInt(169, 450) - image_height}px`;
-        posistion.x = getRandomInt(550, _w)+"%";
+        posistion.x = getRandomInt(690, _w)+"%";
         break;
     case index >= 121 && index <= 140:
       posistion.y = `${getRandomInt(470, 590) - image_height}px`;
@@ -59,7 +59,7 @@ export function positionImages(index) {
       break;
     case index >= 98 && index <= 120:
       posistion.y = `${getRandomInt(250, 590) - image_height}px`;
-      posistion.x = getRandomInt(420, _w + 150) + "%";
+      posistion.x = getRandomInt(470, _w + 150) + "%";
       break;
 
     case index >= 63 && index <= 97:
@@ -77,11 +77,11 @@ export function positionImages(index) {
         break; 
     case index <= 30 && index > 21:
       posistion.y = `${getRandomInt(180, 600) - image_height}px`;
-      posistion.x = getRandomInt(790, _w -100) + "%";
+      posistion.x = getRandomInt(830, _w -100) + "%";
       break;
       case index <=20 && index >10:
       posistion.y = `${getRandomInt(320, 500) - image_height}px`;
-      posistion.x = getRandomInt(550, _w -200) + "%";
+      posistion.x = getRandomInt(570, _w -200) + "%";
       break;
       case index <=10 && index >= 5:
       posistion.y = `${getRandomInt(350, 850) - image_height}px`;
@@ -89,7 +89,7 @@ export function positionImages(index) {
       break;
       case index < 5 && index > 2:
         posistion.y = `${getRandomInt(550, 920) - image_height}px`;
-        posistion.x = getRandomInt(20, 800) + "%";
+        posistion.x = getRandomInt(50, 800) + "%";
         break
         case index <= 2:
         posistion.y = `${getRandomInt(120, 200) - image_height}px`;
@@ -97,7 +97,7 @@ export function positionImages(index) {
         break;
     default:
       posistion.y = `${getRandomInt(580, 700) - image_height}px`;
-      posistion.x = getRandomInt(1050, _w - 600) + "%";
+      posistion.x = getRandomInt(180, _w - 600) + "%";
       break;
   }
 

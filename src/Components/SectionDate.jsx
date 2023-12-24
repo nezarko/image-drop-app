@@ -26,6 +26,8 @@ const SectionDate = ({ date, title }) => {
         <div className="dotGIF" onClick={() => handleDotClick(2)}></div>
         <div className="dotGIF" onClick={() => handleDotClick(3)} ></div>
         <div className="dotGIF" onClick={() => handleDotClick(4)}></div>
+        <div className="dotGIF" onClick={() => handleDotClick(5)} ></div>
+        <div className="dotGIF" onClick={() => handleDotClick(6)}></div>
         {/* Add more dots as needed */}
        
         {showPopup && <div className="popup">{selectedDot}</div>}

@@ -71,10 +71,10 @@ body {
   overflow-x: hidden;
 }
 
-.section-image {
+/* .section-image {
   height: 100%;
   z-index: 111111;
-  }
+  } */
 
 .sections {
   width: 100%;
@@ -161,12 +161,17 @@ body {
 
 
 .section-image {
+  height: 100%;
+  z-index: 111111;
   width: 90%;
-  display: block;
+  display: flex;
+  justify-content: start;
+  align-items: start;
   position: relative;
   margin-right: 15px;
   padding: 10px;
   contain: layout;
+  /* background-color: red; */
 
 }
 
