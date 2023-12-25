@@ -93,10 +93,10 @@ const Section = (props) => {
           className="section-image relative"
 
         >
-
+{/* 
           {
             showFog && <Smoke width={sectionImageReact.width} height={sectionImageReact.height} />
-          }
+          } */}
           {section.dataPerson.roses.map((person, index) => (
             <Person
               date={new Date(section.date)}

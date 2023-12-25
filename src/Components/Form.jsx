@@ -256,35 +256,43 @@ const Form = (props) => {
 
   function handleFlowerSubmitTransform(e = null) {
     // e.preventDefault();
+    let topTransform = 140 , marginBottom = 100 , targetWidth = 1045 , targetHeight = 199;
 
-    const fParent =
-      flowerRef.current.parentElement.parentElement.getBoundingClientRect();
-    const scale = 1200 / 1084;
+    
     //Top postion = (flowerHeight * scale) + (flowerFromBottom + containermargin) + flowerTopPostion
     const postiosn = svg.fill(counter.current, $postions.current);
     const { top, bottom, left, right, height, width } =
       flowerRef.current.getBoundingClientRect();
     // console.log(postiosn);
-    const offset =
-      counter.current >= 30 ? counter.current * 1.7 : counter.current * 0.2;
-    const topPosition =
-      height * 0.49 + (postiosn.y * scale + 100) + postiosn.y * scale;
-    const x = postiosn.x * scale + 150 - left;
+    
+    if(postiosn.y <= 119) {
+      targetHeight = targetHeight / 5
+    }
+
+    if(postiosn.y <= 60) {
+      targetHeight = targetHeight / 100
+    }
+    const $y = (height + topTransform + marginBottom) + (targetHeight - postiosn.y) +40
+    const $x = (targetWidth - postiosn.x) - 20
+
+
 
     flowerRef.current.style.transition = "transform 2s";
-    flowerRef.current.style.transform = `translate(${x}px ,${
-      topPosition 
-    }px)  scale(.2)`;
+    flowerRef.current.style.transform = `translate(-${$x}px ,${
+      $y
+    }px)  scale(.274163)`;
 
 
     handle_filled(counter.current);
 
     counter.current += 1;
 
-    // setTimeout(() => {
-    //   flowerRef.current.style.transition = "none";
-    //   flowerRef.current.style.transform = "initial";
-    // }, 2300);
+    console.log(counter.current)
+
+    setTimeout(() => {
+      flowerRef.current.style.transition = "none";
+      flowerRef.current.style.transform = "initial";
+    }, 2300);
   }
 
   useEffect(() => {
@@ -383,6 +391,9 @@ const Form = (props) => {
                       onChange={handleEmail}
                     />
                   </div>
+                  
+
+
                   <div className="form-group span-full flex flex-col lg-flex-row xl-flex-row w-full ">
                     <input
                       className="grow-3 gray-300  mb-10 lg-mb-0"
@@ -392,13 +403,14 @@ const Form = (props) => {
                       value={formData.invites}
                       onChange={handelInviteSeed}
                     />
+                   
                     <button
                       type="button"
                       className={`grow-1 btn-green text-green-400 sm-block ${
                         formData.email.length <= 0 && "btn-dissabled"
                       }`}
                       // disabled={formData.email.length <= 0}
-                      // onClick={handleFlowerSubmitTransform}
+                      onClick={handleFlowerSubmitTransform}
                       // onClick={handle_filled}
                     >
                       Commit
@@ -441,15 +453,13 @@ const Form = (props) => {
                       );
                     })}
                   </svg>
-                </div>
-                {/* <div className="span-full"></div> */}
+                </div>                
                 {error && (
                   <div className="error span-full flex align-items-center justify-content-center">
                     <p>{error}</p>
                   </div>
                 )}
 
-                {/* <pre>{ JSON.stringify(formData)}</pre> */}
               </div>
             </form>
           </div>

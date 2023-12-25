@@ -105,6 +105,7 @@ function App() {
                 ))}
             </div>
             <DropedSection sections={sections} />
+
             <Comments />
             <Form setSign={setSign} />
             <NeverAgain signed={signed} />

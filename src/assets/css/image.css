@@ -20,6 +20,44 @@
     animation-delay: calc(0.055 * var(--i));
 }
 
+.cls-1 {
+    fill: #c91f1f;
+    mix-blend-mode: multiply;
+  }
+
+  .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+    stroke-width: 0px;
+  }
+
+  .cls-2 {
+    fill: none;
+    stroke: #202020;
+  }
+
+  .cls-7 {
+    opacity: .8;
+  }
+
+  .cls-8 {
+    opacity: .7;
+  }
+
+  .cls-9 {
+    isolation: isolate;
+  }
+
+  .cls-4 {
+    fill: #202020;
+  }
+
+  .cls-5 {
+    fill: #e50516;
+  }
+
+  .cls-6 {
+    fill: #fff;
+  }
+
 @keyframes move {
     0%{
    transform: translateX(-50px);
