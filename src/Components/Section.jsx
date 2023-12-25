@@ -1,15 +1,18 @@
 import "../App.css";
 
-import React, { useRef,useLayoutEffect, useState} from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
 import Fog from "./fog/Fog";
-
+import Smoke from "./smoke/Smoke";
 import { fall, _dispatchEvent } from "../Common/functions";
 
 const Section = (props) => {
   const [showFog, setShowFog] = useState(false);
+  const [sectionImageReact ,setReact] = useState();
   const { height, section, sectionIndex, ...$props } = props;
+
+
 
   /**
    * 
@@ -28,7 +31,9 @@ const Section = (props) => {
 
   useLayoutEffect(() => {
     // attach obserevre 
-    const observer = new IntersectionObserver((enteris, observer) => {
+
+
+      const observer = new IntersectionObserver((enteris, observer) => {
 
       const entry = enteris[0];
 
@@ -56,6 +61,11 @@ const Section = (props) => {
       observer.observe(section_ref.current)
     }
 
+    if(sectionImageRef) {
+ //     const h = sectionImageRef.current.getBoundingClientRect() ;
+      setReact(sectionImageRef.current.getBoundingClientRect());
+    }
+ 
     return () => {
       observer.unobserve(section_ref.current)
     }
@@ -76,15 +86,17 @@ const Section = (props) => {
           title={section.numberOfRoses}
         />
 
-        {
-          showFog && <Fog />
-        }
+
 
         <div
           ref={sectionImageRef}
-          className="section-image"
+          className="section-image relative"
 
         >
+
+          {
+            showFog && <Smoke width={sectionImageReact.width} height={sectionImageReact.height} />
+          }
           {section.dataPerson.roses.map((person, index) => (
             <Person
               date={new Date(section.date)}

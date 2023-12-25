@@ -9,7 +9,7 @@ export default ({ antialias, engineOptions, adaptToDeviceRatio, sceneOptions, on
     const { current: canvas } = reactCanvas;
 
     if (!canvas) return;
- 
+
     const engine = new Engine(canvas, antialias, engineOptions, adaptToDeviceRatio);
     const scene = new Scene(engine, sceneOptions);
     if (scene.isReady()) {
