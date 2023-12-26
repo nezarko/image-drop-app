@@ -1,5 +1,8 @@
 import React, {
+  forwardRef,
+  memo,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
@@ -63,7 +66,7 @@ function App() {
             return dateA - dateB;
           });
 
-        // data.splice(1, data.length - 5);
+        // data.splice(1, data.length - 2);
         setSections(data);
         // setSections(data.splice(1, data.length - 2));
         resolve(data);
@@ -71,6 +74,8 @@ function App() {
     }
     f();
   }, []);
+
+  const $sections = useMemo(() => (sections) , [sections]) ;
 
   useEffect(() => {
     if (sections.length > 0) {
@@ -95,16 +100,16 @@ function App() {
               }}
             >
               {init &&
-                sections.map((section, index) => (
+                $sections.map((section, index) => (
                   <Section
-                    key={crypto.randomUUID()}
+                    key={index}
                     sectionIndex={index}
                     section={section}
                     height={(100 + section.dataPerson.roses.length) * 1.2}
                   />
                 ))}
             </div>
-            <DropedSection sections={sections} />
+            <DropedSection sections={$sections} />
 
             <Comments />
             <Form setSign={setSign} />
@@ -118,6 +123,11 @@ function App() {
   );
 }
 
+
+
+const sectionContainer = memo(function(pops){
+
+})
 export default App;
 
 // Nizar phone : 0597265683

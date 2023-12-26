@@ -117,7 +117,6 @@ const Form = (props) => {
   }
 
   function handle_filled() {
-    console.log("in", counter.current);
     props.setSign(counter.current);
     counter.current += 1;
 
@@ -130,10 +129,10 @@ const Form = (props) => {
 
     // handle_filled();
     try {
-      formData.invites ? split_invites(formData.invites) : ""; 
+      formData.invites ? split_invites(formData.invites) : "";
 
       split_invites(formData.invites).map(
-        (inv, i) => (formData[`friend_mail_${i+1}`] = inv)
+        (inv, i) => (formData[`friend_mail_${i + 1}`] = inv)
       );
 
       delete formData.invites;
@@ -193,7 +192,7 @@ const Form = (props) => {
       return;
     }
 
-    setFormData((prev) => ({ ...prev, invites: e.target.value }));
+    // setFormData((prev) => ({ ...prev, invites: e.target.value }));
 
     if (value.length === 0) {
       formRef.current
@@ -206,11 +205,18 @@ const Form = (props) => {
       formRef.current.querySelector(`.seeds .seed-${seed}`)
     );
   }
-  function handleName(e) {
+
+  function handleBlueName(e) {
     setFormData((prev) => ({
       ...prev,
       name: e.target.value,
     }));
+  }
+  function handleName(e) {
+    // setFormData((prev) => ({
+    //   ...prev,
+    //   name: e.target.value,
+    // }));
 
     handleOpacityBasedOnInputValue(
       e.target.value,
@@ -236,7 +242,7 @@ const Form = (props) => {
       e.target.value,
       formRef.current.querySelector(`.seeds .seed-1`)
     );
-    setFormData((prev) => ({ ...prev, email: e.target.value }));
+    // setFormData((prev) => ({ ...prev, email: e.target.value }));
 
     if (e && e.target.value.length === 2) {
       setAnimate((prev) => ({
@@ -256,31 +262,30 @@ const Form = (props) => {
 
   function handleFlowerSubmitTransform(e = null) {
     // e.preventDefault();
-    let topTransform = 140 , marginBottom = 100 , targetWidth = 1045 , targetHeight = 199;
 
-    
-    //Top postion = (flowerHeight * scale) + (flowerFromBottom + containermargin) + flowerTopPostion
+    console.log(formData);
+    let topTransform = 140, marginBottom = 100, targetWidth = 1045, targetHeight = 199;
+
+
     const postiosn = svg.fill(counter.current, $postions.current);
-    const { top, bottom, left, right, height, width } =
+    const { height } =
       flowerRef.current.getBoundingClientRect();
-    // console.log(postiosn);
-    
-    if(postiosn.y <= 119) {
+
+    if (postiosn.y <= 119) {
       targetHeight = targetHeight / 5
     }
 
-    if(postiosn.y <= 60) {
+    if (postiosn.y <= 60) {
       targetHeight = targetHeight / 100
     }
-    const $y = (height + topTransform + marginBottom) + (targetHeight - postiosn.y) +40
+    const $y = (height + topTransform + marginBottom) + (targetHeight - postiosn.y) + 40
     const $x = (targetWidth - postiosn.x) - 20
 
 
 
     flowerRef.current.style.transition = "transform 2s";
-    flowerRef.current.style.transform = `translate(-${$x}px ,${
-      $y
-    }px)  scale(.274163)`;
+    flowerRef.current.style.transform = `translate(-${$x}px ,${$y
+      }px)  scale(.274163)`;
 
 
     handle_filled(counter.current);
@@ -357,8 +362,8 @@ const Form = (props) => {
           <div className="form-body">
             <form
               id="form"
-              // onSubmit={handleSubmit}
-              // method="post"
+            onSubmit={handleSubmit}
+            // method="post"
             >
               <div className="level-1 relative row">
                 <div className="span-full flex align-items-start justify-content-start flex-column">
@@ -369,7 +374,8 @@ const Form = (props) => {
                       className="form-control gray-300 lg-grow-2 mb-10 lg-mb-0"
                       name="name"
                       onChange={handleName}
-                      value={formData.name}
+                      onBlur={handleBlueName}
+                    // value={formData.name}
                     />
                     <Select
                       options={countries}
@@ -380,6 +386,8 @@ const Form = (props) => {
                       name="contrycode"
                       className="mb-10 lg-grow-1 lg-mb-0"
                       backspaceRemovesValue={true}
+                    // onBlur={(e)=>console.log(e)}
+
                     />
                     {/* EMAIL */}
                     <input
@@ -387,11 +395,13 @@ const Form = (props) => {
                       type="email"
                       placeholder="Email"
                       name="text"
-                      value={formData.email}
+                      // value={formData.email}
                       onChange={handleEmail}
+                      onBlur={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+
                     />
                   </div>
-                  
+
 
 
                   <div className="form-group span-full flex flex-col lg-flex-row xl-flex-row w-full ">
@@ -400,18 +410,19 @@ const Form = (props) => {
                       type="text"
                       placeholder="invite others @ seperate emails by comma"
                       title="Sperate emails by comma , example : mail@example.com,second@mail.com"
-                      value={formData.invites}
+                      // value={formData.invites}
                       onChange={handelInviteSeed}
+                      onBlur={(e) => setFormData((prev) => ({ ...prev, invites: e.target.value }))
+                      }
                     />
-                   
+
                     <button
-                      type="button"
-                      className={`grow-1 btn-green text-green-400 sm-block ${
-                        formData.email.length <= 0 && "btn-dissabled"
-                      }`}
+                      type="submit"
+                      className={`grow-1 btn-green text-green-400 sm-block ${formData.email.length <= 0 && "btn-dissabled"
+                        }`}
                       // disabled={formData.email.length <= 0}
-                      onClick={handleFlowerSubmitTransform}
-                      // onClick={handle_filled}
+                      // onClick={handleFlowerSubmitTransform}
+                    // onClick={handle_filled}
                     >
                       Commit
                     </button>
@@ -446,14 +457,13 @@ const Form = (props) => {
                           strokeMiterlimit={
                             path.strokeMiterlimit && path.strokeMiterlimit
                           }
-                          className={`${
-                            path.stroke ? "stroke-animate" : "fill-animate"
-                          }`}
+                          className={`${path.stroke ? "stroke-animate" : "fill-animate"
+                            }`}
                         />
                       );
                     })}
                   </svg>
-                </div>                
+                </div>
                 {error && (
                   <div className="error span-full flex align-items-center justify-content-center">
                     <p>{error}</p>

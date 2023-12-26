@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import "../assets/css/comments.css";
-const Comments = (props) => {
+const Comments = memo(props => {
   /**
    * A auto fit grid system with 12 columnd and each cell in a grid
    * dont go bellow 250px in width
@@ -126,6 +126,6 @@ const Comments = (props) => {
       </div>
     </>
   );
-};
+});
 
 export default Comments;

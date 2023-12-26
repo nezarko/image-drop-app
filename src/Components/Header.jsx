@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import '../assets/css/header.css';
 import logo from '../assets/imags/oo.png'
-import scrollIcon from '../assets/imags/scrollIcon.svg';
-function Header() {
+import {memo} from 'react';
+ const Header = memo(function Header() {
 
 
   return (
@@ -91,6 +91,6 @@ function Header() {
       </div>
     </div>
   );
-}
+})
 
 export default Header;

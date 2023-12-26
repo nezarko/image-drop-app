@@ -6,8 +6,8 @@ import Person from "./Person";
 import Fog from "./fog/Fog";
 import Smoke from "./smoke/Smoke";
 import { fall, _dispatchEvent } from "../Common/functions";
-
-const Section = (props) => {
+import {memo} from 'react'
+const Section = memo(props => {
   const [showFog, setShowFog] = useState(false);
   const [sectionImageReact ,setReact] = useState();
   const { height, section, sectionIndex, ...$props } = props;
@@ -31,7 +31,9 @@ const Section = (props) => {
 
   useLayoutEffect(() => {
     // attach obserevre 
-
+    const stagger = 0.025;
+    const duration = 2000;
+    const time = (sectionImageRef.current.children.length * stagger) * 1000 + duration
 
       const observer = new IntersectionObserver((enteris, observer) => {
 
@@ -39,14 +41,15 @@ const Section = (props) => {
 
       const start_fall = Boolean(entry.target.getAttribute("start-fall"));
 
-      if (start_fall) observer.unobserve(entry.target)
+      if (start_fall) {
+        observer.unobserve(entry.target) ; 
+        observer.disconnect();
+      }
       // the tototla of childred down bellow * sttager (Transition delay) convert to Ms by * 1000 + transtion duration 
 
-      const stagger = 0.025;
-      const duration = 2000;
-      const time = (sectionImageRef.current.children.length * stagger) * 1000 + duration
+     
       const r = Math.floor(entry.intersectionRatio * 100);
-      if (entry.boundingClientRect.top <= -15 && r >= 8 && !start_fall) {
+      if (entry.boundingClientRect.top <= 0  && !start_fall) {
         fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))
         setTimeout(() => {
           setShowFog(true)
@@ -54,7 +57,7 @@ const Section = (props) => {
       }
 
     }, {
-      threshold: 0.81,
+      // threshold: 0.81,
     });
     if (section_ref.current) {
 
@@ -76,7 +79,7 @@ const Section = (props) => {
         ref={section_ref}
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
-        key={sectionIndex}
+        key={sectionIndex}observer.unobserve(entry.target)
         data-fall={`section-${sectionIndex}`}
         data-index={sectionIndex}
         {...$props}
@@ -112,7 +115,7 @@ const Section = (props) => {
       </div>
     </>
   );
-}
+})
 
 export default Section;
 

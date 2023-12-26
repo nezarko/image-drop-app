@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import "../App.css";
 
 import Image from "./Image";
@@ -6,7 +6,7 @@ import Image from "./Image";
 import Store from "../Common/Store";
 import { positionImages } from "../Common/functions";
 
-function DropedSection({ sections }) {
+const DropedSection = memo(function DropedSection({ sections }) {
   /**
    * FIXME: ajdust transtion timing at single fall
    */
@@ -47,6 +47,7 @@ function DropedSection({ sections }) {
       window.removeEventListener("singel:fall", singel_fall_handler);
     };
   }, []);
+  useEffect(() => {console.log("render")})
 
   return (
     <div
@@ -86,6 +87,7 @@ function DropedSection({ sections }) {
                 {Array.from({ length: section.dataPerson.roses.length }).map(
                   (_, i) => (
                     <Image
+                     r={true}
                       key={i}
                       url={Store.getImage().url}
                       top={0}
@@ -105,6 +107,6 @@ function DropedSection({ sections }) {
       </>
     </div>
   );
-}
+})
 
 export default DropedSection;

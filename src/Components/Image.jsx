@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { delay, _dispatchEvent } from "../Common/functions";
 import "../assets/css/image.css";
 const Image = forwardRef(
@@ -20,7 +20,7 @@ const Image = forwardRef(
       width: `80px`,
       height: `100%`,
     };
-
+     useEffect(() => props.r && console.log("render")) ; 
     const [active, setActive] = useState(true);
     // const item = useRef(null);
     async function flip() {
