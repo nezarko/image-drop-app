@@ -79,7 +79,7 @@ const Section = memo(props => {
         ref={section_ref}
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
-        key={sectionIndex}observer.unobserve(entry.target)
+        key={sectionIndex}
         data-fall={`section-${sectionIndex}`}
         data-index={sectionIndex}
         {...$props}
