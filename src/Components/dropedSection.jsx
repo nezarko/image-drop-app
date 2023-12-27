@@ -12,8 +12,6 @@ const DropedSection = memo(function DropedSection({ sections }) {
    */
   const q = useRef(null);
 
-  const sectionsRef = useRef({});
-
   useEffect(() => {
     // attache event listiner to observer
 
@@ -22,11 +20,9 @@ const DropedSection = memo(function DropedSection({ sections }) {
         detail: { target },
       } = e;
       // dont start excution unless the working function end
-      // q.current
-      //   .querySelector(`[data-rc="${target}"]`)
-      //   .classList.add("rc-image-append");
-
-      sectionsRef.current[target].classList.add('rc-image-append')
+      q.current
+        .querySelector(`[data-rc="${target}"]`)
+        .classList.add("rc-image-append");
     }
 
     function singel_fall_handler(e) {
@@ -42,8 +38,8 @@ const DropedSection = memo(function DropedSection({ sections }) {
       a.classList.add("rc-single-fall");
     }
 
-    window.addEventListener("section:fall", handler);
-    window.addEventListener("singel:fall", singel_fall_handler);
+     window.addEventListener("section:fall", handler);
+     window.addEventListener("singel:fall", singel_fall_handler);
 
 
     return () => {
@@ -51,7 +47,6 @@ const DropedSection = memo(function DropedSection({ sections }) {
       window.removeEventListener("singel:fall", singel_fall_handler);
     };
   }, []);
-  useEffect(() => { console.log("render") })
 
   return (
     <div
@@ -67,18 +62,6 @@ const DropedSection = memo(function DropedSection({ sections }) {
         padding: "5px",
       }}
     >
-      <div
-        className="zigzag-border"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "0.5%",
-          zIndex: -1,
-        }}
-      ></div>
-
       <>
         {sections.map((section, index) => {
           return (
@@ -87,19 +70,18 @@ const DropedSection = memo(function DropedSection({ sections }) {
               className={`rc-section rc-section-${index} rc-section-img-container reciver-section-image `}
               key={index}
             >
-              <div ref={el => sectionsRef.current[`section_${index}`] = el}
-                className="section-image">
+              <div className="section-image">
                 {Array.from({ length: section.dataPerson.roses.length }).map(
                   (_, i) => (
                     <Image
-                      r={true}
+                     r={true}
                       key={i}
                       url={Store.getImage().url}
                       top={0}
                       left={Math.random() * 90}
                       date={section.date}
                       index={i}
-                      // iposition={positionImages(i)}
+                      iposition={positionImages(i)}
                       data-person={`person-${i}`}
                       className="section-img section-img-rc"
                     />
@@ -115,3 +97,11 @@ const DropedSection = memo(function DropedSection({ sections }) {
 })
 
 export default DropedSection;
+
+
+
+
+
+
+
+

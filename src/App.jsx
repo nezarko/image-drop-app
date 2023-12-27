@@ -64,7 +64,7 @@ function App() {
             return dateA - dateB;
           });
 
-        data.splice(1, data.length - 2);
+        // data.splice(1, data.length - 2);
         setSections(data);
         // setSections(data.splice(1, data.length - 2));
         resolve(data);

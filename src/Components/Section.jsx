@@ -80,7 +80,7 @@ const Section = memo(function Section(props) {
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
         key={sectionIndex}
-        data-fall={`section_${sectionIndex}`}
+        data-fall={`section-${sectionIndex}`}
         data-index={sectionIndex}
         {...$props}
       >

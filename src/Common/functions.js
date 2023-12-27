@@ -47,7 +47,7 @@ export function positionImages(index) {
       break;
     case index  >= 168 && index <= 177:
       posistion.y = `${getRandomInt(550, 900) - image_height}px`;
-      posistion.x = getRandomInt(120, _w +700 ) + "%";
+      posistion.x = getRandomInt(50, _w +700 ) + "%";
       break;
       case index >= 141 && index <= 167:
         posistion.y = `${getRandomInt(169, 450) - image_height}px`;

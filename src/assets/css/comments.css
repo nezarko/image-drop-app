@@ -63,6 +63,8 @@
     color: red;
     font-weight: bold;
     font-size: 11px;
+    position: relative;
+    right: 22%;
 }
 
 .sub-item span.date {
