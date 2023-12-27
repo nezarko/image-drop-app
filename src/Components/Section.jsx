@@ -47,7 +47,7 @@ const Section = memo(function Section(props) {
 
      
       const r = Math.floor(entry.intersectionRatio * 100);
-      if (entry.boundingClientRect.top <= 10  && !start_fall) {
+      if (entry.boundingClientRect.top <= 10 && !start_fall) {
         fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))
         setTimeout(() => {
           setShowFog(true)
@@ -72,7 +72,6 @@ const Section = memo(function Section(props) {
     }
   }, [])
 
-  useEffect(() => console.log("section rednred"))
   return (
     <>
       <div
