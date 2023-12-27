@@ -26,10 +26,10 @@
   padding: 5px 8px;
   border-radius: 50px;
   z-index: 1;
-  animation: zoomOut 0.9s ease forwards; /* Add zoom-out animation */
+  /* animation: zoomOut 0.9s ease forwards; Add zoom-out animation */
 }
 
-@keyframes pulse {
+/* @keyframes pulse {
   0% {
     transform: scale(1);
   }
@@ -51,4 +51,4 @@
   100% {
     transform: translateX(-50%) scale(1.5);
   }
-}
+} */

@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../App.css";
 import "../assets/css/dots.css"
 const SectionDate = ({ date, title }) => {
+    const $date = new Date(date);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedDot, setSelectedDot] = useState(null);
   
@@ -19,7 +20,7 @@ const SectionDate = ({ date, title }) => {
     <div className="section-number">
       <span className="dot"></span>
       <div className="section-numberT">
-        {date.toLocaleString("default", { month: "short" })} {date.getDate()}
+        {$date.toLocaleString("default", { month: "short" })} {$date.getDate()}
       </div>
       <div className="dotsGIF-container">
         <div className="dotGIF" onClick={() => handleDotClick(1)}></div>

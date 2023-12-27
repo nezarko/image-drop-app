@@ -1,8 +1,6 @@
 import React, {
-  forwardRef,
   memo,
   useEffect,
-  useMemo,
   useRef,
   useState,
 } from "react";
@@ -66,7 +64,7 @@ function App() {
             return dateA - dateB;
           });
 
-        // data.splice(1, data.length - 2);
+        data.splice(1, data.length - 2);
         setSections(data);
         // setSections(data.splice(1, data.length - 2));
         resolve(data);
@@ -75,7 +73,7 @@ function App() {
     f();
   }, []);
 
-  const $sections = useMemo(() => (sections) , [sections]) ;
+  // const $sections = useMemo(() => (sections) , [sections]) ;
 
   useEffect(() => {
     if (sections.length > 0) {
@@ -95,12 +93,10 @@ function App() {
             <div
               className="sections"
               ref={sectionsContainerRef}
-              style={{
-                "--parent-sections-h": 1,
-              }}
+              
             >
               {init &&
-                $sections.map((section, index) => (
+                sections.map((section, index) => (
                   <Section
                     key={index}
                     sectionIndex={index}
@@ -109,8 +105,7 @@ function App() {
                   />
                 ))}
             </div>
-            <DropedSection sections={$sections} />
-
+            <DropedSection sections={sections} />
             <Comments />
             <Form setSign={setSign} />
             <NeverAgain signed={signed} />

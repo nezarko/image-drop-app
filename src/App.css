@@ -316,22 +316,23 @@ body {
 .reciver-section-image {
   height: 100%;
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: start;
   contain: layout;
-  z-index: 2;
+  /* z-index: 2; */
+  isolation: isolate;
 }
-
+ 
 .reciver-section-image .section-img {
 
   transform: translateX(var(--rc-x));
 
   transform-origin: top center;
 
-  margin: 0 auto;
+  /* margin: 0 auto; */
   opacity: 0;
   transition-property: transform, opacity;
   transition-duration: 0.3s;
@@ -341,7 +342,7 @@ body {
 }
 
 .rc-image-append .section-img {
-  transform: translateY(var(--rc-y)) translateX(var(--rc-x)) rotate(var(--rc-r));
+  transform: translate(var(--rc-x) , var(--rc-y)) rotate(var(--rc-r));
   opacity: 1;
   transition-delay: calc(0.045s * var(--i));
 
@@ -353,6 +354,9 @@ body {
   opacity: 1;
 }
 
+.rc-section-image{
+  isolation: isolate;
+}
 .white{
   background: white !important;
 }

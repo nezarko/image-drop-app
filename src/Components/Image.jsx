@@ -1,26 +1,32 @@
-import { forwardRef, useEffect, useState } from "react";
-import { delay, _dispatchEvent } from "../Common/functions";
+import { forwardRef, useEffect, useMemo, useState } from "react";
+import { delay, _dispatchEvent , positionImages } from "../Common/functions";
 import "../assets/css/image.css";
+import svgf from '../assets/imags/nFlower5.svg'
 const Image = forwardRef(
   (props, ref) => {
 
     const { top, left, url, date, index, iposition, children, sectionIndex, ...$props } =
       props;
+
+    // const $url = props.r ? Store.getImage().url : url ; 
+
+  const _postions = useMemo(() => {
+    return positionImages(index)
+  } , [index])
     const imageStyle = {
       "--i": index,
       "--def-top": top ? `${top}px` : null,
       "--def-left": left ? `${left}%` : null,
-      "--rc-x": iposition.x,
-      "--rc-y": iposition.y,
-      "--rc-r": iposition.r,
-      position: "absolute",
-      // backgroundImage: `url(${url})`,
+      "--rc-x": _postions.x,
+      "--rc-y": _postions.y,
+      "--rc-r": _postions.r,
+      position:"absolute",
+      backgroundImage: `url(${svgf})`,
       backgroundRepeat: `no-repeat`,
       backgroundSize: `80px 150px`,
       width: `80px`,
       height: `100%`,
     };
-     useEffect(() => props.r && console.log("render")) ; 
     const [active, setActive] = useState(true);
     // const item = useRef(null);
     async function flip() {
@@ -88,7 +94,7 @@ const Image = forwardRef(
 
             {...$props}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width={50} height={150} viewBox="0 0 52.51 114.28">
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width={50} height={150} viewBox="0 0 52.51 114.28">
 
               <g class="cls-9">
                 <g id="Layer_1" data-name="Layer 1">
@@ -155,9 +161,9 @@ const Image = forwardRef(
                   <path class="cls-1" d="m35.06,28.12c.39.06.72.02,1.12-.03.33-.04.68-.03,1.01-.05.38-.03.76.04,1.14,0,.54-.06,1.09-.05,1.63-.08.47-.02.93-.09,1.4-.13s.9-.19,1.33-.31.91-.15,1.36-.23c.39-.07.82-.02,1.21-.05.24-.02.62-.09.85.04-.03.12-.25.15-.36.19-.22.07-.4.15-.61.24-.37.16-.76.23-1.12.41-.66.32-1.38.45-2.07.68-.2.07-.4.07-.61.11-.25.05-.51.06-.76.1-.47.08-.95.1-1.43.14-.51.05-1.06.15-1.57.08-.23-.03-.43,0-.67-.03-.25-.04-.49-.01-.74-.04-.64-.07-1.25.17-1.84.37" />
                 </g>
               </g>
-            </svg>
+            </svg> */}
 
-            {/* {children} */}
+            {children}
 
           </div>
         )}

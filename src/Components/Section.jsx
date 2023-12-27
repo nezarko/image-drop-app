@@ -1,13 +1,11 @@
 import "../App.css";
 
-import React, { useRef, useLayoutEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import SectionDate from "./SectionDate";
 import Person from "./Person";
-import Fog from "./fog/Fog";
-import Smoke from "./smoke/Smoke";
 import { fall, _dispatchEvent } from "../Common/functions";
 import {memo} from 'react'
-const Section = memo(props => {
+const Section = memo(function Section(props) {
   const [showFog, setShowFog] = useState(false);
   const [sectionImageReact ,setReact] = useState();
   const { height, section, sectionIndex, ...$props } = props;
@@ -49,7 +47,7 @@ const Section = memo(props => {
 
      
       const r = Math.floor(entry.intersectionRatio * 100);
-      if (entry.boundingClientRect.top <= 0  && !start_fall) {
+      if (entry.boundingClientRect.top <= 10  && !start_fall) {
         fall(entry.target, _dispatchEvent("section:fall", entry.target.getAttribute("data-fall")))
         setTimeout(() => {
           setShowFog(true)
@@ -73,6 +71,8 @@ const Section = memo(props => {
       observer.unobserve(section_ref.current)
     }
   }, [])
+
+  useEffect(() => console.log("section rednred"))
   return (
     <>
       <div
@@ -80,7 +80,7 @@ const Section = memo(props => {
         className={`section section-${sectionIndex} contianer-section-img-set`}
         style={{ height: height }}
         key={sectionIndex}
-        data-fall={`section-${sectionIndex}`}
+        data-fall={`section_${sectionIndex}`}
         data-index={sectionIndex}
         {...$props}
       >
@@ -88,7 +88,6 @@ const Section = memo(props => {
           date={new Date(section.date)}
           title={section.numberOfRoses}
         />
-
 
 
         <div
